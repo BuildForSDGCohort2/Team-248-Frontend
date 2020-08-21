@@ -19,7 +19,7 @@ class Home extends Component {
     return ( 
       <div>
         <h1>{messages.home}</h1>
-       <Button onClick={()=> this.switchLang(lang)}/>
+       <Button onClick={() => this.switchLang(lang)}/>
       </div>
     );
   }
