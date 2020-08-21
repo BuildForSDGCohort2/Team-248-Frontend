@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Button } from "../../components/Button/Button"
-import { connect } from "react-redux"
+import { Button } from "../../components/Button/Button";
+import { connect } from "react-redux";
 import { setCurrentLang } from "../../store/actions/Lang";
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {  };
   }
   switchLang = (lang) => {
     const { setLangAction } = this.props;
-    setLangAction(lang === "en"?"ar":"en")
+    setLangAction(lang === "en"?"ar":"en");
   }
   render() { 
     const { messages } = this.props.intl;

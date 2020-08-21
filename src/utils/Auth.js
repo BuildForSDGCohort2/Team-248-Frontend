@@ -9,6 +9,6 @@ const Auth = {
     getAuth() {
         return this.isAuthenticated;
     }
-}
+};
 
 export default Auth;
