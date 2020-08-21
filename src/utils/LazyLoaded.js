@@ -1,3 +1,3 @@
-import React from 'react';
+import React from "react";
 
-export const Home = React.lazy(() => import('../containers/Home/Home'));
+export const Home = React.lazy(() => import("../containers/Home/Home"));

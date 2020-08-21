@@ -7,6 +7,5 @@ export function* fetchSaga() {
     const response = yield call(API.get);
     yield put(action(response.data));
   } catch (err) {
-    console.log(err);
   }
 }

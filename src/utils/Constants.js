@@ -1,1 +1,1 @@
-export const ImgBaseURL = 'base url of img';
+export const ImgBaseURL = "base url of img";

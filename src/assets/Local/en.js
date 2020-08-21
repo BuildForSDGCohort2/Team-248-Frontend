@@ -1,5 +1,5 @@
 export default {
   en: {
-    home: 'Home',
+    home: "Home",
   }
 }

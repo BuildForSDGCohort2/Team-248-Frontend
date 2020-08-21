@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { injectIntl } from 'react-intl';
+import React, { Component } from "react";
+import { injectIntl } from "react-intl";
 import { Button } from "../../components/Button/Button"
 import { connect } from "react-redux"
 import { setCurrentLang } from "../../store/actions/Lang";
