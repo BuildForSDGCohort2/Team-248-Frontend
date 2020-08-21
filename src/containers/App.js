@@ -11,7 +11,6 @@ class App extends Component {
 
   render() {     
     const { lang } = this.props;
-    console.log(lang);
     
     return (
       <IntlProvider
@@ -27,8 +26,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
+const mapStateToProps = (state) => {
   return {
     lang: state.locale.lang
   }

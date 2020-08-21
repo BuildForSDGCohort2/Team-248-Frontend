@@ -9,9 +9,9 @@ class Home extends Component {
     super(props);
     this.state = {  }
   }
-  switchLang = (lang) =>{
+  switchLang = (lang) => {
     const { setLangAction } = this.props;
-    setLangAction(lang === 'en'?'ar':'en')
+    setLangAction(lang === "en"?"ar":"en")
   }
   render() { 
     const { messages } = this.props.intl;
@@ -24,7 +24,7 @@ class Home extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     lang: state.locale.lang
   }

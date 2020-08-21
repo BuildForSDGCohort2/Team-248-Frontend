@@ -10,10 +10,10 @@ export const axiosInstance = axios.create({
 
 // Handle request process
 axiosInstance.interceptors.request.use(
-  request => requestHandler(request)
+  (request) => requestHandler(request)
 );
 // Handle response process
 axiosInstance.interceptors.response.use(
-  response => successHandler(response),
-  error => errorHandler(error)
+  (response) => successHandler(response),
+  (error) => errorHandler(error)
 );
