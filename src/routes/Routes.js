@@ -8,6 +8,7 @@ const Routes = (
     <Router history={history}>
       <Switch>
         <LazyComponent.Home path="/" exact />
+        <LazyComponent.Login path="/login"/>
         <Redirect from="*" to="/" />
       </Switch>
     </Router>
