@@ -50,8 +50,7 @@ export default class SignUp extends React.Component {
 
   handleChange = (event) => {
     const required = event.target.value !== ""
-    this.setState(
-      {
+    this.setState({
         [event.target.name]: {
           value: event.target.value,
           error: (!required && "This feild is required"),
@@ -62,8 +61,7 @@ export default class SignUp extends React.Component {
   handleEmailChange = (event) => {
     const validEmail = /\S+@\S+\.\S+/.test(event.target.value);
     const required = event.target.value !== ""
-    this.setState(
-      {
+    this.setState({
         email: {
           value: event.target.value,
           error: (!required && "This field is required")
@@ -75,8 +73,7 @@ export default class SignUp extends React.Component {
   handlePasswordChange = (event) => {
     const min = event.target.value.length >= 6
     const max = event.target.value.length <= 12
-    this.setState(
-      {
+    this.setState({
         password: {
           value: event.target.value,
           error: ((!min || !max) 
@@ -86,8 +83,7 @@ export default class SignUp extends React.Component {
 
   handleConfirmPassword = (event) =>{
     const matched = event.target.value === this.state.password.value && event.target.value !== ""
-    this.setState(
-      {
+    this.setState({
         password_confirmation: {
           value: event.target.value,
           error: (!matched && "Password doesn't match")        }
@@ -96,8 +92,7 @@ export default class SignUp extends React.Component {
 
   handlePhoneNumberChange = (event) =>{
     const validPhone = /^[0-9]*$/.test(event.target.value)
-    this.setState(
-      {
+    this.setState({
         phone: {
           value: event.target.value,
           error: (!validPhone && "Invalid Phone number")        }
@@ -131,8 +126,6 @@ export default class SignUp extends React.Component {
   handleSubmission = (event) => {
     event.preventDefault()
     this.validate(event)
-    // console.log(event.target.email.value)
-    // console.log(this.state)
   }
 
   render(){
