@@ -5,9 +5,9 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Copyright from "../../components/CopyRight"
-import {Input} from "../../components/Input"
+import { Input } from "../../components/Input";
 import { CustomSnackbar } from "../../components/CustomSnackbar";
-import "./ForgetPassword.scss"
+import "./ForgetPassword.scss";
 
 
 export default class ForgetPassword extends React.Component{
@@ -25,13 +25,13 @@ export default class ForgetPassword extends React.Component{
 
   handleEmailChange = (e) => {
     const validEmail = /\S+@\S+\.\S+/.test(e.target.value);
-    const required = e.target.value !== ""
+    const required = e.target.value !== "";
     this.setState({
       email: {
         value: e.target.value,
         error: (!validEmail && "Invalid Email") || (!required && "This field is requird")
       }
-    })
+    });
   }
 
   handleOpenSnackbar = () => {
@@ -53,15 +53,15 @@ export default class ForgetPassword extends React.Component{
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
-    this.handleEmailChange({target: {value: e.target.email.value} })
+    e.preventDefault();
+    this.handleEmailChange({target: {value: e.target.email.value} });
     if(this.state.email.error !== ""){
-      this.handleOpenSnackbar()
+      this.handleOpenSnackbar();
     }
   }
 
   render() {
-    const { vertical, horizontal, open} = this.state.snackbar
+    const { vertical, horizontal, open } = this.state.snackbar
     return (
       <Container component="main" maxWidth="xs" className="forget-password-container">
         <CssBaseline />

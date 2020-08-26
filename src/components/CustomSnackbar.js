@@ -17,4 +17,4 @@ export const CustomSnackbar = ({anchorOrigin, handleClose, open, keyProp, messag
           </Snackbar>
         </div>
       );
-}
+};
