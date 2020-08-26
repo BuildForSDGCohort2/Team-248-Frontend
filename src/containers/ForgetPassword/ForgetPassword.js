@@ -4,7 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Copyright from "../../components/CopyRight"
+import Copyright from "../../components/CopyRight";
 import { Input } from "../../components/Input";
 import { CustomSnackbar } from "../../components/CustomSnackbar";
 import "./ForgetPassword.scss";
@@ -40,7 +40,7 @@ export default class ForgetPassword extends React.Component{
         ...this.state.snackbar,
         open: true
       }
-    })
+    });
   }
 
   handleCloseSnackbar = () => {
@@ -49,7 +49,7 @@ export default class ForgetPassword extends React.Component{
         ...this.state.snackbar,
         open: false
       }
-    })
+    });
   }
 
   handleSubmit = (e) => {
@@ -61,7 +61,7 @@ export default class ForgetPassword extends React.Component{
   }
 
   render() {
-    const { vertical, horizontal, open } = this.state.snackbar
+    const { vertical, horizontal, open } = this.state.snackbar;
     return (
       <Container component="main" maxWidth="xs" className="forget-password-container">
         <CssBaseline />
