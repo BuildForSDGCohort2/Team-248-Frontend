@@ -9,4 +9,4 @@ export function * fetchSaga() {
   } catch (err) {
     return;
   }
-};
+}

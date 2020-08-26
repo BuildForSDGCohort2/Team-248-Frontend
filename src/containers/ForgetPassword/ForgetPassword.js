@@ -1,25 +1,25 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Copyright from '../../components/CopyRight'
-import {Input} from '../../components/Input'
-import { CustomSnackbar } from '../../components/CustomSnackbar';
-import './ForgetPassword.scss'
+import React from "react";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Copyright from "../../components/CopyRight"
+import {Input} from "../../components/Input"
+import { CustomSnackbar } from "../../components/CustomSnackbar";
+import "./ForgetPassword.scss"
 
 
 export default class ForgetPassword extends React.Component{
   state = {
     email: {
-      value: '',
-      error: ''
+      value: "",
+      error: ""
     },
     snackbar: {
       open: false,
-      vertical: 'top',
-      horizontal: 'center',
+      vertical: "top",
+      horizontal: "center",
     }
   }
 
