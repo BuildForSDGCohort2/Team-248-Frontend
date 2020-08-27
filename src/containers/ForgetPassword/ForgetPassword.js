@@ -29,7 +29,7 @@ export default class ForgetPassword extends React.Component{
     this.setState({
       email: {
         value: e.target.value,
-        error: (!validEmail && "Invalid Email") || (!required && "This field is requird")
+        error: (!required && "This field is requird") || (!validEmail && "Invalid Email") || ""
       }
     });
   }
@@ -55,13 +55,10 @@ export default class ForgetPassword extends React.Component{
   handleSubmit = (e) => {
     e.preventDefault();
     this.handleEmailChange({target: {value: e.target.email.value} });
-    if(this.state.email.error !== ""){
-      this.handleOpenSnackbar();
-    }
+    this.state.email.error === "" && this.handleOpenSnackbar();
   }
 
   render() {
-    const { vertical, horizontal, open } = this.state.snackbar;
     return (
       <Container component="main" maxWidth="xs" className="forget-password-container">
         <CssBaseline />
@@ -70,11 +67,11 @@ export default class ForgetPassword extends React.Component{
             Forget Password
           </Typography>
           <CustomSnackbar
-            anchorOrigin={{ vertical, horizontal }}
-            open={open}
+            anchorOrigin={{ vertical:this.state.snackbar.vertical, horizontal:this.state.snackbar.horizontal }}
+            open={this.state.snackbar.open}
             handleClose={this.handleCloseSnackbar}
             message="Email has been sent Successfully"
-            keyProp={vertical + horizontal}
+            keyProp={this.state.snackbar.vertical + this.state.snackbar.horizontal}
           />
           <form className="form-container" onSubmit={this.handleSubmit}>
             <Input
