@@ -61,7 +61,6 @@ export default class ForgetPassword extends React.Component{
   render() {
     return (
       <Container component="main" maxWidth="xs" className="forget-password-container">
-        <CssBaseline />
         <div className="paper">
           <Typography component="h1" variant="h5">
             Forget Password
