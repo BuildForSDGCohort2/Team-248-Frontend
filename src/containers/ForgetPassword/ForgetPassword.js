@@ -9,19 +9,18 @@ import { Input } from "../../components/Input";
 import { CustomSnackbar } from "../../components/CustomSnackbar";
 import "./ForgetPassword.scss";
 
-
-export default class ForgetPassword extends React.Component{
+export default class ForgetPassword extends React.Component {
   state = {
     email: {
       value: "",
-      error: ""
+      error: "",
     },
     snackbar: {
       open: false,
       vertical: "top",
       horizontal: "center",
-    }
-  }
+    },
+  };
 
   handleEmailChange = (e) => {
     const validEmail = /\S+@\S+\.\S+/.test(e.target.value);
@@ -29,49 +28,61 @@ export default class ForgetPassword extends React.Component{
     this.setState({
       email: {
         value: e.target.value,
-        error: (!required && "This field is requird") || (!validEmail && "Invalid Email") || ""
-      }
+        error:
+          (!required && "This field is requird") ||
+          (!validEmail && "Invalid Email") ||
+          "",
+      },
     });
-  }
+  };
 
   handleOpenSnackbar = () => {
     this.setState({
-      snackbar: { 
+      snackbar: {
         ...this.state.snackbar,
-        open: true
-      }
+        open: true,
+      },
     });
-  }
+  };
 
   handleCloseSnackbar = () => {
     this.setState({
-      snackbar: { 
+      snackbar: {
         ...this.state.snackbar,
-        open: false
-      }
+        open: false,
+      },
     });
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.handleEmailChange({target: {value: e.target.email.value} });
+    this.handleEmailChange({ target: { value: e.target.email.value } });
     this.state.email.error === "" && this.handleOpenSnackbar();
-  }
+  };
 
   render() {
     return (
-      <Container component="main" maxWidth="xs" className="forget-password-container">
+      <Container
+        component="main"
+        maxWidth="xs"
+        className="forget-password-container"
+      >
         <CssBaseline />
         <div className="paper">
           <Typography component="h1" variant="h5">
             Forget Password
           </Typography>
           <CustomSnackbar
-            anchorOrigin={{ vertical:this.state.snackbar.vertical, horizontal:this.state.snackbar.horizontal }}
+            anchorOrigin={{
+              vertical: this.state.snackbar.vertical,
+              horizontal: this.state.snackbar.horizontal,
+            }}
             open={this.state.snackbar.open}
             handleClose={this.handleCloseSnackbar}
             message="Email has been sent Successfully"
-            keyProp={this.state.snackbar.vertical + this.state.snackbar.horizontal}
+            keyProp={
+              this.state.snackbar.vertical + this.state.snackbar.horizontal
+            }
           />
           <form className="form-container" onSubmit={this.handleSubmit}>
             <Input
