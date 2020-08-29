@@ -4,7 +4,6 @@ import Alert from "@material-ui/lab/Alert";
 
 export const CustomSnackbar = ({anchorOrigin, handleClose, open, keyProp, message}) => {
     return (
-        <div>
           <Snackbar 
             anchorOrigin={ anchorOrigin } 
             open={open} 
