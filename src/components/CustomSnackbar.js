@@ -14,6 +14,5 @@ export const CustomSnackbar = ({anchorOrigin, handleClose, open, keyProp, messag
               {message}
             </Alert>
           </Snackbar>
-        </div>
       );
 };
