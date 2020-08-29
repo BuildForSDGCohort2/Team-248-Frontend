@@ -15,6 +15,5 @@ export const Input = ({variant, margin, handleChange, id, label, name, autoCompl
                 autoComplete={autoComplete}
                 autoFocus
             />
-        </div>
     );
 };
