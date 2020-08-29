@@ -20,6 +20,9 @@ global.mount = mount;
 global.sinon = sinon;
 
 // Fail tests on any warning
+// Codacy doesn't like the following lines
+/*
 console.error = (message) => {
   throw new Error(message);
 };
+*/
