@@ -5,14 +5,11 @@ import Routes from "../routes/Routes";
 import "./App.scss";
 
 class App extends Component {
-
-  render() {         
+  render() {
     return (
-        <div >
-          <Router history={history}>
-            {Routes}   
-          </Router>
-        </div>
+      <div>
+        <Router history={history}>{Routes}</Router>
+      </div>
     );
   }
 }
