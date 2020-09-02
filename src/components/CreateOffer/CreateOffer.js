@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { Formik, Form } from "formik";
-import { Typography, Button, Box, CssBaseline, Grid } from "@material-ui/core";
+import { Formik, Form, Field } from "formik";
+import {
+  Typography,
+  Button,
+  Box,
+  CssBaseline,
+  Grid,
+  TextField
+} from "@material-ui/core";
 import { CustomSnackbar } from "../CustomSnackbar";
 import DatePicker from "./DatePicker";
 import Copyright from "../CopyRight";
@@ -57,13 +64,12 @@ class CreateOffer extends Component {
     return (
       <Grid
         container
-        spacing={0}
         direction="column"
         alignItems="center"
         justify="center"
         style={{ minHeight: "100vh" }}
       >
-        <Grid item xs={3}>
+        <Grid item xs={6}>
           <Typography variant="h3">Create Offer</Typography>
           <CssBaseline />
           <CustomSnackbar
@@ -78,21 +84,52 @@ class CreateOffer extends Component {
               this.state.snackbar.vertical + this.state.snackbar.horizontal
             }
           />
-          <Formik
-            initialValues={this.state.values}
-            onSubmit={this.onSubmit}
-            render={props => (
+          <Formik initialValues={this.state.values} onSubmit={this.onSubmit}>
+            {props => (
               <Form>
-                <DatePicker
-                  label="Pick start date"
-                  value={props.values.startDate}
-                  onChange={value => props.setFieldValue("startDate", value)}
-                />
-                <DatePicker
-                  label="Pick end date"
-                  value={props.values.endDate}
-                  onChange={value => props.setFieldValue("endDate", value)}
-                />
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="center"
+                >
+                  <DatePicker
+                    label="Start date"
+                    value={props.values.startDate}
+                    onChange={value => props.setFieldValue("startDate", value)}
+                  />
+                  <DatePicker
+                    label="End date"
+                    value={props.values.endDate}
+                    onChange={value => props.setFieldValue("endDate", value)}
+                  />
+                </Grid>
+                <Box width="100%" mb={2}>
+                  <Field validateOnBlur validateOnChange name="pricePerHour">
+                    {({ _, form }) => (
+                      <TextField
+                        fullWidth
+                        variant="outlined"
+                        name="pricePerHour"
+                        label="Price per hour"
+                        error={Boolean(
+                          form.errors.pricePerHour && form.touched.pricePerHour
+                        )}
+                        onChange={value => {
+                          props.setFieldValue("pricePerHour", value);
+                          console.log(props.values.pricePerHour);
+                        }}
+                        // onKeyUp={this.onPriceKeyUp(props.values.pricePerHour)}
+                        // onBlur={this.onPriceBlur}
+                        helperText={
+                          form.errors.pricePerHour &&
+                          form.touched.pricePerHour &&
+                          String(form.errors.pricePerHour)
+                        }
+                      />
+                    )}
+                  </Field>
+                </Box>
                 <Box width="100%" my={2}>
                   <Button type="submit" variant="contained" color="primary">
                     Submit
@@ -100,7 +137,7 @@ class CreateOffer extends Component {
                 </Box>
               </Form>
             )}
-          />
+          </Formik>
           <Box mt={8}>
             <Copyright />
           </Box>

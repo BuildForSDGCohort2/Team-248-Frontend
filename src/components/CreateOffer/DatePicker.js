@@ -8,7 +8,7 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 const DatePicker = ({ label, value, onChange }) => {
   return (
-    <Box width="100%" mb={2}>
+    <Box width="50%" mb={2}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
           id="data-picker-dialog"
