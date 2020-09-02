@@ -106,4 +106,41 @@ function Copyright() {
   );
 }
 
+const useStyles = makeStyles((theme) => ({
+  resetPassword: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  label: {
+    fontSize: "17px",
+  },
+  password: {
+    fontSize: "17px",
+    margin: theme.spacing(3, 0, 2),
+    marginLeft: theme.spacing(13),
+  },
+  confirmPassword: {
+    fontSize: "17px",
+    margin: theme.spacing(3, 0, 2),
+    marginLeft: theme.spacing(5),
+  },
+  error: {
+    marginLeft: theme.spacing(3),
+    color: "red",
+  },
+}));
+
 export default ResetPassword;
