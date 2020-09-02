@@ -10,7 +10,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
 function ResetPassword() {
-  const MUI_Styles = useStyles();
+  const classes = useStyles();
 
   // it should return new password to backend
   // it will be updated later on!
@@ -21,8 +21,8 @@ function ResetPassword() {
   return (
     <Container component="main" maxWidth="sm">
       <CssBaseline />
-      <div className={MUI_Styles.resetPassword}>
-        <Avatar className={MUI_Styles.avatar}>
+      <div className={classes.resetPassword}>
+        <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -43,19 +43,19 @@ function ResetPassword() {
             return errors;
           }}
           render={({ handleSubmit, form, values }) => (
-            <form onSubmit={handleSubmit} className={MUI_Styles.form}>
+            <form onSubmit={handleSubmit} className={classes.form}>
               <Field name="password">
                 {({ input, meta }) => (
                   <div>
-                    <label className={MUI_Styles.label}>New Password</label>
+                    <label className={classes.label}>New Password</label>
                     <input
                       {...input}
                       type="password"
                       placeholder="new password"
-                      className={MUI_Styles.password}
+                      className={classes.password}
                     />
                     {meta.error && meta.touched && (
-                      <span className={MUI_Styles.error}>{meta.error}</span>
+                      <span className={classes.error}>{meta.error}</span>
                     )}
                   </div>
                 )}
@@ -63,17 +63,17 @@ function ResetPassword() {
               <Field name="confirm">
                 {({ input, meta }) => (
                   <div>
-                    <label className={MUI_Styles.label}>
+                    <label className={classes.label}>
                       Confirm New Password
                     </label>
                     <input
                       {...input}
                       type="password"
                       placeholder="confirm new password"
-                      className={MUI_Styles.confirmPassword}
+                      className={classes.confirmPassword}
                     />
                     {meta.error && meta.touched && (
-                      <span className={MUI_Styles.error}>{meta.error}</span>
+                      <span className={classes.error}>{meta.error}</span>
                     )}
                   </div>
                 )}
@@ -83,7 +83,7 @@ function ResetPassword() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={MUI_Styles.submit}
+                className={classes.submit}
               >
                 Submit
               </Button>

@@ -9,12 +9,12 @@ it("should render ResetPassword correctly", () => {
 
 it("checks new password value", () => {
   const wrapper = mount(<ResetPassword />);
-  const text = wrapper.find('input[name="password"]').text();
+  const text = wrapper.find(`input[name="password"]`).text();
   expect(text).toEqual("");
 });
 
 it("checks confirm new password value", () => {
   const wrapper = mount(<ResetPassword />);
-  const text = wrapper.find('input[name="confirm"]').text();
+  const text = wrapper.find(`input[name="confirm"]`).text();
   expect(text).toEqual("");
 });
