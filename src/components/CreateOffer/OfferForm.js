@@ -42,9 +42,10 @@ const OfferForm = () => {
       onSubmit={({ values }) => console.log(values)}
     >
       {({ values, setFieldValue }) => (
-        <Form>
+        <Form id="create-offer-form">
           <FormGroup>
             <Field
+              id="create-offer-startDate"
               as={DatePicker}
               name="startDate"
               label="Start date"
@@ -55,6 +56,7 @@ const OfferForm = () => {
           </FormGroup>
           <FormGroup>
             <Field
+              id="create-offer-endDate"
               as={DatePicker}
               name="endDate"
               label="End date"
@@ -66,6 +68,7 @@ const OfferForm = () => {
           <Box width="100%" mb={2}>
             <FormGroup>
               <Field
+                id="create-offer-pricePerHour"
                 variant="outlined"
                 name="pricePerHour"
                 type="number"
@@ -78,6 +81,7 @@ const OfferForm = () => {
           <Box width="100%" mb={2} mt={2}>
             <FormGroup>
               <Field
+                id="create-offer-address"
                 variant="outlined"
                 name="address"
                 type="text"
@@ -90,6 +94,7 @@ const OfferForm = () => {
           <Box width="100%" mb={2} mt={2}>
             <FormGroup>
               <Field
+                id="create-offer-qualifications"
                 variant="outlined"
                 name="qualifications"
                 type="text"

@@ -5,7 +5,11 @@ const InputError = ({ name, message }) => {
     return (
       <ErrorMessage
         name={name}
-        render={() => <div style={{ color: "#FF0000" }}>{message}</div>}
+        render={() => (
+          <div id={`invalid-${name}`} style={{ color: "#FF0000" }}>
+            {message}
+          </div>
+        )}
       />
     );
   }
