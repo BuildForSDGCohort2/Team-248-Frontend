@@ -13,6 +13,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Masseges from '../../assets/Local/messages'
 
 
 export default class SignUp extends React.Component {
@@ -42,95 +43,142 @@ export default class SignUp extends React.Component {
       value: '',
       error: ''
     },
-    date_of_birth: {
+    dob: {
+      value: '',
+      error: ''
+    },
+    profile_img: {
+      value: '',
+      error: ''
+    },
+    id_img: {
       value: '',
       error: ''
     },
   }
 
+  imgTypes = ["jpeg", "png", "jpg"]
+
   handleChange = (event) => {
     const required = event.target.value !== ""
     this.setState({
-        [event.target.name]: {
-          value: event.target.value,
-          error: (!required && "This feild is required"),
-        }
-      })
+      [event.target.name]: {
+        value: event.target.value,
+        error: (!required && "This feild is required"),
+      }
+    })
   }
 
   handleEmailChange = (event) => {
     const validEmail = /\S+@\S+\.\S+/.test(event.target.value);
     const required = event.target.value !== ""
     this.setState({
-        email: {
-          value: event.target.value,
-          error: (!required && "This field is required")
-          || (!validEmail && "Not valid"),
-        }
-      })
+      email: {
+        value: event.target.value,
+        error: (!required && "This field is required")
+        || (!validEmail && "Not valid"),
+      }
+    })
   }
 
   handlePasswordChange = (event) => {
     const min = event.target.value.length >= 6
     const max = event.target.value.length <= 12
     this.setState({
-        password: {
-          value: event.target.value,
-          error: ((!min || !max) 
-          && "This field should be 6 minimum charachter and 12 maximum charachter")        }
-      })
+      password: {
+        value: event.target.value,
+        error: ((!min || !max) 
+        && "This field should be 6 minimum charachter and 12 maximum charachter")        
+      }
+    })
   }
 
   handleConfirmPassword = (event) =>{
     const matched = event.target.value === this.state.password.value && event.target.value !== ""
     this.setState({
-        password_confirmation: {
-          value: event.target.value,
-          error: (!matched && "Password doesn't match")        }
-      })
+      password_confirmation: {
+        value: event.target.value,
+        error: (!matched && "Password doesn't match")        
+      }
+    })
   }
 
   handlePhoneNumberChange = (event) =>{
     const validPhone = /^[0-9]*$/.test(event.target.value)
     this.setState({
-        phone: {
-          value: event.target.value,
-          error: (!validPhone && "Invalid Phone number")        }
-      })
+      phone: {
+        value: event.target.value,
+        error: (!validPhone && "Invalid Phone number")        
+      }
+    })
   }
 
-  validate = (event) => {
+  handleImgChange = (event) =>{
+    const file = event.target.files[0]
+    const imgMemeType = file.type.split('/')[1] // Where file type is like "image/png"
+    const validMemeType = this.imgTypes.indexOf(imgMemeType) !== -1;
+    console.log(validMemeType)
+    this.setState({
+      [event.target.name]: {
+        value: file,
+        error: (!validMemeType && Masseges.en.regitserFormValidation.notValidMemetype)
+      }
+    })
+  }
+
+  validate = (formBody) => {
     this.handleChange({ target: { 
-      value: event.target.name.value, 
-      name:  event.target.name.name
+      value: formBody.name.value, 
+      name:  formBody.name.name
     } })
     this.handleEmailChange({ target: { 
-      value: event.target.email.value, 
+      value: formBody.email.value, 
     } })
     this.handlePasswordChange({ target: { 
-      value: event.target.password.value, 
+      value: formBody.password.value, 
     } })
     this.handleConfirmPassword({ target: { 
-      value: event.target.password_confirmation.value, 
+      value: formBody.password_confirmation.value, 
     } })
     this.handleChange({ target: { 
-      value: event.target.phone.value,
-      name: event.target.phone.name
+      value: formBody.phone.value,
+      name: formBody.phone.name
     } })
     this.handleChange({ target: { 
-      value: event.target.address.value, 
-      name: event.target.address.name
+      value: formBody.address.value, 
+      name: formBody.address.name
     } })
   }
+
+  toJSONString( form ) {
+		var obj = {};
+		var elements = form.querySelectorAll( "input, radio" );
+		for( var i = 0; i < elements.length; ++i ) {
+			var element = elements[i];
+			var name = element.name;
+			var value = element.value;
+
+			if( name ) {
+				obj[ name ] = value;
+			}
+		}
+
+		return JSON.stringify( obj );
+	}
 
   handleSubmission = (event) => {
     event.preventDefault()
-    this.validate(event)
+    // this.validate(event.target)
+    const data = JSON.parse(this.toJSONString(event.target))
+    data.id_img = this.state.id_img
+    data.profile_img = this.state.profile_img
+    // console.log(data)
+    // console.log(event.target.elements.length)
   }
 
   render(){
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className="register-container">
         <div className="paper">
           <Typography component="h1" variant="h5">
             Sign up
@@ -213,8 +261,8 @@ export default class SignUp extends React.Component {
               <Grid item xs={12}>
                 <FormLabel component="legend">Date of Birth</FormLabel>
                 <TextField
-                  id="date_of_birth"
-                  name="date_of_birth"
+                  id="dob"
+                  name="dob"
                   type="date"
                   onChange={this.handleChange}
                   fullWidth
@@ -232,7 +280,30 @@ export default class SignUp extends React.Component {
                 </RadioGroup>
               </FormControl>
               </Grid>
-              
+              <Grid item xs={12}>
+                <FormLabel component="legend">Choose your Profile Image</FormLabel>
+                <TextField
+                  type="file"
+                  id="profile_img"
+                  name="profile_img"
+                  fullWidth
+                  onChange={this.handleImgChange}
+                />
+                <small className="error d-block">{this.state.profile_img.error}</small>
+
+              </Grid>
+              <Grid item xs={12}>
+                <FormLabel component="legend">add Image for your National ID card</FormLabel>
+                <TextField
+                  type="file"
+                  id="id_img"
+                  name="id_img"
+                  fullWidth
+                  onChange={this.handleImgChange}
+                />
+              </Grid>
+              <small className="error d-block">{this.state.id_img.error}</small>
+            
             </Grid>
   
             <Button
@@ -240,7 +311,7 @@ export default class SignUp extends React.Component {
               fullWidth
               variant="contained"
               color="primary"
-              className=""
+              className="submit-btn"
             >
               Sign Up
             </Button>

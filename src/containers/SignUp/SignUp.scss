@@ -1,15 +1,20 @@
 @import "../../scss/variables";
 
-.login-container{
+.register-container{
+  .login-container{
     margin: 200px auto 0 auto;
     width: 50%;
-}
-.paper {
+  }
+  .paper {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center,
-}
-.error{
+  }
+  .error{
     color: red;
+  }
+  .submit-btn{
+    margin-top: 30px;
+  }
 }
