@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <>
         <Router history={history}>{Routes}</Router>
-        <Home />
+        {/* <Home /> */}
       </>
     );
   }
