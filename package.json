@@ -25,7 +25,8 @@
     "react-test-renderer": "^16.13.1",
     "redux": "^4.0.4",
     "redux-saga": "^1.1.1",
-    "sinon": "^9.0.3"
+    "sinon": "^9.0.3",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
