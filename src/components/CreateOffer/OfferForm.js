@@ -1,8 +1,9 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { number, object, string, date } from "yup";
-import DatePicker from "./DatePicker";
 import { Button, Box, TextField, FormGroup } from "@material-ui/core";
+import DatePicker from "./DatePicker";
+import InputError from "./InputError";
 
 const min = new Date();
 const minDate = `${min.getMonth() + 1}/${min.getDate()}/${min.getFullYear()}`;
@@ -18,18 +19,18 @@ const initialValues = {
 const validationSchema = object({
   startDate: date()
     .default(new Date(min))
-    .min(min, `start date should be equal or later than ${minDate}`)
+    .min(min, `Start date should be equal or later than ${minDate}`)
     .required("Start date is required"),
   endDate: date()
     .default(new Date(max))
-    .min(min, `end date should be equal or later than ${minDate}`)
+    .min(min, `End date should be equal or later than ${minDate}`)
     .required("End date is required"),
   pricePerHour: number()
     .required("Price per hour is required")
-    .min(1, `you can not choose a price less than 1$ per hour`),
+    .min(1, `You can not choose a price less than 1$ per hour`),
   address: string()
     .min(5)
-    .required("You address is required"),
+    .required("Your address is required"),
   qualifications: string().min(20)
 });
 
@@ -50,7 +51,7 @@ const OfferForm = () => {
               value={values.startDate}
               onChange={value => setFieldValue("startDate", value)}
             />
-            <ErrorMessage name="startDate" />
+            <InputError name="startDate" message="Invalid start date" />
           </FormGroup>
           <FormGroup>
             <Field
@@ -60,7 +61,7 @@ const OfferForm = () => {
               value={values.endDate}
               onChange={value => setFieldValue("endDate", value)}
             />
-            <ErrorMessage name="endDate" />
+            <InputError name="endDate" message="Invalid end date" />
           </FormGroup>
           <Box width="100%" mb={2}>
             <FormGroup>
@@ -71,7 +72,7 @@ const OfferForm = () => {
                 as={TextField}
                 label="Price per hour"
               />
-              <ErrorMessage name="pricePerHour" />
+              <InputError name="pricePerHour" message="Invalid price" />
             </FormGroup>
           </Box>
           <Box width="100%" mb={2} mt={2}>
@@ -83,7 +84,7 @@ const OfferForm = () => {
                 as={TextField}
                 label="Your address"
               />
-              <ErrorMessage name="address" />
+              <InputError name="address" message="Invalid address" />
             </FormGroup>
           </Box>
           <Box width="100%" mb={2} mt={2}>
@@ -95,11 +96,11 @@ const OfferForm = () => {
                 as={TextField}
                 label="prefered qualifications"
               />
-              <ErrorMessage name="qualifications" />
+              <InputError name="qualifications" message="Invalid text" />
             </FormGroup>
           </Box>
           <Box width="100%" my={2}>
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit" variant="contained" color="primary" fullWidth>
               Submit
             </Button>
           </Box>
