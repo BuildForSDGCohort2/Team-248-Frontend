@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Formik, Form } from "formik";
 import { Typography, Button, Box, CssBaseline, Grid } from "@material-ui/core";
+import { CustomSnackbar } from "../CustomSnackbar";
 import DatePicker from "./DatePicker";
+import Copyright from "../CopyRight";
 
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 // const required = value => (value ? undefined : "Required");
@@ -29,17 +31,27 @@ class CreateOffer extends Component {
     }
   };
 
-  handleToggleSnackbar = () => {
+  handleOpenSnackbar = () => {
     this.setState({
       snackbar: {
         ...this.state.snackbar,
-        open: !this.state.snackbar.open
+        open: true
+      }
+    });
+  };
+
+  handleCloseSnackbar = () => {
+    this.setState({
+      snackbar: {
+        ...this.state.snackbar,
+        open: false
       }
     });
   };
 
   onSubmit = values => {
     console.log(values);
+    this.handleOpenSnackbar();
   };
   render() {
     return (
@@ -51,9 +63,21 @@ class CreateOffer extends Component {
         justify="center"
         style={{ minHeight: "100vh" }}
       >
-        <Typography variant="h3">Create Offer</Typography>
-        <CssBaseline />
         <Grid item xs={3}>
+          <Typography variant="h3">Create Offer</Typography>
+          <CssBaseline />
+          <CustomSnackbar
+            anchorOrigin={{
+              vertical: this.state.snackbar.vertical,
+              horizontal: this.state.snackbar.horizontal
+            }}
+            open={this.state.snackbar.open}
+            handleClose={this.handleCloseSnackbar}
+            message="Email has been sent Successfully"
+            keyProp={
+              this.state.snackbar.vertical + this.state.snackbar.horizontal
+            }
+          />
           <Formik
             initialValues={this.state.values}
             onSubmit={this.onSubmit}
@@ -77,6 +101,9 @@ class CreateOffer extends Component {
               </Form>
             )}
           />
+          <Box mt={8}>
+            <Copyright />
+          </Box>
         </Grid>
       </Grid>
     );
