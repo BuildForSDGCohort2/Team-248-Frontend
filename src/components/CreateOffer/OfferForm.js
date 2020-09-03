@@ -54,7 +54,7 @@ const OfferForm = () => {
               name="startDate"
               label="Start date"
               value={values.startDate}
-              onChange={value => setFieldValue("startDate", value)}
+              onChange={(value) => setFieldValue("startDate", value)}
             />
             <InputError name="startDate" message="Invalid start date" />
           </FormGroup>
@@ -65,7 +65,7 @@ const OfferForm = () => {
               name="endDate"
               label="End date"
               value={values.endDate}
-              onChange={value => setFieldValue("endDate", value)}
+              onChange={(value) => setFieldValue("endDate", value)}
             />
             <InputError name="endDate" message="Invalid end date" />
           </FormGroup>
