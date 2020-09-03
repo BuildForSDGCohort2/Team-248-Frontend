@@ -40,7 +40,10 @@ const OfferForm = () => {
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={({ values }) => onSubmit(values)}
+      onSubmit={async ({ values }) => {
+        await SelectInput(500);
+        alert(JSON.stringify(values, null, 2))
+      }}
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">
