@@ -34,13 +34,13 @@ const validationSchema = object({
   qualifications: string().min(20)
 });
 
-let submitted = false;
 const OfferForm = () => {
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
       onSubmit={async ({ values }) => {
+        let submitted = false;
         submitted = values;
       }}
     >

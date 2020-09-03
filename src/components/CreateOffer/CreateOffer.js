@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Typography, Box, CssBaseline, Grid, Divider } from "@material-ui/core";
+import { Typography, Box, CssBaseline, Grid } from "@material-ui/core";
 import { CustomSnackbar } from "../CustomSnackbar";
 import OfferForm from "./OfferForm";
 import Copyright from "../CopyRight";
