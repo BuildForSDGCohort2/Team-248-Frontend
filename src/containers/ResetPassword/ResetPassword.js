@@ -1,5 +1,4 @@
-import React from "react";
-import { Form, Field } from "react-final-form";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,15 +7,39 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 function ResetPassword() {
-  const classes = useStyles();
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const updateNewPassword = (e) => {
+    setNewPassword(e.target.value);
+  };
+  const updateConfirmNewPassword = (e) => {
+    setConfirmNewPassword(e.target.value);
+  };
+
+  const checkValues = () => {
+    if (newPassword === "" || confirmNewPassword === "") {
+      setError("CAN NOT BE EMPTY FIELD!");
+    } else if (newPassword !== confirmNewPassword) {
+      setError("MUST MATCH!");
+    } else if (newPassword === confirmNewPassword) {
+      setError("NEW PASSWORD HAS SET");
+    }
+    setNewPassword("");
+    setConfirmNewPassword("");
+  };
 
   // it should return new password to backend
   // it will be updated later on!
   const onSubmit = () => {
     return null;
   };
+
+  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="sm">
@@ -28,68 +51,60 @@ function ResetPassword() {
         <Typography component="h1" variant="h5">
           Reset Password
         </Typography>
-        <Form
-          onSubmit={onSubmit}
-          validate={(values) => {
-            const errors = {};
-            if (!values.password) {
-              errors.password = "Required";
-            }
-            if (!values.confirm) {
-              errors.confirm = "Required";
-            } else if (values.confirm !== values.password) {
-              errors.confirm = "Must match";
-            }
-            return errors;
-          }}
-          render={({ handleSubmit, form, values }) => (
-            <form onSubmit={handleSubmit} className={classes.form}>
-              <Field name="password">
-                {({ input, meta }) => (
-                  <div>
-                    <label className={classes.label}>New Password</label>
-                    <input
-                      {...input}
-                      type="password"
-                      placeholder="new password"
-                      className={classes.password}
-                    />
-                    {meta.error && meta.touched && (
-                      <span className={classes.error}>{meta.error}</span>
-                    )}
-                  </div>
-                )}
-              </Field>
-              <Field name="confirm">
-                {({ input, meta }) => (
-                  <div>
-                    <label className={classes.label}>
-                      Confirm New Password
-                    </label>
-                    <input
-                      {...input}
-                      type="password"
-                      placeholder="confirm new password"
-                      className={classes.confirmPassword}
-                    />
-                    {meta.error && meta.touched && (
-                      <span className={classes.error}>{meta.error}</span>
-                    )}
-                  </div>
-                )}
-              </Field>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
+        <form onSubmit={onSubmit} className={classes.form}>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="New Password"
+            name="password"
+            autoComplete="current-password"
+            id="outlined-password-input"
+            type="password"
+            variant="outlined"
+            value={newPassword}
+            onChange={updateNewPassword}
+          ></TextField>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Confirm New Password"
+            name="confirmPassword"
+            autoComplete="current-password"
+            id="outlined-password-input"
+            type="password"
+            variant="outlined"
+            value={confirmNewPassword}
+            onChange={updateConfirmNewPassword}
+          ></TextField>
+          <Box>
+            {error === "NEW PASSWORD HAS SET" ? (
+              <Typography
+                component="h2"
+                variant="body1"
+                className={classes.success}
               >
-                Submit
-              </Button>
-            </form>
-          )}
-        />
+                {error}
+              </Typography>
+            ) : (
+              <Typography
+                component="h2"
+                variant="body1"
+                className={classes.error}
+              >
+                {error}
+              </Typography>
+            )}
+          </Box>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={checkValues}
+          >
+            Submit
+          </Button>
+        </form>
       </div>
       <Box mt={8}>
         <Copyright />
@@ -138,8 +153,12 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(5),
   },
   error: {
-    marginLeft: theme.spacing(3),
+    margin: theme.spacing(3, 0, 2),
     color: "red",
+  },
+  success: {
+    margin: theme.spacing(3, 0, 2),
+    color: "green",
   },
 }));
 
