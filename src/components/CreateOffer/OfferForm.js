@@ -27,19 +27,20 @@ const validationSchema = object({
     .required("End date is required"),
   pricePerHour: number()
     .required("Price per hour is required")
-    .min(1, `You can not choose a price less than 1$ per hour`),
+    .min(1, "You can not choose a price less than 1$ per hour"),
   address: string()
     .min(5)
     .required("Your address is required"),
   qualifications: string().min(20)
 });
 
+const onSubmit = ({ values }) => console.log(values);
 const OfferForm = () => {
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={({ values }) => console.log(values)}
+      onSubmit={({ values }) => onSubmit(values)}
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">
