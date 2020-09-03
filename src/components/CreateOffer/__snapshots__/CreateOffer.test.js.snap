@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot testing 1`] = `
+<WithStyles(ForwardRef(Grid))
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+  style={
+    Object {
+      "minHeight": "100vh",
+    }
+  }
+>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    xs={6}
+  >
+    <WithStyles(ForwardRef(Typography))
+      variant="h3"
+    >
+      Create Offer
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(CssBaseline) />
+    <CustomSnackbar
+      anchorOrigin={
+        Object {
+          "horizontal": "center",
+          "vertical": "top",
+        }
+      }
+      handleClose={[Function]}
+      keyProp="topcenter"
+      message="Email has been sent Successfully"
+      open={false}
+    />
+    <OfferForm />
+    <Styled(MuiBox)
+      mt={8}
+    >
+      <Copyright />
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;
