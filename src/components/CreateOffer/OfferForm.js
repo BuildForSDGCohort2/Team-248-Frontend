@@ -40,8 +40,8 @@ const OfferForm = () => {
       validationSchema={validationSchema}
       initialValues={initialValues}
       onSubmit={async ({ values }) => {
-        let submitted = false;
-        submitted = values;
+        // let submitted = false;
+        // submitted = values;
       }}
     >
       {({ values, setFieldValue }) => (
