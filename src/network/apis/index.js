@@ -2,10 +2,7 @@ import axios from "axios";
 import { requestHandler, successHandler, errorHandler } from "../interceptors";
 
 export const axiosInstance = axios.create({
-  baseURL: "your base url",
-  params: {
-    api_key: "your api key or any"
-  }
+  baseURL: "http://localhost:8000",
 });
 
 // Handle request process

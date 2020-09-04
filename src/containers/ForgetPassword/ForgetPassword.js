@@ -8,6 +8,8 @@ import Copyright from "../../components/CopyRight";
 import { Input } from "../../components/Input";
 import { CustomSnackbar } from "../../components/CustomSnackbar";
 import "./ForgetPassword.scss";
+import { axiosInstance } from '../../network/apis/index';
+import Messages from "../../assets/Local/messages";
 
 export default class ForgetPassword extends React.Component {
   state = {
@@ -20,6 +22,8 @@ export default class ForgetPassword extends React.Component {
       vertical: "top",
       horizontal: "center",
     },
+    ForgetPasswordMsg: "",
+    WrongEmail: false
   };
 
   handleEmailChange = (e) => {
@@ -29,8 +33,8 @@ export default class ForgetPassword extends React.Component {
       email: {
         value: e.target.value,
         error:
-          (!required && "This field is requird") ||
-          (!validEmail && "Invalid Email") ||
+          (!required && Messages.en.Required) ||
+          (!validEmail && Messages.en.ForgetPassword.InvalidEmail) ||
           "",
       },
     });
@@ -57,6 +61,13 @@ export default class ForgetPassword extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.handleEmailChange({ target: { value: e.target.email.value } });
+    axiosInstance.post('/api/forget-password', { email: e.target.email.value })
+      .then((res) => {
+        this.setState({ForgetPasswordMsg: res.data.message, WrongEmail: false})
+      })
+      .catch((err) => {
+        this.setState({ForgetPasswordMsg: err.response.data.data.message, WrongEmail: true})
+      })
     this.state.email.error === "" && this.handleOpenSnackbar();
   };
 
@@ -79,7 +90,8 @@ export default class ForgetPassword extends React.Component {
             }}
             open={this.state.snackbar.open}
             handleClose={this.handleCloseSnackbar}
-            message="Email has been sent Successfully"
+            message={this.state.ForgetPasswordMsg}
+            error={this.state.WrongEmail}
             keyProp={
               this.state.snackbar.vertical + this.state.snackbar.horizontal
             }
@@ -116,3 +128,4 @@ export default class ForgetPassword extends React.Component {
     );
   }
 }
+
