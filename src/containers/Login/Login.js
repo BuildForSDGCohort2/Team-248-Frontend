@@ -12,7 +12,6 @@ function Login() {
   const [errorMessage, seterrorMessage] = useState("");
 
   function handleEmailChange(e) {
-    console.log(e.target.value);
     if (!validateEmail(e.target.value)) {
       setisError(true);
       seterrorMessage("Invalid address :/");
