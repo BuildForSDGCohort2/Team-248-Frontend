@@ -8,7 +8,7 @@ import Copyright from "../../components/CopyRight";
 import { Input } from "../../components/Input";
 import { CustomSnackbar } from "../../components/CustomSnackbar";
 import "./ForgetPassword.scss";
-import { axiosInstance } from '../../network/apis/index';
+import { axiosInstance } from "../../network/apis/index";
 import Messages from "../../assets/Local/messages";
 
 export default class ForgetPassword extends React.Component {
@@ -61,7 +61,7 @@ export default class ForgetPassword extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.handleEmailChange({ target: { value: e.target.email.value } });
-    axiosInstance.post('/api/forget-password', { email: e.target.email.value })
+    axiosInstance.post("/api/forget-password", { email: e.target.email.value })
       .then((res) => {
         this.setState({ForgetPasswordMsg: res.data.message, WrongEmail: false})
       })
@@ -88,7 +88,7 @@ export default class ForgetPassword extends React.Component {
               vertical: this.state.snackbar.vertical,
               horizontal: this.state.snackbar.horizontal,
             }}
-            open={this.state.snackbar.open}
+            open={this.state.ForgetPasswordMsg && this.state.snackbar.open}
             handleClose={this.handleCloseSnackbar}
             message={this.state.ForgetPasswordMsg}
             error={this.state.WrongEmail}
