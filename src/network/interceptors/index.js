@@ -5,6 +5,8 @@ export const isHandlerEnabled = (config = {}) => {
 export const requestHandler = (request) => {
   if (isHandlerEnabled(request)) {
     // handle requests
+    request["Accept"] = "application/json";
+    request["Content-Type"] = "application/json";
   }
   return request;
 };

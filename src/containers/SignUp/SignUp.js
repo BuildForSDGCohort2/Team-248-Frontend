@@ -1,84 +1,89 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Copyright from '../../components/CopyRight'
-import './SignUp.scss'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Masseges from '../../assets/Local/messages'
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Copyright from "../../components/CopyRight"
+import "./SignUp.scss"
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import Masseges from "../../assets/Local/messages"
+import { axiosInstance } from "../../network/apis";
 
 
 export default class SignUp extends React.Component {
 
   state = {
     name: {
-      value: '',
-      error: '',
+      value: "",
+      error: "",
     },
     email: {
-      value: '',
-      error: '',
+      value: "",
+      error: "",
     },
     password: {
-      value: '',
-      error: ''
+      value: "",
+      error: ""
     },
     password_confirmation: {
-      value: '',
-      error: ''
+      value: "",
+      error: ""
     },
     phone: {
-      value: '',
-      error: ''
+      value: "",
+      error: ""
+    },
+    gender: {
+      value: "male",
+      error: ""
     },
     address: {
-      value: '',
-      error: ''
+      value: "",
+      error: ""
     },
     dob: {
-      value: '',
-      error: ''
+      value: "",
+      error: ""
     },
     profile_img: {
-      value: '',
-      error: ''
+      value: "",
+      error: "",
     },
     id_img: {
-      value: '',
-      error: ''
-    },
+      value: "",
+      error: "",
+    }
   }
 
-  imgTypes = ["jpeg", "png", "jpg"]
+  imgTypes = ["jpeg", "png", "jpg"];
 
   handleChange = (event) => {
-    const required = event.target.value !== ""
+    const required = event.target.value !== "";
     this.setState({
       [event.target.name]: {
         value: event.target.value,
         error: (!required && "This feild is required"),
       }
-    })
+    });
   }
 
   handleEmailChange = (event) => {
     const validEmail = /\S+@\S+\.\S+/.test(event.target.value);
-    const required = event.target.value !== ""
+    const required = event.target.value !== "";
     this.setState({
       email: {
         value: event.target.value,
         error: (!required && "This field is required")
         || (!validEmail && "Not valid"),
       }
-    })
+    });
   }
 
   handlePasswordChange = (event) => {
@@ -90,40 +95,40 @@ export default class SignUp extends React.Component {
         error: ((!min || !max) 
         && "This field should be 6 minimum charachter and 12 maximum charachter")        
       }
-    })
+    });
   }
 
   handleConfirmPassword = (event) =>{
-    const matched = event.target.value === this.state.password.value && event.target.value !== ""
+    const matched = event.target.value === this.state.password.value && event.target.value !== "";
     this.setState({
       password_confirmation: {
         value: event.target.value,
         error: (!matched && "Password doesn't match")        
       }
-    })
+    });
   }
 
   handlePhoneNumberChange = (event) =>{
-    const validPhone = /^[0-9]*$/.test(event.target.value)
+    const validPhone = /^[0-9]*$/.test(event.target.value);
     this.setState({
       phone: {
         value: event.target.value,
         error: (!validPhone && "Invalid Phone number")        
       }
-    })
+    });
   }
 
   handleImgChange = (event) =>{
-    const file = event.target.files[0]
-    const imgMemeType = file.type.split('/')[1] // Where file type is like "image/png"
+    const file = event.target.files[0];
+    const imgMemeType = file.type.split("/")[1]; // Where file type is like "image/png"
     const validMemeType = this.imgTypes.indexOf(imgMemeType) !== -1;
-    console.log(validMemeType)
+
     this.setState({
       [event.target.name]: {
         value: file,
-        error: (!validMemeType && Masseges.en.regitserFormValidation.notValidMemetype)
+        error: (!validMemeType && Masseges.en.regitserFormValidation.notValidMemetype),
       }
-    })
+    });
   }
 
   validate = (formBody) => {
@@ -150,30 +155,31 @@ export default class SignUp extends React.Component {
     } })
   }
 
-  toJSONString( form ) {
-		var obj = {};
-		var elements = form.querySelectorAll( "input, radio" );
-		for( var i = 0; i < elements.length; ++i ) {
-			var element = elements[i];
-			var name = element.name;
-			var value = element.value;
-
-			if( name ) {
-				obj[ name ] = value;
-			}
-		}
-
-		return JSON.stringify( obj );
-	}
-
   handleSubmission = (event) => {
     event.preventDefault()
-    // this.validate(event.target)
-    const data = JSON.parse(this.toJSONString(event.target))
-    data.id_img = this.state.id_img
-    data.profile_img = this.state.profile_img
-    // console.log(data)
-    // console.log(event.target.elements.length)
+    this.validate(event.target)
+
+    let data = new FormData();
+    data.append("name", event.target.name.value)
+    data.append("email", event.target.email.value)
+    data.append("phone_number", event.target.phone.value)
+    data.append("password", event.target.password.value)
+    data.append("password_confirmation", event.target.password_confirmation.value)
+    data.append("address", event.target.address.value)
+    data.append("gender", event.target.gender.value)
+    data.append("dob", event.target.dob.value)
+    data.append("id_img", this.state.id_img.value)
+    data.append("profile_img", this.state.profile_img.value)
+
+    axiosInstance.post("/api/register", data, {
+      headers:{
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    .then((res)=> {
+      console.log(res.data)
+      localStorage.setItem("token", res.data.data.token)
+    })
   }
 
   render(){
@@ -242,7 +248,7 @@ export default class SignUp extends React.Component {
                   fullWidth
                   id="phone"
                   label="Phone Number"
-                  name="phone"
+                  name="phone_number"
                   autoComplete="phone"
                 />
                 <small className="error d-block">{this.state.phone.error}</small>
@@ -274,7 +280,8 @@ export default class SignUp extends React.Component {
               <Grid item xs={12}>
               <FormControl component="fieldset">
                 <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup aria-label="gender" name="gender" value="male">
+                <RadioGroup aria-label="gender" name="gender" value={this.state.gender.value} 
+                  onChange={this.handleChange}>
                   <FormControlLabel value="male" control={<Radio />} label="Male" />
                   <FormControlLabel value="female" control={<Radio />} label="Female" />
                 </RadioGroup>

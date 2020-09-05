@@ -1,10 +1,13 @@
 {
-  "name": "movie-app",
+  "name": "bebejo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "axios": "^0.20.0",
     "bootstrap": "^4.3.1",
+    "enzyme-adapter-react-16": "^1.15.3",
+    "enzyme-to-json": "^3.5.0",
     "node-sass": "^4.14.1",
     "react": "16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
@@ -14,7 +17,8 @@
     "react-router-dom": "5.1.0",
     "react-scripts": "^3.4.3",
     "redux": "^4.0.4",
-    "redux-saga": "^1.1.1"
+    "redux-saga": "^1.1.1",
+    "sinon": "^9.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.18.2",
+    "enzyme": "^3.11.0"
   }
 }
