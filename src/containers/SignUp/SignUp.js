@@ -7,15 +7,15 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Copyright from "../../components/CopyRight"
-import "./SignUp.scss"
+import Copyright from "../../components/CopyRight";
+import "./SignUp.scss";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import Masseges from "../../assets/Local/messages"
+import Masseges from "../../assets/Local/messages";
 import { axiosInstance } from "../../network/apis";
-import History from '../../routes/History'
+import History from "../../routes/History";
 
 export default class SignUp extends React.Component {
 
@@ -32,7 +32,7 @@ export default class SignUp extends React.Component {
       value: "",
       error: ""
     },
-    password_confirmation: {
+    passwordConfirmation: {
       value: "",
       error: ""
     },
@@ -52,11 +52,11 @@ export default class SignUp extends React.Component {
       value: "",
       error: ""
     },
-    profile_img: {
+    profileImg: {
       value: "",
       error: "",
     },
-    id_img: {
+    idImg: {
       value: "",
       error: "",
     },
@@ -88,8 +88,8 @@ export default class SignUp extends React.Component {
   }
 
   handlePasswordChange = (event) => {
-    const min = event.target.value.length >= 6
-    const max = event.target.value.length <= 12
+    const min = event.target.value.length >= 6;
+    const max = event.target.value.length <= 12;
     this.setState({
       password: {
         value: event.target.value,
@@ -99,17 +99,17 @@ export default class SignUp extends React.Component {
     });
   }
 
-  handleConfirmPassword = (event) =>{
+  handleConfirmPassword = (event) => {
     const matched = event.target.value === this.state.password.value && event.target.value !== "";
     this.setState({
-      password_confirmation: {
+      passwordConfirmation: {
         value: event.target.value,
         error: (!matched && "Password doesn't match")        
       }
     });
   }
 
-  handlePhoneNumberChange = (event) =>{
+  handlePhoneNumberChange = (event) => {
     const validPhone = /^[0-9]*$/.test(event.target.value);
     this.setState({
       phone: {
@@ -136,59 +136,58 @@ export default class SignUp extends React.Component {
     this.handleChange({ target: { 
       value: formBody.name.value, 
       name:  formBody.name.name
-    } })
+    } });
     this.handleEmailChange({ target: { 
       value: formBody.email.value, 
-    } })
+    } });
     this.handlePasswordChange({ target: { 
       value: formBody.password.value, 
-    } })
+    } });
     this.handleConfirmPassword({ target: { 
-      value: formBody.password_confirmation.value, 
-    } })
+      value: formBody.passwordConfirmation.value, 
+    } });
     this.handleChange({ target: { 
       value: formBody.phone.value,
       name: formBody.phone.name
-    } })
+    } });
     this.handleChange({ target: { 
       value: formBody.address.value, 
       name: formBody.address.name
-    } })
+    } });
   }
 
   handleSubmission = (event) => {
-    event.preventDefault()
-    this.validate(event.target)
+    event.preventDefault();
+    this.validate(event.target);
 
     let data = new FormData();
-    data.append("name", event.target.name.value)
-    data.append("email", event.target.email.value)
-    data.append("phone_number", event.target.phone.value)
-    data.append("password", event.target.password.value)
-    data.append("password_confirmation", event.target.password_confirmation.value)
-    data.append("address", event.target.address.value)
-    data.append("gender", event.target.gender.value)
-    data.append("dob", event.target.dob.value)
-    data.append("id_img", this.state.id_img.value)
-    data.append("profile_img", this.state.profile_img.value)
+    data.append("name", event.target.name.value);
+    data.append("email", event.target.email.value);
+    data.append("phone_number", event.target.phone.value);
+    data.append("password", event.target.password.value);
+    data.append("password_confirmation", event.target.passwordConfirmation.value);
+    data.append("address", event.target.address.value);
+    data.append("gender", event.target.gender.value);
+    data.append("dob", event.target.dob.value);
+    data.append("id_img", this.state.idImg.value);
+    data.append("profile_img", this.state.profileImg.value);
 
     axiosInstance.post("/api/register", data, {
       headers:{
         "Content-Type": "multipart/form-data"
       }
     })
-    .then((res)=> {
-      console.log(res.data)
+    .then((res) => {
       localStorage.setItem("token", res.data.data.token)
+      History.push("/")
     })
-    .catch((err) => {
+    .catch(async (err) => {
       if(!err.response){
         this.setState({networkError:"Error:Network Error"});
-       }else{
-        this.setState({networkError:err.respose.data.message});
+      }else{
+        this.setState({networkError:err.response.data.message});
        }
     })
-    History.push('/')
   }
 
   render(){
@@ -242,13 +241,13 @@ export default class SignUp extends React.Component {
                 <TextField
                   variant="outlined"
                   fullWidth
-                  name="password_confirmation"
+                  name="passwordConfirmation"
                   onChange={this.handleConfirmPassword}
                   label="Confirm Password"
                   type="password"
                   id="password_confirmation"
                 />
-                <small className="error d-block">{this.state.password_confirmation.error}</small>
+                <small className="error d-block">{this.state.passwordConfirmation.error}</small>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -257,7 +256,7 @@ export default class SignUp extends React.Component {
                   fullWidth
                   id="phone"
                   label="Phone Number"
-                  name="phone_number"
+                  name="phone"
                   autoComplete="phone"
                 />
                 <small className="error d-block">{this.state.phone.error}</small>
@@ -301,11 +300,11 @@ export default class SignUp extends React.Component {
                 <TextField
                   type="file"
                   id="profile_img"
-                  name="profile_img"
+                  name="profileImg"
                   fullWidth
                   onChange={this.handleImgChange}
                 />
-                <small className="error d-block">{this.state.profile_img.error}</small>
+                <small className="error d-block">{this.state.profileImg.error}</small>
 
               </Grid>
               <Grid item xs={12}>
@@ -313,12 +312,12 @@ export default class SignUp extends React.Component {
                 <TextField
                   type="file"
                   id="id_img"
-                  name="id_img"
+                  name="idImg"
                   fullWidth
                   onChange={this.handleImgChange}
                 />
               </Grid>
-              <small className="error d-block">{this.state.id_img.error}</small>
+              <small className="error d-block">{this.state.idImg.error}</small>
             
             </Grid>
   
