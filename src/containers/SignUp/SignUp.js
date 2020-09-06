@@ -119,7 +119,7 @@ export default class SignUp extends React.Component {
     });
   }
 
-  handleImgChange = (event) =>{
+  handleImgChange = (event) => {
     const file = event.target.files[0];
     const imgMemeType = file.type.split("/")[1]; // Where file type is like "image/png"
     const validMemeType = this.imgTypes.indexOf(imgMemeType) !== -1;
@@ -178,8 +178,8 @@ export default class SignUp extends React.Component {
       }
     })
     .then((res) => {
-      localStorage.setItem("token", res.data.data.token)
-      History.push("/")
+      localStorage.setItem("token", res.data.data.token);
+      History.push("/");
     })
     .catch(async (err) => {
       if(!err.response){
@@ -187,7 +187,7 @@ export default class SignUp extends React.Component {
       }else{
         this.setState({networkError:err.response.data.message});
        }
-    })
+    });
   }
 
   render(){
