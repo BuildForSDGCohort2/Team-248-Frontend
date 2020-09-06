@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-
+import Hero from "../Hero/Hero";
+import SecondSection from "../SecondSection/SecondSection";
+import ThirdSection from "../ThirdSection/ThirdSection";
+import Footer from "../Footer/Footer";
 class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Home Page</h1>
+        <Hero />
+        <SecondSection />
+        <ThirdSection />
+        <Footer />
       </div>
     );
   }
