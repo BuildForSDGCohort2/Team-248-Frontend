@@ -63,11 +63,11 @@ export default class ForgetPassword extends React.Component {
     this.handleEmailChange({ target: { value: e.target.email.value } });
     axiosInstance.post("/api/forget-password", { email: e.target.email.value })
       .then((res) => {
-        this.setState({ForgetPasswordMsg: res.data.message, WrongEmail: false})
+        this.setState({ForgetPasswordMsg: res.data.message, WrongEmail: false});
       })
       .catch((err) => {
-        this.setState({ForgetPasswordMsg: err.response.data.data.message, WrongEmail: true})
-      })
+        this.setState({ForgetPasswordMsg: err.response.data.data.message, WrongEmail: true});
+      });
     this.state.email.error === "" && this.handleOpenSnackbar();
   };
 
