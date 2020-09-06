@@ -15,7 +15,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Masseges from "../../assets/Local/messages"
 import { axiosInstance } from "../../network/apis";
-
+import History from '../../routes/History'
 
 export default class SignUp extends React.Component {
 
@@ -59,7 +59,8 @@ export default class SignUp extends React.Component {
     id_img: {
       value: "",
       error: "",
-    }
+    },
+    networkError: ""
   }
 
   imgTypes = ["jpeg", "png", "jpg"];
@@ -180,6 +181,14 @@ export default class SignUp extends React.Component {
       console.log(res.data)
       localStorage.setItem("token", res.data.data.token)
     })
+    .catch((err) => {
+      if(!err.response){
+        this.setState({networkError:"Error:Network Error"});
+       }else{
+        this.setState({networkError:err.respose.data.message});
+       }
+    })
+    History.push('/')
   }
 
   render(){
