@@ -1,5 +1,7 @@
+build/*
+!build/build.xml
 node_modules
 yarn.lock
 .DS_Store
- build/
 package-lock.json
+yarn-error.log
