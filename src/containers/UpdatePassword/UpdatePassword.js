@@ -111,6 +111,7 @@ function UpdatePassword() {
             variant="outlined"
             value={oldPassword}
             onChange={updateOldPassword}
+            data-test="oldPassword"
           ></TextField>
           <TextField
             fullWidth
@@ -123,6 +124,7 @@ function UpdatePassword() {
             variant="outlined"
             value={newPassword}
             onChange={updateNewPassword}
+            data-test="newPassword"
           ></TextField>
           <TextField
             fullWidth
@@ -135,6 +137,7 @@ function UpdatePassword() {
             variant="outlined"
             value={confirmNewPassword}
             onChange={updateConfirmNewPassword}
+            data-test="confirmNewPassword"
           ></TextField>
           <Box>
             {error === "NEW PASSWORD HAS SET" ? (
@@ -161,6 +164,7 @@ function UpdatePassword() {
             color="primary"
             className={classes.submit}
             onClick={checkValues}
+            data-test="button"
           >
             Submit
           </Button>
