@@ -8,11 +8,9 @@ class App extends Component {
 
   render() {         
     return (
-        <div >
-          <Router history={history}>
-            {Routes}   
-          </Router>
-        </div>
+      <>
+        <Router history={history}>{Routes}</Router>
+      </>
     );
   }
 }
