@@ -9,6 +9,8 @@ import Copyright from "../CopyRight";
 
 class CreateOffer extends Component {
   state = {
+    submitMessage: "",
+    validOffer: true,
     snackbar: {
       open: false,
       vertical: "top",
@@ -33,6 +35,12 @@ class CreateOffer extends Component {
       }
     });
   };
+  setSnackbar = (message, validOffer) => {
+    this.setState({
+      submitMessage: message,
+      validOffer: validOffer
+    }, () => this.handleOpenSnackbar());
+  }
 
   render() {
     return (
@@ -53,12 +61,13 @@ class CreateOffer extends Component {
             }}
             open={this.state.snackbar.open}
             handleClose={this.handleCloseSnackbar}
-            message="Email has been sent Successfully"
+            message={this.state.submitMessage}
+            error={!this.state.validOffer}
             keyProp={
               this.state.snackbar.vertical + this.state.snackbar.horizontal
             }
           />
-          <OfferForm />
+          <OfferForm setSnackbar={this.setSnackbar}/>
           <Box mt={8}>
             <Copyright />
           </Box>
