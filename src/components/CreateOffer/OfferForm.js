@@ -32,13 +32,13 @@ const validationSchema = object({
   address: string()
     .min(5)
     .required("Your address is required"),
-  qualifications: string().min(20)
+  qualifications: string()
 });
 const handleSubmit = (values, setSnackbar) => {
   axiosInstance.post(`/api/create-offer`, values).then((res)=>{
     setSnackbar(res.data.message, true);
   }).catch((error)=>{
-    setSnackbar(error.data.message, false);
+    setSnackbar(error?.data?.message, false);
   })
 }
 
