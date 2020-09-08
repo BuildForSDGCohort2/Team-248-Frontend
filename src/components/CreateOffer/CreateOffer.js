@@ -35,10 +35,10 @@ class CreateOffer extends Component {
       }
     });
   };
-  setSnackbar = (message, validOffer) => {
+  setSnackbar = (submitMessage, validOffer) => {
     this.setState({
-      submitMessage: message,
-      validOffer: validOffer
+      submitMessage,
+      validOffer
     }, () => this.handleOpenSnackbar());
   }
 
@@ -67,7 +67,7 @@ class CreateOffer extends Component {
               this.state.snackbar.vertical + this.state.snackbar.horizontal
             }
           />
-          <OfferForm setSnackbar={this.setSnackbar}/>
+          <OfferForm setSnackbar={this.setSnackbar} />
           <Box mt={8}>
             <Copyright />
           </Box>

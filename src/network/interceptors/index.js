@@ -4,7 +4,7 @@ export const isHandlerEnabled = (config = {}) => {
     : true;
 };
 
-export const requestHandler = request => {
+export const requestHandler = (request) => {
   if (isHandlerEnabled(request)) {
     request.headers["Accept"] = "application/json";
     request.headers["Content-Type"] = "application/json";
@@ -12,14 +12,14 @@ export const requestHandler = request => {
   return request;
 };
 
-export const successHandler = response => {
+export const successHandler = (response) => {
   if (isHandlerEnabled(response)) {
     // handle succes
   }
   return response;
 };
 
-export const errorHandler = error => {
+export const errorHandler = (error) => {
   if (isHandlerEnabled(error.config)) {
     // handle errors
   }
