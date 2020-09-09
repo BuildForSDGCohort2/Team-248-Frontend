@@ -3,8 +3,10 @@ import { Router } from "react-router-dom";
 import history from "../routes/History";
 import Routes from "../routes/Routes";
 import "./App.scss";
+
 class App extends Component {
-  render() {
+
+  render() {         
     return (
       <>
         <Router history={history}>{Routes}</Router>

@@ -1,0 +1,23 @@
+@import "../../scss/variables";
+
+.register-container {
+  .login-container {
+    margin: 200px auto 0 auto;
+    width: 50%;
+  }
+
+  .paper {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .submit-btn {
+    margin-top: 30px;
+  }
+}
