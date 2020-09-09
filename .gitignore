@@ -6,4 +6,5 @@ yarn.lock
  build/
 src/**/**/__snapshots__
 package-lock.json
+src/**/**/__snapshots__
 yarn-error.log
