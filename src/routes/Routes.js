@@ -10,7 +10,11 @@ const Routes = (
         <LazyComponent.Home path="/" exact />
         <LazyComponent.SignUp path="/register"/>
         <LazyComponent.ForgetPassword path="/forget-password" exact />
+
+        <LazyComponent.Login path="/login" exact />
+
         <LazyComponent.CreateOffer exact path="/create-offer" />
+
         <Redirect from="*" to="/" />
       </Switch>
     </Router>
