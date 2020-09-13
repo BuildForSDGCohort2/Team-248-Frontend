@@ -6,7 +6,8 @@ import "./App.scss";
 
 
 class App extends Component {
-  render() {
+
+  render() {         
     return (
       <>
         <Router history={history}>{Routes}</Router>
