@@ -7,6 +7,8 @@ import { addLocaleData } from "react-intl";
 import * as en from "react-intl/locale-data/en";
 import * as ar from "react-intl/locale-data/ar";
 
+import "./containers/Home/assets/scss/style.scss";
+
 addLocaleData(en);
 addLocaleData(ar);
 
