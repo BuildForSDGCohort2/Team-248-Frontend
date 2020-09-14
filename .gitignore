@@ -1,4 +1,5 @@
 build/*
+coverage/
 !build/build.xml
 node_modules
 yarn.lock
