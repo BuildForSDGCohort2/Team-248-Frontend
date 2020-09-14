@@ -1,4 +1,4 @@
-import React from "react";
+import React { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -11,8 +11,8 @@ import validateEmail from "../../utils/Validators";
 import "./Login.scss";
 
 function Login() {
-  const [isError, setisError] = React.useState(false);
-  const [errorMessage, seterrorMessage] = React.useState("");
+  const [isError, setisError] = useState(false);
+  const [errorMessage, seterrorMessage] = useState("");
 
   function handleEmailChange(e) {
     if (!validateEmail(e.target.value)) {
