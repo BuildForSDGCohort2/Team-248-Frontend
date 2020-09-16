@@ -1,10 +1,11 @@
 export const isHandlerEnabled = (config = {}) => {
-  return config.hasOwnProperty("handlerEnabled") && !config.handlerEnabled ? false : true;
+  return config.hasOwnProperty("handlerEnabled") && !config.handlerEnabled
+    ? false
+    : true;
 };
 
 export const requestHandler = (request) => {
   if (isHandlerEnabled(request)) {
-    // handle requests
     request.headers["Accept"] = "application/json";
     request.headers["Content-Type"] = "application/json";
   }
@@ -13,7 +14,7 @@ export const requestHandler = (request) => {
 
 export const successHandler = (response) => {
   if (isHandlerEnabled(response)) {
-    // handle succes 
+    // handle succes
   }
   return response;
 };
