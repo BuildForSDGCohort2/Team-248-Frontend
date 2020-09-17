@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Copyright from "../../components/CopyRight";
+import Messages from "../../assets/Local/messages";
 
 const useStyles = makeStyles((theme) => ({
   resetPassword: {
-    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -22,31 +20,30 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
+    width: "60%",
+    // marginTop: theme.spacing(1),
+    margin: theme.spacing(0, 'auto'),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(2, 0, 1),
   },
   label: {
-    fontSize: "17px",
+    fontSize: "10px",
   },
   password: {
-    fontSize: "17px",
+    fontSize: "10px",
     margin: theme.spacing(3, 0, 2),
     marginLeft: theme.spacing(13),
   },
   confirmPassword: {
-    fontSize: "17px",
+    fontSize: "10px",
     margin: theme.spacing(3, 0, 2),
     marginLeft: theme.spacing(5),
   },
   error: {
-    margin: theme.spacing(3, 0, 2),
     color: "red",
   },
   success: {
-    margin: theme.spacing(3, 0, 2),
     color: "green",
   },
 }));
@@ -56,24 +53,42 @@ function UpdatePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState(null);
+  const [newPasswordError, setNewPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+  const validPassword = (value) => {
+    const min = value.length >= 6;
+    const max = value.length <= 12;
+    return (min && max) 
+  }
 
   const updateOldPassword = (e) => {
     setOldPassword(e.target.value);
   };
-  const updateNewPassword = (e) => {
+
+  const handleNewPasswordChange = (e) => {
+    !validPassword(e.target.value) ? 
+      setNewPasswordError(Messages.en.PasswordLength) : 
+      setNewPasswordError("")
+
     setNewPassword(e.target.value);
   };
-  const updateConfirmNewPassword = (e) => {
+
+  const handleConfirmPasswordChange = (e) => {
+    !validPassword(e.target.value) ? 
+      setConfirmPasswordError(Messages.en.PasswordLength) : 
+      setConfirmPasswordError("")
+
     setConfirmNewPassword(e.target.value);
   };
 
   const checkValues = () => {
     if (newPassword === "" || confirmNewPassword === "" || oldPassword === "") {
-      setError("CAN NOT BE EMPTY FIELD!");
+      setError("Cannot be Empty Field!");
     } else if (newPassword !== confirmNewPassword) {
-      setError("MUST MATCH!");
+      setError("Must Match!");
     } else if (newPassword === confirmNewPassword) {
-      setError("NEW PASSWORD HAS SET");
+      setError("New Password Has Set");
     }
     setOldPassword("");
     setNewPassword("");
@@ -90,8 +105,7 @@ function UpdatePassword() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="sm">
-      <CssBaseline />
+    <Container maxWidth="sm">
       <div className={classes.resetPassword}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -112,6 +126,7 @@ function UpdatePassword() {
             value={oldPassword}
             onChange={updateOldPassword}
             data-test="oldPassword"
+            size="small"
           ></TextField>
           <TextField
             fullWidth
@@ -123,9 +138,11 @@ function UpdatePassword() {
             type="password"
             variant="outlined"
             value={newPassword}
-            onChange={updateNewPassword}
+            onChange={handleNewPasswordChange}
             data-test="newPassword"
+            size="small"
           ></TextField>
+            <small className={classes.error}>{newPasswordError}</small>
           <TextField
             fullWidth
             margin="normal"
@@ -136,22 +153,24 @@ function UpdatePassword() {
             type="password"
             variant="outlined"
             value={confirmNewPassword}
-            onChange={updateConfirmNewPassword}
+            onChange={handleConfirmPasswordChange}
             data-test="confirmNewPassword"
+            size="small"
           ></TextField>
+          <small className={classes.error}>{confirmPasswordError}</small>
           <Box>
-            {error === "NEW PASSWORD HAS SET" ? (
+            {error === "New Password Has Set" ? (
               <Typography
-                component="h2"
-                variant="body1"
+                component="span"
+                variant="body2"
                 className={classes.success}
               >
                 {error}
               </Typography>
             ) : (
               <Typography
-                component="h2"
-                variant="body1"
+                component="span"
+                variant="body2"
                 className={classes.error}
               >
                 {error}
@@ -165,14 +184,12 @@ function UpdatePassword() {
             className={classes.submit}
             onClick={checkValues}
             data-test="button"
+            size="small"
           >
             Submit
           </Button>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
