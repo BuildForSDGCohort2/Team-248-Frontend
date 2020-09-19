@@ -20,7 +20,7 @@ it("should render ContactInfo correctly", () => {
     gender: "male",
     profileImg: "https://via.placeholder.com/150",
     dob: "1994-7-10"
-  }
+  };
   const wrapper = mount(<ContactInfo user={user}/>);
   expect(wrapper).toMatchSnapshot();
 });

@@ -4,7 +4,7 @@ import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import { ContactInfo } from "../../../components/ContactInfo/ContactInfo";
 import UpdatePassword from "../../../components/UpdatePassword/UpdatePassword";
-import "./Profile.scss"
+import "./Profile.scss";
 import Copyright from "../../../components/CopyRight";
 import Container from "@material-ui/core/Container";
 import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateAccount";

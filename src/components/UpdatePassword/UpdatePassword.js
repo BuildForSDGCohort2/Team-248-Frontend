@@ -58,14 +58,14 @@ function UpdatePassword() {
   const validPassword = (value) => {
     const min = value.length >= 6;
     const max = value.length <= 12;
-    return (min && max) 
-  }
+    return (min && max);
+  };
 
   const validatePassword = (value, errorSetter) => {
     !validPassword(value) ? 
       errorSetter(Messages.en.PasswordLength) : 
       errorSetter("");
-  }
+  };
 
   const updateOldPassword = (e) => {
     setOldPassword(e.target.value);
