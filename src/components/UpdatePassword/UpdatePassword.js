@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "60%",
-    // marginTop: theme.spacing(1),
-    margin: theme.spacing(0, 'auto'),
+    margin: theme.spacing(0, "auto"),
   },
   submit: {
     margin: theme.spacing(2, 0, 1),
@@ -53,8 +52,8 @@ function UpdatePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState(null);
-  const [newPasswordError, setNewPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [newPasswordError, setNewPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const validPassword = (value) => {
     const min = value.length >= 6;
@@ -62,29 +61,32 @@ function UpdatePassword() {
     return (min && max) 
   }
 
+  const validatePassword = (value, errorSetter) => {
+    !validPassword(value) ? 
+      errorSetter(Messages.en.PasswordLength) : 
+      errorSetter("");
+  }
+
   const updateOldPassword = (e) => {
     setOldPassword(e.target.value);
   };
 
   const handleNewPasswordChange = (e) => {
-    !validPassword(e.target.value) ? 
-      setNewPasswordError(Messages.en.PasswordLength) : 
-      setNewPasswordError("")
-
+    validatePassword(e.target.value, setNewPasswordError);
     setNewPassword(e.target.value);
   };
 
   const handleConfirmPasswordChange = (e) => {
-    !validPassword(e.target.value) ? 
-      setConfirmPasswordError(Messages.en.PasswordLength) : 
-      setConfirmPasswordError("")
-
+    validatePassword(e.target.value, setConfirmPasswordError);
     setConfirmNewPassword(e.target.value);
   };
 
-  const checkValues = () => {
+  const validate = (formData) => {
+    validatePassword(formData.newPassword.value, setNewPasswordError);
+    validatePassword(formData.confirmPassword.value, setConfirmPasswordError);
+
     if (newPassword === "" || confirmNewPassword === "" || oldPassword === "") {
-      setError("Cannot be Empty Field!");
+      setError("All Field are required!");
     } else if (newPassword !== confirmNewPassword) {
       setError("Must Match!");
     } else if (newPassword === confirmNewPassword) {
@@ -97,8 +99,9 @@ function UpdatePassword() {
 
   // it should checks that old pasword already in backend and user update it!
   // it will be updated later on!
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    validate(e.target);
     return null;
   };
 
@@ -113,14 +116,14 @@ function UpdatePassword() {
         <Typography component="h1" variant="h5">
           Update Password
         </Typography>
-        <form onSubmit={onSubmit} className={classes.form}>
+        <form onSubmit={handleSubmit} className={classes.form}>
           <TextField
             fullWidth
             margin="normal"
             label="Old Password"
-            name="password"
+            name="oldPassword"
             autoComplete="current-password"
-            id="outlined-password-input"
+            id="old-password"
             type="password"
             variant="outlined"
             value={oldPassword}
@@ -132,9 +135,9 @@ function UpdatePassword() {
             fullWidth
             margin="normal"
             label="New Password"
-            name="password"
+            name="newPassword"
             autoComplete="current-password"
-            id="outlined-password-input"
+            id="new-password"
             type="password"
             variant="outlined"
             value={newPassword}
@@ -149,7 +152,7 @@ function UpdatePassword() {
             label="Confirm New Password"
             name="confirmPassword"
             autoComplete="current-password"
-            id="outlined-password-input"
+            id="confirm-password"
             type="password"
             variant="outlined"
             value={confirmNewPassword}
@@ -182,9 +185,9 @@ function UpdatePassword() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={checkValues}
             data-test="button"
             size="small"
+            type="submit"
           >
             Submit
           </Button>

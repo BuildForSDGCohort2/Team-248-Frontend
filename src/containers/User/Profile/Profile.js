@@ -1,39 +1,19 @@
-import React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import { ContactInfo } from '../../../assets/Local/ContactInfo/ContactInfo';
-import UpdatePassword from '../../../components/UpdatePassword/UpdatePassword';
-import './Profile.scss'
-import Copyright from '../../../components/CopyRight';
+import React from "react";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Box from "@material-ui/core/Box";
+import { ContactInfo } from "../../../components/ContactInfo/ContactInfo";
+import UpdatePassword from "../../../components/UpdatePassword/UpdatePassword";
+import "./Profile.scss"
+import Copyright from "../../../components/CopyRight";
 import Container from "@material-ui/core/Container";
-import DeactivateAccount from '../../../components/DeactivateAccount/DeactivateAccount';
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography component="div">{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
+import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateAccount";
+import { TabPanel } from "../../../components/TabPanal/TabPanel";
 
 function additionalProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
@@ -44,11 +24,11 @@ const user = {
 	address: "Aleandria, Egypt",
 	gender: "male",
 	profileImg: "https://via.placeholder.com/150",
-	dob: '1994-7-10'
-}
+	dob: "1994-7-10"
+};
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

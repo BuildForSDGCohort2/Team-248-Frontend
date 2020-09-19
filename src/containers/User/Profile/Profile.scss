@@ -6,4 +6,9 @@
     .tabs{
         border-right: 1px solid #cecece;
     }
+
+    div[id^=vertical-tabpanel]{
+        width: 50%;
+        margin: 0 auto;
+    }
 }

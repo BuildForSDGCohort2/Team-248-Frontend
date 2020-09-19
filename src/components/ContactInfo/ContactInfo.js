@@ -10,10 +10,6 @@ const useStyles = makeStyles((theme) => ({
 		width: '100%',
 		flex: 1
 	},
-	// container:{
-	// 	display: 'flex',
-	// 	width: '80%'
-	// },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
