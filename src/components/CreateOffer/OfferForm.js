@@ -4,6 +4,7 @@ import { number, object, string, date } from "yup";
 import { Button, Box, TextField, FormGroup } from "@material-ui/core";
 import DatePicker from "./DatePicker";
 import InputError from "./InputError";
+import { axiosInstance } from "../../network/apis/index";
 
 const min = new Date();
 const minDate = `${min.getMonth() + 1}/${min.getDate()}/${min.getFullYear()}`;
@@ -31,18 +32,22 @@ const validationSchema = object({
   address: string()
     .min(5)
     .required("Your address is required"),
-  qualifications: string().min(20)
+  qualifications: string()
 });
+const handleSubmit = (values, setSnackbar) => {
+  axiosInstance.post("/api/create-offer", values).then((res) => {
+    setSnackbar(res.data.message, true);
+  }).catch((error) => {
+    setSnackbar(error?.data?.message, false);
+  });
+};
 
-const OfferForm = () => {
+const OfferForm = ({ setSnackbar }) => {
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={async ({ values }) => {
-        // let submitted = false;
-        // submitted = values;
-      }}
+      onSubmit={({ values }) => handleSubmit(values, setSnackbar)}
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">

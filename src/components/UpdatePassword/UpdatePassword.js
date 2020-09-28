@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Copyright from "../../components/CopyRight";
+import Messages from "../../assets/Local/messages";
 
 const useStyles = makeStyles((theme) => ({
   resetPassword: {
-    marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -22,31 +20,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%",
-    marginTop: theme.spacing(1),
+    width: "60%",
+    margin: theme.spacing(0, "auto"),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(2, 0, 1),
   },
   label: {
-    fontSize: "17px",
+    fontSize: "10px",
   },
   password: {
-    fontSize: "17px",
+    fontSize: "10px",
     margin: theme.spacing(3, 0, 2),
     marginLeft: theme.spacing(13),
   },
   confirmPassword: {
-    fontSize: "17px",
+    fontSize: "10px",
     margin: theme.spacing(3, 0, 2),
     marginLeft: theme.spacing(5),
   },
   error: {
-    margin: theme.spacing(3, 0, 2),
     color: "red",
   },
   success: {
-    margin: theme.spacing(3, 0, 2),
     color: "green",
   },
 }));
@@ -56,24 +52,45 @@ function UpdatePassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState(null);
+  const [newPasswordError, setNewPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const validPassword = (value) => {
+    const min = value.length >= 6;
+    const max = value.length <= 12;
+    return (min && max);
+  };
+
+  const validatePassword = (value, errorSetter) => {
+    !validPassword(value) ? 
+      errorSetter(Messages.en.PasswordLength) : 
+      errorSetter("");
+  };
 
   const updateOldPassword = (e) => {
     setOldPassword(e.target.value);
   };
-  const updateNewPassword = (e) => {
+
+  const handleNewPasswordChange = (e) => {
+    validatePassword(e.target.value, setNewPasswordError);
     setNewPassword(e.target.value);
   };
-  const updateConfirmNewPassword = (e) => {
+
+  const handleConfirmPasswordChange = (e) => {
+    validatePassword(e.target.value, setConfirmPasswordError);
     setConfirmNewPassword(e.target.value);
   };
 
-  const checkValues = () => {
+  const validate = (formData) => {
+    validatePassword(formData.newPassword.value, setNewPasswordError);
+    validatePassword(formData.confirmPassword.value, setConfirmPasswordError);
+
     if (newPassword === "" || confirmNewPassword === "" || oldPassword === "") {
-      setError("CAN NOT BE EMPTY FIELD!");
+      setError("All Field are required!");
     } else if (newPassword !== confirmNewPassword) {
-      setError("MUST MATCH!");
+      setError("Must Match!");
     } else if (newPassword === confirmNewPassword) {
-      setError("NEW PASSWORD HAS SET");
+      setError("New Password Has Set");
     }
     setOldPassword("");
     setNewPassword("");
@@ -82,16 +99,16 @@ function UpdatePassword() {
 
   // it should checks that old pasword already in backend and user update it!
   // it will be updated later on!
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    validate(e.target);
     return null;
   };
 
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="sm">
-      <CssBaseline />
+    <Container maxWidth="sm">
       <div className={classes.resetPassword}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -99,59 +116,64 @@ function UpdatePassword() {
         <Typography component="h1" variant="h5">
           Update Password
         </Typography>
-        <form onSubmit={onSubmit} className={classes.form}>
+        <form onSubmit={handleSubmit} className={classes.form}>
           <TextField
             fullWidth
             margin="normal"
             label="Old Password"
-            name="password"
+            name="oldPassword"
             autoComplete="current-password"
-            id="outlined-password-input"
+            id="old-password"
             type="password"
             variant="outlined"
             value={oldPassword}
             onChange={updateOldPassword}
             data-test="oldPassword"
+            size="small"
           ></TextField>
           <TextField
             fullWidth
             margin="normal"
             label="New Password"
-            name="password"
+            name="newPassword"
             autoComplete="current-password"
-            id="outlined-password-input"
+            id="new-password"
             type="password"
             variant="outlined"
             value={newPassword}
-            onChange={updateNewPassword}
+            onChange={handleNewPasswordChange}
             data-test="newPassword"
+            size="small"
           ></TextField>
+            <small className={classes.error}>{newPasswordError}</small>
           <TextField
             fullWidth
             margin="normal"
             label="Confirm New Password"
             name="confirmPassword"
             autoComplete="current-password"
-            id="outlined-password-input"
+            id="confirm-password"
             type="password"
             variant="outlined"
             value={confirmNewPassword}
-            onChange={updateConfirmNewPassword}
+            onChange={handleConfirmPasswordChange}
             data-test="confirmNewPassword"
+            size="small"
           ></TextField>
+          <small className={classes.error}>{confirmPasswordError}</small>
           <Box>
-            {error === "NEW PASSWORD HAS SET" ? (
+            {error === "New Password Has Set" ? (
               <Typography
-                component="h2"
-                variant="body1"
+                component="span"
+                variant="body2"
                 className={classes.success}
               >
                 {error}
               </Typography>
             ) : (
               <Typography
-                component="h2"
-                variant="body1"
+                component="span"
+                variant="body2"
                 className={classes.error}
               >
                 {error}
@@ -163,16 +185,14 @@ function UpdatePassword() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={checkValues}
             data-test="button"
+            size="small"
+            type="submit"
           >
             Submit
           </Button>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }
