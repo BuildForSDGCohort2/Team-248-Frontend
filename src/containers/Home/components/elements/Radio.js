@@ -12,7 +12,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  name: undefined,
+  name: null,
   value: "",
   disabled: false,
   checked: false,

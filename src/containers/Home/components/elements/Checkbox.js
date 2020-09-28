@@ -12,10 +12,10 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  name: undefined,
-  value: undefined,
+  name: null,
+  value: null,
   disabled: false,
-  checked: undefined,
+  checked: null,
 };
 
 const Checkbox = ({

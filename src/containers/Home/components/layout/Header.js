@@ -33,18 +33,6 @@ const Header = ({
 
   const nav = useRef(null);
   const hamburger = useRef(null);
-
-  useEffect(() => {
-    isActive && openMenu();
-    document.addEventListener("keydown", keyPress);
-    document.addEventListener("click", clickOutside);
-    return () => {
-      document.removeEventListener("keydown", keyPress);
-      document.addEventListener("click", clickOutside);
-      closeMenu();
-    };
-  });
-
   const openMenu = () => {
     document.body.classList.add("off-nav-is-active");
     nav.current.style.maxHeight = nav.current.scrollHeight + "px";
@@ -71,6 +59,17 @@ const Header = ({
       return;
     closeMenu();
   };
+
+  useEffect(() => {
+    isActive && openMenu();
+    document.addEventListener("keydown", keyPress);
+    document.addEventListener("click", clickOutside);
+    return () => {
+      document.removeEventListener("keydown", keyPress);
+      document.addEventListener("click", clickOutside);
+      closeMenu();
+    };
+  });
 
   const classes = classNames(
     "site-header",

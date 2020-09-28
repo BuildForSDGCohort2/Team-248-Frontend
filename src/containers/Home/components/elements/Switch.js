@@ -13,11 +13,11 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  name: undefined,
-  value: undefined,
-  rightLabel: undefined,
+  name: null,
+  value: null,
+  rightLabel: null,
   disabled: false,
-  checked: undefined,
+  checked: null,
 };
 
 const Switch = ({
