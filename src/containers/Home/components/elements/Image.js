@@ -9,24 +9,14 @@ const propTypes = {
 };
 
 const defaultProps = {
-  src: undefined,
-  width: undefined,
-  height: undefined,
-  alt: undefined,
+  src: null,
+  width: null,
+  height: null,
+  alt: null,
 };
 
 const Image = ({ className, src, width, height, alt, ...props }) => {
   const image = useRef(null);
-
-  useEffect(() => {
-    const placeholderImage = document.createElement("img");
-    handlePlaceholder(image.current, placeholderImage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const placeholderSrc = (w, h) => {
-    return `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}"%3E%3C/svg%3E`;
-  };
 
   const handlePlaceholder = (img, placeholder) => {
     img.style.display = "none";
@@ -44,6 +34,16 @@ const Image = ({ className, src, width, height, alt, ...props }) => {
       placeholder.remove();
       img.style.display = "";
     });
+  };
+
+  useEffect(() => {
+    const placeholderImage = document.createElement("img");
+    handlePlaceholder(image.current, placeholderImage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const placeholderSrc = (w, h) => {
+    return `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}"%3E%3C/svg%3E`;
   };
 
   return (

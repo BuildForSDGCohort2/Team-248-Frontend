@@ -29,6 +29,14 @@ const Modal = ({
   videoTag,
   ...props
 }) => {
+  const keyPress = (e) => {
+    e.keyCode === 27 && handleClose(e);
+  };
+
+  const stopProgagation = (e) => {
+    e.stopPropagation();
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", keyPress);
     document.addEventListener("click", stopProgagation);
@@ -38,10 +46,6 @@ const Modal = ({
     };
   });
 
-  useEffect(() => {
-    handleBodyClass();
-  }, [props.show]);
-
   const handleBodyClass = () => {
     if (document.querySelectorAll(".modal.is-active").length) {
       document.body.classList.add("modal-is-active");
@@ -50,13 +54,9 @@ const Modal = ({
     }
   };
 
-  const keyPress = (e) => {
-    e.keyCode === 27 && handleClose(e);
-  };
-
-  const stopProgagation = (e) => {
-    e.stopPropagation();
-  };
+  useEffect(() => {
+    handleBodyClass();
+  }, [props.show]);
 
   const classes = classNames(
     "modal",
