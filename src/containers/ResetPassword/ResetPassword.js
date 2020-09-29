@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import { axiosInstance } from "../../network/apis/index";
 
 const useStyles = makeStyles((theme) => ({
   resetPassword: {
@@ -54,7 +55,7 @@ function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const [resData, setResData] = useState(null);
   const updateNewPassword = (e) => {
     setNewPassword(e.target.value);
   };
@@ -76,8 +77,16 @@ function ResetPassword() {
 
   // it should return new password to backend
   // it will be updated later on!
-  const onSubmit = () => {
-    return null;
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .post("/api/profile/reset-password", { newPassword })
+      .then((res) => {
+        setResData(res);
+      })
+      .catch((err) => {
+        setResData(err);
+      });
   };
 
   const classes = useStyles();
