@@ -108,8 +108,6 @@ function UpdatePassword() {
       .put("/api/profile/updatePassword", { newPassword })
       .then((res) => {
         setResData(res);
-        // this log statement here to resolve Netlify issue during deployment
-        console.log(resData);
       })
       .catch((err) => {
         setNewPasswordError(err);
@@ -118,6 +116,8 @@ function UpdatePassword() {
   };
 
   const classes = useStyles();
+  // this log statement here to resolve Netlify issue during deployment
+  console.log(resData);
 
   return (
     <Container maxWidth="sm">

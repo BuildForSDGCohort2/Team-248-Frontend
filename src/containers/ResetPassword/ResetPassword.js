@@ -83,8 +83,6 @@ function ResetPassword() {
       .post("/api/profile/reset-password", { newPassword })
       .then((res) => {
         setResData(res);
-        // this log statement here to resolve Netlify issue during deployment
-        console.log(resData);
       })
       .catch((err) => {
         setResData(err);
@@ -92,6 +90,8 @@ function ResetPassword() {
   };
 
   const classes = useStyles();
+  // this log statement here to resolve Netlify issue during deployment
+  console.log(resData);
 
   return (
     <Container component="main" maxWidth="sm">
