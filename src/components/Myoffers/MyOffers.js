@@ -233,4 +233,4 @@ export const MyOffers = () => {
         />
 			</Container>
     );
-}
+};
