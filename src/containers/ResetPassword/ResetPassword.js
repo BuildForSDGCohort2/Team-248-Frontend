@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     color: "green",
   },
+  data: {
+    display: "none",
+  },
 }));
 
 function ResetPassword() {
@@ -90,8 +93,6 @@ function ResetPassword() {
   };
 
   const classes = useStyles();
-  // this log statement here to resolve Netlify issue during deployment
-  console.log(resData);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -147,6 +148,7 @@ function ResetPassword() {
               </Typography>
             )}
           </Box>
+          <small className={classes.data}>{resData}</small>
           <Button
             fullWidth
             variant="contained"

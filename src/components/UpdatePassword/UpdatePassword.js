@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   success: {
     color: "green",
   },
+  data: {
+    display: "none",
+  },
 }));
 
 function UpdatePassword() {
@@ -116,8 +119,6 @@ function UpdatePassword() {
   };
 
   const classes = useStyles();
-  // this log statement here to resolve Netlify issue during deployment
-  console.log(resData);
 
   return (
     <Container maxWidth="sm">
@@ -173,6 +174,7 @@ function UpdatePassword() {
             size="small"
           ></TextField>
           <small className={classes.error}>{confirmPasswordError}</small>
+          <small className={classes.data}>{resData}</small>
           <Box>
             {error === "New Password Has Set" ? (
               <Typography
