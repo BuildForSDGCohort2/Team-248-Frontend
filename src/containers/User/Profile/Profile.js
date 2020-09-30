@@ -29,7 +29,7 @@ const user = {
 };
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,6 +66,5 @@ export default function VerticalTabs() {
 			<Copyright /> 
 		</Box>
 		</Container>
-      
   );
 }
