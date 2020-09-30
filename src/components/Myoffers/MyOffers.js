@@ -99,19 +99,19 @@ export const MyOffers = () => {
   };
 
   const handleDialogClose = () => {
-    setDialogOpen(false)
+    setDialogOpen(false);
   };
   
   const handleDialogConfirm = (index) => {
-    setDialogOpen(false)
+    setDialogOpen(false);
     offers.splice(index-1, 1);
-    setSnackbarMessage("Deleted Successfully")
-    setSnackbarOpen(true)
+    setSnackbarMessage("Deleted Successfully");
+    setSnackbarOpen(true);
     return History.push(`/profile`);
   };
 
   const handleUpdateOfferDialogClose = () => {
-    setUpdateOfferDialogOpen(false)
+    setUpdateOfferDialogOpen(false);
   };
 
   const handleUpdateOfferDialogConfirm = () => {
@@ -121,20 +121,20 @@ export const MyOffers = () => {
   const handleMenuClose = (event) => {
     setAnchorEl(null);
     if(event.currentTarget.dataset.action === "delete"){
-      setDialogOpen(true)
+      setDialogOpen(true);
     } else if(event.currentTarget.dataset.action === "edit"){
-      setUpdateOfferDialogOpen(true)
+      setUpdateOfferDialogOpen(true);
     }
   };
 
   const handleOpenSnackbar = (message) => {
-    setSnackbarMessage(message)
-    setSnackbarOpen(true)
-  }
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
+  };
 
   const handleCloseSnackbar = () => {
-    setSnackbarOpen(false)
-  }
+    setSnackbarOpen(false);
+  };
 
 	return (
     <Container maxWidth="sm">
