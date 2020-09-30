@@ -7,6 +7,11 @@ $palette: (
     2: #9ca9b3,
     3: #717d86,
   ),
+  white: (
+    1: white,
+    2: white,
+    3: white,
+  ),
   dark: (
     1: #151719,
     2: #25282c,
@@ -85,7 +90,7 @@ $icon--color: (
 
 // Misc elements: background color
 $bg--color: (
-  body: get-color(dark, 1),
+  body: get-color(white, 1),
   body-shadow: 0 20px 48px rgba(get-color(dark, 1), 0.8),
   // body shadow when a boxed layout is used (set to null if don't want a shadow)
     body-outer: lighten(get-color(dark, 1), 2%),
