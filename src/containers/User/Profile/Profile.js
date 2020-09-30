@@ -9,6 +9,7 @@ import Copyright from "../../../components/CopyRight";
 import Container from "@material-ui/core/Container";
 import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateAccount";
 import { TabPanel } from "../../../components/TabPanal/TabPanel";
+import { axiosInstance } from "../../../network/apis";
 
 function additionalProps(index) {
   return {
@@ -17,22 +18,32 @@ function additionalProps(index) {
   };
 }
 
-const user = {
-	name: "Abdullah",
-	email: "abdullah@email.com",
-	phone: "0123456789",
-	address: "Aleandria, Egypt",
-	gender: "male",
-	profileImg: "https://via.placeholder.com/150",
-	dob: "1994-7-10"
-};
+// const user = {
+// 	name: "Abdullah",
+// 	email: "abdullah@email.com",
+// 	phone: "0123456789",
+// 	address: "Aleandria, Egypt",
+// 	gender: "male",
+// 	profileImg: "https://via.placeholder.com/150",
+// 	dob: "1994-7-10"
+// };
 
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
-
+  const [user, setUser] = React.useState(null);
+  const token = localStorage.getItem('token');
+  console.log(token)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  axiosInstance.get("/api/user", { haeders: { Authorization: `Bearer ${token}` } })
+  .then((res) => {
+    console.log(res)
+    setUser(user);
+  }).catch(err => {
+    console.log(err);
+  });
 
   return (
 		<Container component="main">

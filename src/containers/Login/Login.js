@@ -9,23 +9,52 @@ import Link from "@material-ui/core/Link";
 import { Input } from "../../components/Input";
 import validateEmail from "../../utils/Validators";
 import "./Login.scss";
+import { axiosInstance } from "../../network/apis";
+import History from "../../routes/History";
+import Alert from '@material-ui/lab/Alert';
 
 function Login() {
-  const [isError, setisError] = useState(false);
-  const [errorMessage, seterrorMessage] = useState("");
+  // const [isError, setisError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [validationErrors, setValidationErrors] = useState([]);
 
-  function handleEmailChange(e) {
-    if (!validateEmail(e.target.value)) {
-      setisError(true);
-      seterrorMessage("Invalid address :/");
+  function handleEmailChange(event) {
+    if (!validateEmail(event.target.value)) {
+      setEmailError('Invalid address');
     } else {
-      setisError(false);
-      seterrorMessage("");
+      setEmail(event.target.value)
+      setEmailError("");
     }
   }
+
+  const handlePasswordChange = (event) => {
+    const min = event.target.value.length >= 6;
+    const max = event.target.value.length <= 12;
+    if (!min || !max) {
+      setPasswordError('Invalid password');
+    } else {
+      setPassword(event.target.value)
+      setPasswordError("");
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    return null;
+    const body = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    }
+    axiosInstance.post("/api/login", body)
+    .then(res => {
+      localStorage.setItem("token", res.data.data.token);
+      return History.push("/");
+    }).catch(err => {
+      setValidationErrors(err.response.data.message)
+      console.log(err.response.data.message);
+    });
   }
 
   return (
@@ -36,14 +65,23 @@ function Login() {
             <Typography gutterBottom align="center" variant="h4" component="h4">
               Login
             </Typography>
+            { validationErrors.length > 0 && <div>
+              <Alert severity="error">
+                <ul>
+                { validationErrors.map((item, index) => {
+                  return <li>{item}</li>
+                }) }
+                </ul>
+              </Alert>
+            </div> }
             <form
               autoComplete="off"
               className="login-form"
               onSubmit={handleSubmit}
             >
               <Input
-                error={isError}
-                helperText={errorMessage}
+                error={emailError !== ""}
+                helperText={emailError}
                 variant="outlined"
                 margin="normal"
                 fullWidth
@@ -54,10 +92,12 @@ function Login() {
                 autoComplete="email"
               />
               <Input
+                error={passwordError !== ""}
+                helperText={passwordError}
                 variant="outlined"
                 margin="normal"
                 fullWidth
-                handleChange={handleEmailChange}
+                handleChange={handlePasswordChange}
                 type="password"
                 id="js-password"
                 label="Password"
