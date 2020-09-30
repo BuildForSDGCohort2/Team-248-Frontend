@@ -83,6 +83,8 @@ function ResetPassword() {
       .post("/api/profile/reset-password", { newPassword })
       .then((res) => {
         setResData(res);
+        // this log statement here to resolve Netlify issue during deployment
+        console.log(resData);
       })
       .catch((err) => {
         setResData(err);
