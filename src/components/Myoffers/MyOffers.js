@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
 const SnackbarAnchorOrigin = {
   vertical: "top",
   horizontal: "center"
-}
+};
 
 export const MyOffers = () => {
   const classes = useStyles();
@@ -107,7 +107,7 @@ export const MyOffers = () => {
     offers.splice(index-1, 1);
     setSnackbarMessage("Deleted Successfully");
     setSnackbarOpen(true);
-    return History.push(`/profile`);
+    return History.push("/profile");
   };
 
   const handleUpdateOfferDialogClose = () => {
@@ -115,7 +115,7 @@ export const MyOffers = () => {
   };
 
   const handleUpdateOfferDialogConfirm = () => {
-    return History.push(`/profile`);
+    return History.push("/profile");
   };
 
   const handleMenuClose = (event) => {
@@ -221,7 +221,7 @@ export const MyOffers = () => {
                     renderActions={false}
                     />
 								</div>
-							)
+							);
 						})}
 					</CardContent>
 				</Card>

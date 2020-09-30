@@ -1,11 +1,10 @@
-import { Grid, TextField, Typography } from "@material-ui/core";
-import React, { Component } from "react";
+import { TextField } from "@material-ui/core";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import { number, object, string, date } from "yup";
 import { Button, Box, FormGroup } from "@material-ui/core";
 import DatePicker from "../DatePicker/DatePicker";
 import InputError from "../InputError/InputError";
-import { offers } from "../Myoffers/MyOffers";
 
 const min = new Date();
 const minDate = `${min.getMonth() + 1}/${min.getDate()}/${min.getFullYear()}`;
@@ -39,8 +38,8 @@ export const UpdateOffer = ({offer, setSnackbar, closeDialog }) => {
   };
 
   const handleSubmit = (values) => {
-    setSnackbar("Updated Successfully")
-    closeDialog()
+    setSnackbar("Updated Successfully");
+    closeDialog();
   };
   
   return (
@@ -122,5 +121,5 @@ export const UpdateOffer = ({offer, setSnackbar, closeDialog }) => {
       )}
       </Formik>
     </div>
-    )
+    );
 };
