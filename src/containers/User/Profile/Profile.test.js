@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateAccount";
 import { ContactInfo } from "../../../components/ContactInfo/ContactInfo";
 import UpdatePassword from "../../../components/UpdatePassword/UpdatePassword";
+import { MyOffers } from "../../../components/Myoffers/MyOffers";
 
 
 it("Should Profile component.", () => {
@@ -32,5 +33,10 @@ it("should render UpdatePassword correctly", () => {
 
 it("should render DeactivateAccount correctly", () => {
   const wrapper = mount(<DeactivateAccount />);
+  expect(wrapper).toMatchSnapshot();
+});
+
+it("should render MyOffers correctly", () => {
+  const wrapper = mount(<MyOffers />);
   expect(wrapper).toMatchSnapshot();
 });

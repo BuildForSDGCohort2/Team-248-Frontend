@@ -7,7 +7,12 @@
   }
 
   div[id^=vertical-tabpanel] {
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
+  }
+  
+  #start-date, 
+  #end-date {
+    margin: 50px;
   }
 }

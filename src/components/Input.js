@@ -26,7 +26,6 @@ export const Input = ({
       label={label}
       name={name}
       autoComplete={autoComplete}
-      autoFocus
     />
   );
 };
