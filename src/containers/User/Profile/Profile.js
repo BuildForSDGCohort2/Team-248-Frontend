@@ -18,32 +18,32 @@ function additionalProps(index) {
   };
 }
 
-// const user = {
-// 	name: "Abdullah",
-// 	email: "abdullah@email.com",
-// 	phone: "0123456789",
-// 	address: "Aleandria, Egypt",
-// 	gender: "male",
-// 	profileImg: "https://via.placeholder.com/150",
-// 	dob: "1994-7-10"
-// };
+const user = {
+	name: "Abdullah",
+	email: "abdullah@email.com",
+	phone: "0123456789",
+	address: "Aleandria, Egypt",
+	gender: "male",
+	profileImg: "https://via.placeholder.com/150",
+	dob: "1994-7-10"
+};
 
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
-  const [user, setUser] = React.useState(null);
+  // const [user, setUser] = React.useState(null);
   const token = localStorage.getItem('token');
   console.log(token)
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  axiosInstance.get("/api/user", { haeders: { Authorization: `Bearer ${token}` } })
-  .then((res) => {
-    console.log(res)
-    setUser(user);
-  }).catch(err => {
-    console.log(err);
-  });
+  // axiosInstance.get("/api/user", { haeders: { Authorization: `Bearer ${token}` } })
+  // .then((res) => {
+  //   console.log(res)
+  //   setUser(user);
+  // }).catch(err => {
+  //   console.log(err);
+  // });
 
   return (
 		<Container component="main">
@@ -59,7 +59,7 @@ export default function VerticalTabs() {
         <Tab label="Deactivate Account" {...additionalProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <ContactInfo user={user}/>
+        {/* <ContactInfo user={user}/> */}
       </TabPanel>
       <TabPanel value={value} index={1}>
         <UpdatePassword />
