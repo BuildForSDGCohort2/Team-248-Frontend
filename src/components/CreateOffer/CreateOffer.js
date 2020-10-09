@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Typography, Box, CssBaseline, Grid } from "@material-ui/core";
+import { Typography, CssBaseline, Grid } from "@material-ui/core";
 import { CustomSnackbar } from "../CustomSnackbar";
 import OfferForm from "./OfferForm";
-import Copyright from "../CopyRight";
 import Footer from "../../containers/Footer/Footer";
 import "./CreateOffer.scss"
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));

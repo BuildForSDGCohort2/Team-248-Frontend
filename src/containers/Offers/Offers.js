@@ -153,7 +153,7 @@ const Offers = () => {
                 />
                 <FormControlLabel
                   control={<Checkbox name="elderly_sitter" className={classes.checkboxColor}/>}
-                  label="elderly Sitter" value={2}
+                  label="Elderly Sitter" value={2}
                 />
               </FormGroup>
             </FormControl>

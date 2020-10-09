@@ -14,7 +14,7 @@ function Footer() {
             <ul>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   target="_blank"
                 >
                   Creative Tim
@@ -22,7 +22,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   target="_blank"
                 >
                   Blog
@@ -30,7 +30,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   target="_blank"
                 >
                   Licenses
