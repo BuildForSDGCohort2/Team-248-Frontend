@@ -1,7 +1,6 @@
 import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
 import { ContactInfo } from "../../../components/ContactInfo/ContactInfo";
 import UpdatePassword from "../../../components/UpdatePassword/UpdatePassword";
 import "./Profile.scss";
@@ -62,9 +61,7 @@ export default function VerticalTabs() {
         <DeactivateAccount />
       </TabPanel>
     </div>
-		{/* <Box mt={8}> */}
       <Footer/>
-		{/* </Box> */}
 		</Container>
   );
 }
