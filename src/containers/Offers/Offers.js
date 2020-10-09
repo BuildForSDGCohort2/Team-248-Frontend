@@ -9,7 +9,6 @@ import { OffersList } from "../../components/OffersList/OffersList";
 import IndexNavbar from "../Navbars/IndexNavbar";
 import Footer from "../Footer/Footer";
 import "./Offers.scss"
-import {NavItem, NavLink} from "reactstrap";
 
 export const offers = [
 	{
@@ -96,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: "80%",
     margin: "0 auto",
-    marginTop: "120px"
+    marginTop: "150px"
   },
   paper: {
     padding: theme.spacing(2),
@@ -143,6 +142,12 @@ const Offers = () => {
     <div className={classes.container}>
       <IndexNavbar />
       <Grid container spacing={3}>
+        <Grid xs={12} item>
+          <a className="text-danger offer-text"href="/create-offer">
+            <i className="nc-icon nc-simple-add text-danger offer-icon" /> 
+            Create Offer 
+          </a>
+        </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
             <FormControl component="fieldset" onChange={handleCategoryChange}>
@@ -198,13 +203,6 @@ const Offers = () => {
           </Paper>
         </Grid>
         <Grid item xs={8}>
-        <NavItem className="margin-offer">
-              <NavLink className="text-danger offer-text"
-                href="/create-offer"
-              >
-                <b><i className="nc-icon nc-simple-add text-danger offer-icon" /> Create Offers </b>
-              </NavLink>
-            </NavItem>
           <OffersList offers={offersList}/>
         </Grid>
         <Footer/>

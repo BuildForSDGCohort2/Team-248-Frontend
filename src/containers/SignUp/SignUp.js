@@ -15,7 +15,6 @@ import Masseges from "../../assets/Local/messages";
 import { axiosInstance } from "../../network/apis";
 import History from "../../routes/History";
 import Footer from "../Footer/Footer";
-import IndexNavbar from "../Navbars/IndexNavbar";
 
 export default class SignUp extends React.Component {
 
@@ -193,7 +192,6 @@ export default class SignUp extends React.Component {
   render(){
     return (
       <div>
-          <IndexNavbar />
           <Container component="main" maxWidth="xs" className="register-container">
             <div className="paper">
               <Typography component="h1" variant="h3">

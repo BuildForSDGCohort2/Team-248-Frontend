@@ -9,6 +9,7 @@ import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateA
 import { TabPanel } from "../../../components/TabPanal/TabPanel";
 import { MyOffers } from "../../../components/Myoffers/MyOffers";
 import Footer from "../../Footer/Footer";
+import IndexNavbar from "../../Navbars/IndexNavbar";
 
 function additionalProps(index) {
   return {
@@ -35,33 +36,36 @@ export default function VerticalTabs() {
   };
 
   return (
-		<Container component="main">
-    <div className="container">
-      <Tabs
-        orientation="vertical"
-        value={value}
-        onChange={handleChange}
-        className="tabs"
-      >
-        <Tab label="Contact Info" {...additionalProps(0)} />
-        <Tab label="My offers" {...additionalProps(1)} />
-        <Tab label="Change Password" {...additionalProps(2)} />
-        <Tab label="Deactivate Account" {...additionalProps(3)} />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <ContactInfo user={user}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <MyOffers />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <UpdatePassword />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <DeactivateAccount />
-      </TabPanel>
+    <div>
+      <IndexNavbar />
+      <Container component="main">
+        <div className="content">
+          <Tabs
+            orientation="vertical"
+            value={value}
+            onChange={handleChange}
+            className="tabs"
+          >
+            <Tab label="Contact Info" {...additionalProps(0)} />
+            <Tab label="My offers" {...additionalProps(1)} />
+            <Tab label="Change Password" {...additionalProps(2)} />
+            <Tab label="Deactivate Account" {...additionalProps(3)} />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            <ContactInfo user={user}/>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <MyOffers />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <UpdatePassword />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <DeactivateAccount />
+          </TabPanel>
+        </div>
+        <Footer/>
+      </Container>
     </div>
-      <Footer/>
-		</Container>
   );
 }

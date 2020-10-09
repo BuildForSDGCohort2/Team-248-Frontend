@@ -8,8 +8,8 @@ import IndexNavbar from "../Navbars/IndexNavbar";
 const useStyles = makeStyles((theme) => ({
 	cardHeader:{
     padding: "15px 15px",
-    backgroundColor: '#e44463',
-    color: 'white'
+    backgroundColor: "#e44463",
+    color: "white"
   },
   container: {
     width: "80%",

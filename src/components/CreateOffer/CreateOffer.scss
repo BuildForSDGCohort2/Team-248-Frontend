@@ -1,7 +1,25 @@
-.container{
+@import "../../assets/css/bootstrap.min.css";
+@import "../../assets/scss/paper-kit";
+
+.content{
   width: 30%;
+  margin-top: 150px !important;
 
   .MuiFormControl-root{
     width: 100%;
   }
+
+  h2{
+    margin-bottom: 25px;
+  }
+
+  button[type="submit"]{
+    margin-top: 20px;
+  }
+}
+
+.navbar.navbar-transparent {
+  padding-top: 0;
+  background-color: white !important;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
 }

@@ -75,8 +75,15 @@ function IndexNavbar() {
             <NavItem>
               <NavLink
                 href="/offers"
-              >
-                <i className="nc-icon nc-book-bookmark" /> Offers
+              > 
+                Offers
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                href="/profile"
+              > 
+                My profile
               </NavLink>
             </NavItem>
             <NavItem>

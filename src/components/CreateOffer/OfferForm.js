@@ -52,7 +52,7 @@ const OfferForm = ({ setSnackbar }) => {
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">
-          <Box width="100%" mb={2}>
+          <Box width="100%">
             <FormGroup width="100%">
               <Field
                 id="create-offer-startDate"
@@ -66,7 +66,7 @@ const OfferForm = ({ setSnackbar }) => {
               <InputError name="startDate" message="Invalid start date" />
             </FormGroup>
           </Box>
-          <Box width="100%" mb={2}>
+          <Box width="100%">
             <FormGroup className="date-input">
               <Field
                 id="create-offer-endDate"
@@ -92,7 +92,7 @@ const OfferForm = ({ setSnackbar }) => {
               <InputError name="pricePerHour" message="Invalid price" />
             </FormGroup>
           </Box>
-          <Box width="100%" mb={2} mt={2}>
+          <Box width="100%" mb={2}>
             <FormGroup>
               <Field
                 id="create-offer-address"
@@ -105,7 +105,7 @@ const OfferForm = ({ setSnackbar }) => {
               <InputError name="address" message="Invalid address" />
             </FormGroup>
           </Box>
-          <Box width="100%" mb={2} mt={2}>
+          <Box width="100%" mb={2}>
             <FormGroup>
               <Field
                 id="create-offer-qualifications"
@@ -119,7 +119,7 @@ const OfferForm = ({ setSnackbar }) => {
             </FormGroup>
           </Box>
           <Box width="100%" my={2}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit" variant="contained" color="primary" fullWidth size="large">
               Submit
             </Button>
           </Box>

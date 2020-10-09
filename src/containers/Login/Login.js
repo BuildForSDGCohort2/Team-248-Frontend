@@ -10,7 +10,6 @@ import { Input } from "../../components/Input";
 import validateEmail from "../../utils/Validators";
 import "./Login.scss";
 import Footer from "../Footer/Footer";
-import IndexNavbar from "../Navbars/IndexNavbar";
 
 function Login() {
   const [isError, setisError] = useState(false);
@@ -31,12 +30,12 @@ function Login() {
   }
 
   return (
-    <>
-    <IndexNavbar />
+    <div>
       <Grid container direction="column" alignItems="center" justify="center">
         <Grid item md={6} sm={12} xs={12}>
           <Paper className="paper" elevation={0}>
-            <Typography gutterBottom align="center" variant="h4" component="h4">
+            <Typography gutterBottom align="center" variant="h4" 
+            component="h4" style={{color: "#66615b"}}>
               Login
             </Typography>
             <form
@@ -98,7 +97,7 @@ function Login() {
         </Grid>
         <Footer/>
       </Grid>
-    </>
+    </div>
   );
 }
 
