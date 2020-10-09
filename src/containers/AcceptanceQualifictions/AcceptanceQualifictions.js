@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   sectionTitle: {
     textAlign: "center",
     color: "#560a4e",
-    textAlign: "center",
     fontWeight: "bold",
   },
   sectionTitleBottom: {
