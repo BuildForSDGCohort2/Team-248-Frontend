@@ -18,6 +18,7 @@ export const offers = [
 		acceptedSitterName: "Monica",
     status: "Pendding",
     experience: 1,
+    category: 1,
 		hours: 3,
 		pricePerHour: 10,
 		preferedQualification: "I want someone who has the abilities to take care of adult boy.",
@@ -32,7 +33,8 @@ export const offers = [
 		acceptedSitterName: "Eman",
     status: "Confirmed",
     experience: 2,
-		hours: 2,
+    hours: 2,
+    category: 1,
 		pricePerHour: 5.5,
 		preferedQualification: "I want someone who can take care of a child during a trip",
 		address: "Alexandria"
@@ -46,7 +48,8 @@ export const offers = [
 		acceptedSitterName: "Eman",
     status: "Confirmed",
     experience: 8,
-		hours: 2,
+    hours: 2,
+    category: 1,
 		pricePerHour: 8,
 		preferedQualification: "I want someone who can take care of a child during a trip",
 		address: "Alexandria"
@@ -60,6 +63,7 @@ export const offers = [
 		acceptedSitterName: "Eman",
 		status: "Confirmed",
     hours: 2,
+    category: 2,
     experience: 2,
 		pricePerHour: 6.5,
 		preferedQualification: "I want someone who can take care of a child during a trip",
@@ -74,6 +78,7 @@ export const offers = [
 		acceptedSitterName: "Eman",
 		status: "Confirmed",
     hours: 2,
+    category: 2,
     experience: 4,
 		pricePerHour: 20,
 		preferedQualification: "I want someone who can take care of a child during a trip",
@@ -120,6 +125,12 @@ const Offers = () => {
     setOffersList(filteredList)
     setExpRangeValue(newValue);
   };
+  const handleCategoryChange = (event) => {
+    const filteredList = offers.filter(item => item.category === parseInt(event.target.value));
+    console.log(filteredList)
+    setOffersList(filteredList)
+    // console.log(event.target.value)
+  };
 
   const classes = useStyles();
   return (
@@ -127,16 +138,16 @@ const Offers = () => {
       <Grid container spacing={3}>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" onChange={handleCategoryChange}>
               <FormLabel component="legend">Categories</FormLabel>
               <FormGroup>
                 <FormControlLabel
                   control={<Checkbox name="baby_sitter" color="primary"/>}
-                  label="Baby Sitter"
+                  label="Baby Sitter" value={1}
                 />
                 <FormControlLabel
                   control={<Checkbox name="elderly_sitter" color="primary"/>}
-                  label="elderly Sitter"
+                  label="elderly Sitter" value={2}
                 />
               </FormGroup>
             </FormControl>

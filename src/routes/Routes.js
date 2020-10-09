@@ -14,7 +14,7 @@ const Routes = (
         <LazyComponent.CreateOffer exact path="/create-offer" />
         <LazyComponent.Profile exact path="/profile" />
         <LazyComponent.Offers exact path="/offers" />
-        <LazyComponent.OfferDetails  path="/offers/:id" />
+        <LazyComponent.OfferDetails path="/offers/:id" />
         <Redirect from="*" to="/" />
       </Switch>
     </Router>

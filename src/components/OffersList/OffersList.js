@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -39,7 +39,6 @@ export const OffersList = ({offers}) => {
   const classes = useStyles();
 
   const handleCardClick = (id) => {
-    // redirect to offer details
     History.push(`/offers/${id}`)
   } 
   
