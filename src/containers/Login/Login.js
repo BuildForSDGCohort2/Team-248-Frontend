@@ -10,6 +10,7 @@ import { Input } from "../../components/Input";
 import validateEmail from "../../utils/Validators";
 import "./Login.scss";
 import Footer from "../Footer/Footer";
+import IndexNavbar from "../Navbars/IndexNavbar";
 
 function Login() {
   const [isError, setisError] = useState(false);
@@ -31,6 +32,7 @@ function Login() {
 
   return (
     <>
+    <IndexNavbar />
       <Grid container direction="column" alignItems="center" justify="center">
         <Grid item md={6} sm={12} xs={12}>
           <Paper className="paper" elevation={0}>

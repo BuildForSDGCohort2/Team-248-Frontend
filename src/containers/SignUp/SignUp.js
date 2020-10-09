@@ -15,6 +15,7 @@ import Masseges from "../../assets/Local/messages";
 import { axiosInstance } from "../../network/apis";
 import History from "../../routes/History";
 import Footer from "../Footer/Footer";
+import IndexNavbar from "../Navbars/IndexNavbar";
 
 export default class SignUp extends React.Component {
 
@@ -191,156 +192,159 @@ export default class SignUp extends React.Component {
 
   render(){
     return (
-      <Container component="main" maxWidth="xs" className="register-container">
-        <div className="paper">
-          <Typography component="h1" variant="h3">
-            Sign up
-          </Typography>
-          <form onSubmit={this.handleSubmission}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="name"
-                  name="name"
-                  variant="outlined"
-                  onChange={this.handleChange}
-                  fullWidth
-                  id="name"
-                  label="Your Name"
-                />
-                <small className="error d-block">{this.state.name.error}</small>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  onChange={this.handleEmailChange}
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-                <small className="error d-block">{this.state.email.error}</small>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  onChange={this.handlePasswordChange}
-                  id="password"
-                  type="password"
-                  label="Password"
-                  name="password"
-                  autoComplete="current-password"
-                />
-                <small className="error d-block">{this.state.password.error}</small>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  name="passwordConfirmation"
-                  onChange={this.handleConfirmPassword}
-                  label="Confirm Password"
-                  type="password"
-                  id="password_confirmation"
-                />
-                <small className="error d-block">{this.state.passwordConfirmation.error}</small>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  onChange={this.handlePhoneNumberChange}
-                  fullWidth
-                  id="phone"
-                  label="Phone Number"
-                  name="phone"
-                  autoComplete="phone"
-                />
-                <small className="error d-block">{this.state.phone.error}</small>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="address"
-                  onChange={this.handleChange}
-                  label="Your address"
-                  name="address"
-                  autoComplete="address"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormLabel component="legend">Date of Birth</FormLabel>
-                <TextField
-                  id="dob"
-                  name="dob"
-                  type="date"
-                  onChange={this.handleChange}
-                  fullWidth
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup aria-label="gender" name="gender" value={this.state.gender.value} 
-                  onChange={this.handleChange}>
-                  <FormControlLabel value="male" control={<Radio />} label="Male" />
-                  <FormControlLabel value="female" control={<Radio />} label="Female" />
-                </RadioGroup>
-              </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormLabel component="legend">Choose your Profile Image</FormLabel>
-                <TextField
-                  type="file"
-                  id="profile_img"
-                  name="profileImg"
-                  fullWidth
-                  variant="outlined"
-                  onChange={this.handleImgChange}
-                />
-                <small className="error d-block">{this.state.profileImg.error}</small>
+      <div>
+          <IndexNavbar />
+          <Container component="main" maxWidth="xs" className="register-container">
+            <div className="paper">
+              <Typography component="h1" variant="h3">
+                Sign up
+              </Typography>
+              <form onSubmit={this.handleSubmission}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField
+                      autoComplete="name"
+                      name="name"
+                      variant="outlined"
+                      onChange={this.handleChange}
+                      fullWidth
+                      id="name"
+                      label="Your Name"
+                    />
+                    <small className="error d-block">{this.state.name.error}</small>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      onChange={this.handleEmailChange}
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      autoComplete="email"
+                    />
+                    <small className="error d-block">{this.state.email.error}</small>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      onChange={this.handlePasswordChange}
+                      id="password"
+                      type="password"
+                      label="Password"
+                      name="password"
+                      autoComplete="current-password"
+                    />
+                    <small className="error d-block">{this.state.password.error}</small>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      name="passwordConfirmation"
+                      onChange={this.handleConfirmPassword}
+                      label="Confirm Password"
+                      type="password"
+                      id="password_confirmation"
+                    />
+                    <small className="error d-block">{this.state.passwordConfirmation.error}</small>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      onChange={this.handlePhoneNumberChange}
+                      fullWidth
+                      id="phone"
+                      label="Phone Number"
+                      name="phone"
+                      autoComplete="phone"
+                    />
+                    <small className="error d-block">{this.state.phone.error}</small>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      id="address"
+                      onChange={this.handleChange}
+                      label="Your address"
+                      name="address"
+                      autoComplete="address"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormLabel component="legend">Date of Birth</FormLabel>
+                    <TextField
+                      id="dob"
+                      name="dob"
+                      type="date"
+                      onChange={this.handleChange}
+                      fullWidth
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                  <FormControl component="fieldset">
+                    <FormLabel component="legend">Gender</FormLabel>
+                    <RadioGroup aria-label="gender" name="gender" value={this.state.gender.value} 
+                      onChange={this.handleChange}>
+                      <FormControlLabel value="male" control={<Radio />} label="Male" />
+                      <FormControlLabel value="female" control={<Radio />} label="Female" />
+                    </RadioGroup>
+                  </FormControl>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormLabel component="legend">Choose your Profile Image</FormLabel>
+                    <TextField
+                      type="file"
+                      id="profile_img"
+                      name="profileImg"
+                      fullWidth
+                      variant="outlined"
+                      onChange={this.handleImgChange}
+                    />
+                    <small className="error d-block">{this.state.profileImg.error}</small>
 
-              </Grid>
-              <Grid item xs={12}>
-                <FormLabel component="legend">Add Image for your National ID card</FormLabel>
-                <TextField
-                  type="file"
-                  id="id_img"
-                  name="idImg"
-                  variant="outlined"
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormLabel component="legend">Add Image for your National ID card</FormLabel>
+                    <TextField
+                      type="file"
+                      id="id_img"
+                      name="idImg"
+                      variant="outlined"
+                      fullWidth
+                      onChange={this.handleImgChange}
+                    />
+                  </Grid>
+                  <small className="error d-block">{this.state.idImg.error}</small>
+                
+                </Grid>
+      
+                <Button
+                  type="submit"
                   fullWidth
-                  onChange={this.handleImgChange}
-                />
-              </Grid>
-              <small className="error d-block">{this.state.idImg.error}</small>
-            
-            </Grid>
-  
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className="submit-btn"
-            >
-              Sign Up
-            </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Footer/>
-      </Container>
+                  variant="contained"
+                  color="primary"
+                  className="submit-btn"
+                >
+                  Sign Up
+                </Button>
+                <Grid container justify="flex-end">
+                  <Grid item>
+                    <Link href="#" variant="body2">
+                      Already have an account? Sign in
+                    </Link>
+                  </Grid>
+                </Grid>
+              </form>
+            </div>
+          </Container>
+          <Footer/>
+       </div>
   );
   }
 }
