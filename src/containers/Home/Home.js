@@ -2,19 +2,35 @@ import React, { Component } from "react";
 import Hero from "../Hero/Hero";
 import SecondSection from "../SecondSection/SecondSection";
 import ThirdSection from "../ThirdSection/ThirdSection";
+import ServicesSection from "../ServicesSection/ServicesSection";
+import FeedbackSection from "../FeedbackSection/FeedbackSection";
 import Footer from "../Footer/Footer";
+import Header from "../../components/Header/Header.js";
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
 
-class Home extends Component {
-  render() {
+const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: "70px" ,
+  },
+}));
+
+const Home = function() {
+  const classes = useStyles();
+
     return (
       <div>
-        <Hero />
-        <SecondSection />
-        <ThirdSection />
+        <Header />
+        <Container className={classes.container}>
+          <Hero />
+          <SecondSection />
+          <ThirdSection />
+          <ServicesSection />
+          <FeedbackSection />
+        </Container>
         <Footer />
       </div>
     );
   }
-}
 
 export default Home;
