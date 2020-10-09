@@ -74,18 +74,18 @@ function Login() {
                 id="js-submit"
                 variant="contained"
                 color="primary"
-                className="login-form__submit"
+                className="login-form-submit"
               >
                 Login
               </Button>
               <Grid container className="mt-2">
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="/forget-password" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

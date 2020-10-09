@@ -1,22 +1,15 @@
+import { TextField } from "@material-ui/core";
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { number, object, string, date } from "yup";
-import { Button, Box, TextField, FormGroup } from "@material-ui/core";
+import { Button, Box, FormGroup } from "@material-ui/core";
 import DatePicker from "../DatePicker/DatePicker";
 import InputError from "../InputError/InputError";
-import { axiosInstance } from "../../network/apis/index";
 
 const min = new Date();
 const minDate = `${min.getMonth() + 1}/${min.getDate()}/${min.getFullYear()}`;
 const max = new Date();
 
-const initialValues = {
-  startDate: null,
-  endDate: null,
-  pricePerHour: "",
-  address: "",
-  qualifications: ""
-};
 const validationSchema = object({
   startDate: date()
     .default(new Date(min))
@@ -34,26 +27,33 @@ const validationSchema = object({
     .required("Your address is required"),
   qualifications: string()
 });
-const handleSubmit = (values, setSnackbar) => {
-  axiosInstance.post("/api/create-offer", values).then((res) => {
-    setSnackbar(res.data.message, true);
-  }).catch((error) => {
-    setSnackbar(error?.data?.message, false);
-  });
-};
 
-const OfferForm = ({ setSnackbar }) => {
+export const UpdateOffer = ({offer, setSnackbar, closeDialog }) => {
+  const initialValues = {
+    startDate: offer.startDate,
+    endDate: offer.startDate,
+    pricePerHour: offer.pricePerHour,
+    address: offer.address,
+    qualifications: offer.preferedQualification
+  };
+
+  const handleSubmit = (values) => {
+    setSnackbar("Updated Successfully");
+    closeDialog();
+  };
+  
   return (
-    <Formik
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      onSubmit={({ values }) => handleSubmit(values, setSnackbar)}
-    >
+    <div>
+      <Formik
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={({ values }) => handleSubmit(values)}
+      >
       {({ values, setFieldValue }) => (
-        <Form id="create-offer-form">
+        <Form id="update-offer-form">
           <FormGroup>
             <Field
-              id="create-offer-startDate"
+              id="update-offer-startDate"
               as={DatePicker}
               name="startDate"
               label="Start date"
@@ -64,7 +64,7 @@ const OfferForm = ({ setSnackbar }) => {
           </FormGroup>
           <FormGroup>
             <Field
-              id="create-offer-endDate"
+              id="update-offer-endDate"
               as={DatePicker}
               name="endDate"
               label="End date"
@@ -76,12 +76,12 @@ const OfferForm = ({ setSnackbar }) => {
           <Box width="100%" mb={2}>
             <FormGroup>
               <Field
-                id="create-offer-pricePerHour"
+                id="update-offer-pricePerHour"
                 variant="outlined"
                 name="pricePerHour"
                 type="number"
                 as={TextField}
-                label="Price per hour"
+                label="Price Per Hour"
               />
               <InputError name="pricePerHour" message="Invalid price" />
             </FormGroup>
@@ -89,12 +89,12 @@ const OfferForm = ({ setSnackbar }) => {
           <Box width="100%" mb={2} mt={2}>
             <FormGroup>
               <Field
-                id="create-offer-address"
+                id="update-offer-address"
                 variant="outlined"
                 name="address"
                 type="text"
                 as={TextField}
-                label="Your address"
+                label="Your Address"
               />
               <InputError name="address" message="Invalid address" />
             </FormGroup>
@@ -102,12 +102,12 @@ const OfferForm = ({ setSnackbar }) => {
           <Box width="100%" mb={2} mt={2}>
             <FormGroup>
               <Field
-                id="create-offer-qualifications"
+                id="update-offer-qualifications"
                 variant="outlined"
                 name="qualifications"
-                type="text"
+                type="textarea"
                 as={TextField}
-                label="prefered qualifications"
+                label="Prefered Qualifications"
               />
               <InputError name="qualifications" message="Invalid text" />
             </FormGroup>
@@ -119,8 +119,7 @@ const OfferForm = ({ setSnackbar }) => {
           </Box>
         </Form>
       )}
-    </Formik>
-  );
+      </Formik>
+    </div>
+    );
 };
-
-export default OfferForm;

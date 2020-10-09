@@ -10,7 +10,8 @@ export default {
       InvalidEmail: "Invalid Email",
     },
     Profile: {
-      DeactivateAccountAlertMsg: "Are you sure you want to deactivate your account.?"
+      DeactivateAccountAlertMsg: "Are you sure you want to deactivate your account.?",
+      DeleteOffer: "Are you sure you want to delete this offer.?"
     }
   }
 };
