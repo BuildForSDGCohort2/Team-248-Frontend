@@ -3,7 +3,8 @@ import { Typography, Box, CssBaseline, Grid } from "@material-ui/core";
 import { CustomSnackbar } from "../CustomSnackbar";
 import OfferForm from "./OfferForm";
 import Copyright from "../CopyRight";
-
+import Footer from "../../containers/Footer/Footer";
+import "./CreateOffer.scss"
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 // const required = value => (value ? undefined : "Required");
 
@@ -44,35 +45,37 @@ class CreateOffer extends Component {
 
   render() {
     return (
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: "100vh" }}
-      >
-        <Grid item xs={6}>
-          <Typography variant="h3">Create Offer</Typography>
-          <CssBaseline />
-          <CustomSnackbar
-            anchorOrigin={{
-              vertical: this.state.snackbar.vertical,
-              horizontal: this.state.snackbar.horizontal
-            }}
-            open={this.state.snackbar.open}
-            handleClose={this.handleCloseSnackbar}
-            message={this.state.submitMessage}
-            error={!this.state.validOffer}
-            keyProp={
-              this.state.snackbar.vertical + this.state.snackbar.horizontal
-            }
-          />
-          <OfferForm setSnackbar={this.setSnackbar} />
-          <Box mt={8}>
-            <Copyright />
-          </Box>
+      <div>
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+          style={{ minHeight: "100vh" }}
+        >
+          <Grid item xs={8} className="container">
+            <Typography variant="h5" component="h2" align="center">
+              Create Offer
+            </Typography>
+            <CssBaseline />
+            <CustomSnackbar
+              anchorOrigin={{
+                vertical: this.state.snackbar.vertical,
+                horizontal: this.state.snackbar.horizontal
+              }}
+              open={this.state.snackbar.open}
+              handleClose={this.handleCloseSnackbar}
+              message={this.state.submitMessage}
+              error={!this.state.validOffer}
+              keyProp={
+                this.state.snackbar.vertical + this.state.snackbar.horizontal
+              }
+            />
+            <OfferForm setSnackbar={this.setSnackbar} />
+          </Grid>
         </Grid>
-      </Grid>
+        <Footer/>
+     </div>
     );
   }
 }

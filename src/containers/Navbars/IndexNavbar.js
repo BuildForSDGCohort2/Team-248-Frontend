@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Paper Kit React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-kit-react
-
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/paper-kit-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // nodejs library that concatenates strings
 import classnames from "classnames";
@@ -67,8 +49,7 @@ function IndexNavbar() {
         <div className="navbar-translate">
           <NavbarBrand
             data-placement="bottom"
-            href="/index"
-            target="_blank"
+            href="/home"
             title="Coded by Creative Tim"
           >
             Bebejo App
@@ -93,8 +74,7 @@ function IndexNavbar() {
           <Nav navbar>
             <NavItem>
               <NavLink
-                href="#"
-                target="_blank"
+                href="/offers"
               >
                 <i className="nc-icon nc-book-bookmark" /> Offers
               </NavLink>
@@ -103,9 +83,7 @@ function IndexNavbar() {
               <Button
                 className="btn-round"
                 color="danger"
-                href="#pablo"
-                target="_blank"
-                disabled
+                href="/register"
               >
                 Sign Up
               </Button>
@@ -114,9 +92,8 @@ function IndexNavbar() {
               <Button
                 className="btn-round"
                 color="danger"
-                href="#pablo"
-                target="_blank"
-                disabled
+                href="/login"
+                target=""
               >
                 Login
               </Button>

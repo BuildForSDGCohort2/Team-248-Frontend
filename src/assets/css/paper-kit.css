@@ -1007,9 +1007,9 @@
   filter: alpha(opacity=100); }
   .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .btn-danger:active:focus, .btn-danger:active:hover, .btn-danger.active:focus, .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active, .btn-danger:not(:disabled):not(.disabled).active:focus,
   .show > .btn-danger.dropdown-toggle {
-    background-color: #f33816;
+    background-color: #e44463;
     color: #FFFFFF;
-    border-color: #f33816;
+    border-color: #e44463;
     box-shadow: none; }
   .btn-danger .caret {
     border-top-color: #FFFFFF; }
@@ -1020,14 +1020,14 @@
   fieldset[disabled] .btn-danger.focus,
   fieldset[disabled] .btn-danger:active,
   fieldset[disabled] .btn-danger.active {
-    background-color: #f33816;
-    border-color: #f33816; }
+    background-color: #e44463;
+    border-color: #e44463; }
   .btn-danger.btn-link {
     color: #f5593d; }
     .btn-danger.btn-link:hover, .btn-danger.btn-link:focus, .btn-danger.btn-link:active, .btn-danger.btn-link.active, .btn-danger.btn-link:focus:active,
     .open > .btn-danger.btn-link.dropdown-toggle {
       background-color: transparent !important;
-      color: #f33816 !important; }
+      color: #e44463 !important; }
     .btn-danger.btn-link .caret {
       border-top-color: #f5593d; }
   .btn-danger .caret {
@@ -3916,7 +3916,7 @@ License - nucleoapp.com/license/
   text-shadow: none; }
   .carousel-control:hover, .carousel-control:focus {
     opacity: 1;
-    background-color: #f33816; }
+    background-color: #e44463; }
 
 .carousel-control.left {
   height: 30px;

@@ -5,3 +5,13 @@
 body {
   background-color: white !important;
 }
+
+button[type="submit"]{
+  background-color: #e44463;
+  color: white;
+}
+
+button[type="submit"]:hover{
+  background-color: #e44463;
+  color: white;
+}

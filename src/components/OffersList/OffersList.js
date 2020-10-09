@@ -6,8 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 import History from "../../routes/History"
 
 const useStyles = makeStyles((theme) => ({
@@ -30,8 +28,9 @@ const useStyles = makeStyles((theme) => ({
 		margin: "15px"
 	},
 	cardHeader:{
-		backgroundColor: "#f1f1f1",
-		padding: "15px 0"
+    padding: "15px",
+    backgroundColor: '#e44463',
+    color: 'white'
 	},
 }));
 
@@ -40,13 +39,13 @@ export const OffersList = ({offers}) => {
 
   const handleCardClick = (id) => {
     History.push(`/offers/${id}`)
-  } 
+  };
   
 	return (
     <Container maxWidth="sm" className={classes.container}>
 		<Card>
 			<Typography className={classes.cardHeader} 
-					gutterBottom variant="h5" component="h2" align="center">
+					gutterBottom variant="h5" component="h2">
 				Offers 
 			</Typography>
 			<CardContent>

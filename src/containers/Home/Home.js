@@ -3,7 +3,9 @@ import SecondSection from "../SecondSection/SecondSection";
 import ThirdSection from "../ThirdSection/ThirdSection";
 import IndexHeader from "../Headers/IndexHeader";
 import IndexNavbar from "../Navbars/IndexNavbar";
-import DemoFooters from "../Footers/DemoFooter";
+import Footer from "../Footer/Footer";
+import "../../assets/css/bootstrap.min.css";
+import "../../assets/scss/paper-kit.scss?v=1.2.0";
 import ContactUs from "../ContactUs/ContactUs";
 
 class Home extends Component {
@@ -15,7 +17,7 @@ class Home extends Component {
         <SecondSection />
         <ThirdSection />
         <ContactUs />
-        <DemoFooters />
+        <Footer />
       </div>
     );
   }

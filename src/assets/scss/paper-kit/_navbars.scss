@@ -134,7 +134,11 @@
         font-size: $font-size-medium;
     }
     .caret{
-       @include center-item();
+      left: 0;
+      right: 0;
+      margin-right: auto;
+      margin-left: auto;
+      position: absolute;
     }
     &.navbar-transparent {
       background: transparent !important;
