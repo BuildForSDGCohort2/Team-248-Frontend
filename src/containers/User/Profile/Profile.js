@@ -5,11 +5,11 @@ import Box from "@material-ui/core/Box";
 import { ContactInfo } from "../../../components/ContactInfo/ContactInfo";
 import UpdatePassword from "../../../components/UpdatePassword/UpdatePassword";
 import "./Profile.scss";
-import Copyright from "../../../components/CopyRight";
 import Container from "@material-ui/core/Container";
 import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateAccount";
 import { TabPanel } from "../../../components/TabPanal/TabPanel";
 import { MyOffers } from "../../../components/Myoffers/MyOffers";
+import Footer from "../../Footer/Footer";
 
 function additionalProps(index) {
   return {
@@ -24,12 +24,12 @@ const user = {
 	phone: "0123456789",
 	address: "Aleandria, Egypt",
 	gender: "male",
-	profileImg: "https://via.placeholder.com/150",
+	profileImg: "/profiles/profile4.jpg",
 	dob: "1994-7-10"
 };
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -62,9 +62,9 @@ export default function VerticalTabs() {
         <DeactivateAccount />
       </TabPanel>
     </div>
-		<Box mt={8}>
-			<Copyright /> 
-		</Box>
+		{/* <Box mt={8}> */}
+      <Footer/>
+		{/* </Box> */}
 		</Container>
   );
 }

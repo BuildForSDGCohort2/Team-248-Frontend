@@ -6,8 +6,6 @@ import store from "./store";
 import { addLocaleData } from "react-intl";
 import * as en from "react-intl/locale-data/en";
 import * as ar from "react-intl/locale-data/ar";
-import "./assets/css/bootstrap.min.css";
-import "./assets/scss/paper-kit.scss?v=1.2.0";
 
 addLocaleData(en);
 addLocaleData(ar);

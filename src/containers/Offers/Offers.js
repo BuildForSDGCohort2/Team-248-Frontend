@@ -5,8 +5,10 @@ import Grid from "@material-ui/core/Grid";
 import { Checkbox, Divider, FormControl, 
   FormControlLabel, FormGroup, 
   FormLabel, Slider, Typography } from "@material-ui/core";
-import CalendarsDateRangePicker from "../../components/CalenderDateRangePicker/CalenderDateRangePicker";
 import { OffersList } from "../../components/OffersList/OffersList";
+import IndexNavbar from "../Navbars/IndexNavbar";
+import Footer from "../Footer/Footer";
+import "./Offers.scss"
 
 export const offers = [
 	{
@@ -40,7 +42,7 @@ export const offers = [
 		address: "Alexandria"
 	},
 	{
-    id: 2,
+    id: 3,
 		title: "Baby sitter for one day",
 		description: "I want a Baby sitter for one day",
 		startDate: "Oct, 10 2020",
@@ -55,7 +57,7 @@ export const offers = [
 		address: "Alexandria"
 	},
 	{
-    id: 2,
+    id: 4,
 		title: "Baby sitter for one day",
 		description: "I want a Baby sitter for one day",
 		startDate: "Oct, 10 2020",
@@ -70,7 +72,7 @@ export const offers = [
 		address: "Alexandria"
 	},
 	{
-    id: 2,
+    id: 5,
 		title: "Baby sitter for one day",
 		description: "I want a Baby sitter for one day",
 		startDate: "Oct, 10 2020",
@@ -92,7 +94,8 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     width: "80%",
-    margin: "0 auto"
+    margin: "0 auto",
+    marginTop: "120px"
   },
   paper: {
     padding: theme.spacing(2),
@@ -100,15 +103,18 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     margin: "10px 0"
+  },
+  slider:{
+    color: "#e44463"
+  },
+  checkboxColor:{
+    color: "#e44463"
   }
 }));
 
 function valuetext(value) {
   return `${value}`;
 }
-
-//date
-// price
 
 const Offers = () => {
   const [PriceRangeValue, setPriceRangeValue] = React.useState([0, 10]);
@@ -129,12 +135,12 @@ const Offers = () => {
     const filteredList = offers.filter(item => item.category === parseInt(event.target.value));
     console.log(filteredList)
     setOffersList(filteredList)
-    // console.log(event.target.value)
   };
 
   const classes = useStyles();
   return (
     <div className={classes.container}>
+      <IndexNavbar />
       <Grid container spacing={3}>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
@@ -142,11 +148,11 @@ const Offers = () => {
               <FormLabel component="legend">Categories</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox name="baby_sitter" color="primary"/>}
+                  control={<Checkbox name="baby_sitter" className={classes.checkboxColor}/>}
                   label="Baby Sitter" value={1}
                 />
                 <FormControlLabel
-                  control={<Checkbox name="elderly_sitter" color="primary"/>}
+                  control={<Checkbox name="elderly_sitter" className={classes.checkboxColor}/>}
                   label="elderly Sitter" value={2}
                 />
               </FormGroup>
@@ -158,6 +164,7 @@ const Offers = () => {
               Price Per Hour
             </Typography>
             <Slider
+              className={classes.slider}
               value={PriceRangeValue}
               onChange={handlePriceRangeChange}
               valueLabelDisplay="auto"
@@ -175,6 +182,7 @@ const Offers = () => {
               Experiences
             </Typography>
             <Slider
+              className={classes.slider}
               value={ExpRangeValue}
               onChange={handleExpRangeChange}
               valueLabelDisplay="auto"
@@ -190,7 +198,8 @@ const Offers = () => {
         </Grid>
         <Grid item xs={8}>
           <OffersList offers={offersList}/>
-        </Grid>            
+        </Grid>
+        <Footer/>
       </Grid>
     </div>
   );
