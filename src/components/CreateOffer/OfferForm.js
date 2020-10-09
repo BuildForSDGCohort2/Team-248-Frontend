@@ -35,6 +35,7 @@ const validationSchema = object({
   qualifications: string()
 });
 const handleSubmit = (values, setSnackbar) => {
+  console.log("here");
   axiosInstance.post("/api/create-offer", values).then((res) => {
     setSnackbar(res.data.message, true);
   }).catch((error) => {
