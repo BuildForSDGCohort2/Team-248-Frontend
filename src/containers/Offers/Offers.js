@@ -9,6 +9,7 @@ import { OffersList } from "../../components/OffersList/OffersList";
 import IndexNavbar from "../Navbars/IndexNavbar";
 import Footer from "../Footer/Footer";
 import "./Offers.scss"
+import {NavItem, NavLink} from "reactstrap";
 
 export const offers = [
 	{
@@ -197,6 +198,13 @@ const Offers = () => {
           </Paper>
         </Grid>
         <Grid item xs={8}>
+        <NavItem className="margin-offer">
+              <NavLink className="text-danger offer-text"
+                href="/create-offer"
+              >
+                <b><i className="nc-icon nc-simple-add text-danger offer-icon" /> Create Offers </b>
+              </NavLink>
+            </NavItem>
           <OffersList offers={offersList}/>
         </Grid>
         <Footer/>
