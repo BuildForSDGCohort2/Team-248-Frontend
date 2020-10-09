@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import SecondSection from "../SecondSection/SecondSection";
 import ThirdSection from "../ThirdSection/ThirdSection";
-import Footer from "../Footer/Footer";
 import IndexHeader from "../Headers/IndexHeader";
 import IndexNavbar from "../Navbars/IndexNavbar";
-import DemoFooters from "../Footers/DemoFooter";
-
+import Footer from "../Footer/Footer";
+import "../../assets/css/bootstrap.min.css";
+import "../../assets/scss/paper-kit.scss?v=1.2.0";
 
 class Home extends Component {
   render() {
@@ -15,7 +15,7 @@ class Home extends Component {
         <IndexHeader />
         <SecondSection />
         <ThirdSection />
-        <DemoFooters />
+        <Footer />
       </div>
     );
   }

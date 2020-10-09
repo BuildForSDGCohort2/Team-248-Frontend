@@ -16,6 +16,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Masseges from "../../assets/Local/messages";
 import { axiosInstance } from "../../network/apis";
 import History from "../../routes/History";
+import Footer from "../Footer/Footer";
 
 export default class SignUp extends React.Component {
 
@@ -194,7 +195,7 @@ export default class SignUp extends React.Component {
     return (
       <Container component="main" maxWidth="xs" className="register-container">
         <div className="paper">
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h3">
             Sign up
           </Typography>
           <form onSubmit={this.handleSubmission}>
@@ -208,7 +209,6 @@ export default class SignUp extends React.Component {
                   fullWidth
                   id="name"
                   label="Your Name"
-                  autoFocus
                 />
                 <small className="error d-block">{this.state.name.error}</small>
               </Grid>
@@ -302,17 +302,19 @@ export default class SignUp extends React.Component {
                   id="profile_img"
                   name="profileImg"
                   fullWidth
+                  variant="outlined"
                   onChange={this.handleImgChange}
                 />
                 <small className="error d-block">{this.state.profileImg.error}</small>
 
               </Grid>
               <Grid item xs={12}>
-                <FormLabel component="legend">add Image for your National ID card</FormLabel>
+                <FormLabel component="legend">Add Image for your National ID card</FormLabel>
                 <TextField
                   type="file"
                   id="id_img"
                   name="idImg"
+                  variant="outlined"
                   fullWidth
                   onChange={this.handleImgChange}
                 />
@@ -339,9 +341,7 @@ export default class SignUp extends React.Component {
             </Grid>
           </form>
         </div>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
+        <Footer/>
       </Container>
   );
   }

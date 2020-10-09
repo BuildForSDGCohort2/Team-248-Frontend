@@ -9,6 +9,7 @@ import Link from "@material-ui/core/Link";
 import { Input } from "../../components/Input";
 import validateEmail from "../../utils/Validators";
 import "./Login.scss";
+import Footer from "../Footer/Footer";
 
 function Login() {
   const [isError, setisError] = useState(false);
@@ -93,6 +94,7 @@ function Login() {
             </form>
           </Paper>
         </Grid>
+        <Footer/>
       </Grid>
     </>
   );

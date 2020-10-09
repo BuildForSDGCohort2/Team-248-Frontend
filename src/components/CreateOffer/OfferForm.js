@@ -52,28 +52,33 @@ const OfferForm = ({ setSnackbar }) => {
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">
-          <FormGroup>
-            <Field
-              id="create-offer-startDate"
-              as={DatePicker}
-              name="startDate"
-              label="Start date"
-              value={values.startDate}
-              onChange={(value) => setFieldValue("startDate", value)}
-            />
-            <InputError name="startDate" message="Invalid start date" />
-          </FormGroup>
-          <FormGroup>
-            <Field
-              id="create-offer-endDate"
-              as={DatePicker}
-              name="endDate"
-              label="End date"
-              value={values.endDate}
-              onChange={(value) => setFieldValue("endDate", value)}
-            />
-            <InputError name="endDate" message="Invalid end date" />
-          </FormGroup>
+          <Box width="100%" mb={2}>
+            <FormGroup width="100%">
+              <Field
+                id="create-offer-startDate"
+                as={DatePicker}
+                className="date-input"
+                name="startDate"
+                label="Start date"
+                value={values.startDate}
+                onChange={(value) => setFieldValue("startDate", value)}
+              />
+              <InputError name="startDate" message="Invalid start date" />
+            </FormGroup>
+          </Box>
+          <Box width="100%" mb={2}>
+            <FormGroup className="date-input">
+              <Field
+                id="create-offer-endDate"
+                as={DatePicker}
+                name="endDate"
+                label="End date"
+                value={values.endDate}
+                onChange={(value) => setFieldValue("endDate", value)}
+              />
+              <InputError name="endDate" message="Invalid end date" />
+            </FormGroup>
+          </Box>
           <Box width="100%" mb={2}>
             <FormGroup>
               <Field
@@ -108,7 +113,7 @@ const OfferForm = ({ setSnackbar }) => {
                 name="qualifications"
                 type="text"
                 as={TextField}
-                label="prefered qualifications"
+                label="Prefered Qualifications"
               />
               <InputError name="qualifications" message="Invalid text" />
             </FormGroup>

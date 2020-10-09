@@ -2,11 +2,14 @@ import { Button, Card, CardContent,
   Divider, Grid, makeStyles, TextField, Typography } from "@material-ui/core";
 import React from "react"
 import { offers } from "../../containers/Offers/Offers";
+import Footer from "../Footer/Footer";
+import IndexNavbar from "../Navbars/IndexNavbar";
 
 const useStyles = makeStyles((theme) => ({
 	cardHeader:{
-		backgroundColor: "#f1f1f1",
-		padding: "15px 15px"
+    padding: "15px 15px",
+    backgroundColor: '#e44463',
+    color: 'white'
   },
   container: {
     width: "80%",
@@ -20,11 +23,18 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px auto"
   },
   gridWidth: {
-    maxWidth: "90% !important"
+    maxWidth: "90% !important",
+    marginBottom: "40px"
   },
   relatedHeader: {
     padding: "20px",
     fontSize: "24px"
+  },
+  relatedContainer: {
+    flexWrap: "unset"
+  },
+  card:{
+    margin: "140px 0 50px 0"
   }
 }));
 
@@ -42,7 +52,8 @@ const OfferDetials = (props) => {
 
   return (
     <div className={classes.container}>
-      <Card>
+      <IndexNavbar />
+      <Card className={classes.card}>
         <Typography className={classes.cardHeader} 
             gutterBottom variant="h5" component="h2">
           {offer.title}
@@ -92,7 +103,7 @@ const OfferDetials = (props) => {
       <Typography variant="body1" component="h2" className={classes.relatedHeader}>
         Related Offers
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className={classes.relatedContainer}>
         {relatedOffers.map((offer, index) => {
           return (
             <div >
@@ -128,6 +139,7 @@ const OfferDetials = (props) => {
           )
         })}
       </Grid>
+      <Footer/>
     </div>
   )
 }
