@@ -59,22 +59,22 @@ const titles = [
   {
     "icon": SearchIcon,
     "title": "Search",
-    "description": "Hello world this is just an example paper card which is great thing."
+    "description": "BabeJo for our handselected babysitters near you."
   },
   {
     "icon": FilterListIcon,
     "title": "Filter",
-    "description": "Hello world this is just an example paper card which is great thing."
+    "description": "after search, to tune your search result and only select your perfect match."
   },
   {
     "icon": TouchAppIcon,
     "title": "Choose",
-    "description": "Hello world this is just an example paper card which is great thing."
+    "description": "your new family member, we treat our babysitters as a family."
   },
   {
     "icon": CheckCircleIcon,
     "title": "Order",
-    "description": "Hello world this is just an example paper card which is great thing."
+    "description": "and your sitter will show up ready to take care of your love ones."
   }
 ]
 
