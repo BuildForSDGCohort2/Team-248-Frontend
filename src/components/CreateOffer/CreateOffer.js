@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Typography, Box, CssBaseline, Grid } from "@material-ui/core";
+import { Typography, CssBaseline, Grid } from "@material-ui/core";
 import { CustomSnackbar } from "../CustomSnackbar";
 import OfferForm from "./OfferForm";
-import Copyright from "../CopyRight";
 import Footer from "../../containers/Footer/Footer";
 import "./CreateOffer.scss"
+import IndexNavbar from "../../containers/Navbars/IndexNavbar";
 // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 // const required = value => (value ? undefined : "Required");
 
@@ -46,15 +46,15 @@ class CreateOffer extends Component {
   render() {
     return (
       <div>
+        <IndexNavbar/>
         <Grid
           container
           direction="column"
           alignItems="center"
           justify="center"
-          style={{ minHeight: "100vh" }}
         >
-          <Grid item xs={8} className="container">
-            <Typography variant="h5" component="h2" align="center">
+          <Grid item xs={8} className="content">
+            <Typography variant="h3" component="h2" align="center" style={{color: "#66615b"}}>
               Create Offer
             </Typography>
             <CssBaseline />

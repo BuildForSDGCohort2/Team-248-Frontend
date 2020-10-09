@@ -1,6 +1,10 @@
-.container {
+@import "../../../assets/css/bootstrap.min.css";
+@import "../../../assets/scss/paper-kit";
+
+.content {
   display: flex;
-  margin: 100px auto;
+  margin: 150px auto;
+  width: 80%;
 
   .tabs {
     border-right: 1px solid #cecece;
@@ -15,4 +19,21 @@
   #end-date {
     margin: 50px;
   }
+}
+
+.navbar.navbar-transparent {
+  padding-top: 0;
+  background-color: white !important;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+}
+
+*:active{
+  background-color: none;
+  border: none;
+}
+
+*:visited{
+  background-color: none;
+  border: none;
+  outline: none;
 }

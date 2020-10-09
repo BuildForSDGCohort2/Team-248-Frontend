@@ -1,5 +1,5 @@
 import React from "react";
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import "./Footer.scss";
 
 // reactstrap components
@@ -14,15 +14,15 @@ function Footer() {
             <ul>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   target="_blank"
                 >
-                  Creative Tim
+                  About Us
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   target="_blank"
                 >
                   Blog
@@ -30,7 +30,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   target="_blank"
                 >
                   Licenses
@@ -41,7 +41,7 @@ function Footer() {
           <div className="credits ml-auto">
             <span className="copyright">
               © {new Date().getFullYear()}, made with{" "}
-              <FavoriteIcon style={{ fill: '#e44463' }}/> by Bebejo
+              <FavoriteIcon style={{ fill: "#e44463" }}/> by Bebejo
             </span>
           </div>
         </Row>

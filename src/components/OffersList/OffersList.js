@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	cardHeader:{
     padding: "15px",
-    backgroundColor: '#e44463',
-    color: 'white'
+    backgroundColor: "#e44463",
+    color: "white"
 	},
 }));
 

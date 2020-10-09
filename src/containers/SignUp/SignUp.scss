@@ -1,4 +1,5 @@
-@import "../../scss/variables";
+@import "../../assets/css/bootstrap.min.css";
+@import "../../assets/scss/paper-kit";
 
 .register-container {
   .login-container {
@@ -29,4 +30,15 @@
   .MuiFormLabel-root{
     margin-bottom: 6px;
   }
+}
+
+.credits.ml-auto{
+  display: inline-block;
+}
+.footer-nav{
+  display: inline-block;
+}
+
+.footer .container .row{
+    text-align: center;
 }

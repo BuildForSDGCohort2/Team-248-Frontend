@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: "80%",
     margin: "0 auto",
-    marginTop: "120px"
+    marginTop: "150px"
   },
   paper: {
     padding: theme.spacing(2),
@@ -142,6 +142,12 @@ const Offers = () => {
     <div className={classes.container}>
       <IndexNavbar />
       <Grid container spacing={3}>
+        <Grid xs={12} item>
+          <a className="text-danger offer-text"href="/create-offer">
+            <i className="nc-icon nc-simple-add text-danger offer-icon" /> 
+            Create Offer 
+          </a>
+        </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
             <FormControl component="fieldset" onChange={handleCategoryChange}>
@@ -153,7 +159,7 @@ const Offers = () => {
                 />
                 <FormControlLabel
                   control={<Checkbox name="elderly_sitter" className={classes.checkboxColor}/>}
-                  label="elderly Sitter" value={2}
+                  label="Elderly Sitter" value={2}
                 />
               </FormGroup>
             </FormControl>

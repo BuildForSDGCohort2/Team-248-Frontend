@@ -1,3 +1,6 @@
+@import "../../assets/css/bootstrap.min.css";
+@import "../../assets/scss/paper-kit";
+
 .paper {
   max-width: 400px;
   margin-top: 100px;
@@ -11,4 +14,20 @@
 
 .mt-2 {
   margin-top: 1.3rem;
+}
+
+.credits.ml-auto{
+  display: inline-block;
+}
+.footer-nav{
+  display: inline-block;
+}
+
+.footer .container .row{
+    text-align: center;
+}
+
+html, body, #root, .MuiGrid-root{
+	margin: 0;
+    height: 100%;
 }
