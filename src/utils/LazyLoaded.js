@@ -6,3 +6,5 @@ export const ForgetPassword = React.lazy(() => import("../containers/ForgetPassw
 export const Login = React.lazy(() => import("../containers/Login/Login"));
 export const CreateOffer = React.lazy(() => import("../components/CreateOffer/CreateOffer"));
 export const Profile = React.lazy(() => import("../containers/User/Profile/Profile"));
+export const Offers = React.lazy(() => import("../containers/Offers/Offers"));
+export const OfferDetails = React.lazy(() => import("../containers/OfferDetails/OfferDetails"));
