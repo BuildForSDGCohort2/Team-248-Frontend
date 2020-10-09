@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Hero from "../Hero/Hero";
 import SecondSection from "../SecondSection/SecondSection";
 import ThirdSection from "../ThirdSection/ThirdSection";

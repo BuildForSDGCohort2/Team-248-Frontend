@@ -117,7 +117,7 @@ const ThirdSection = () => {
               alignItems="center"
             >
               <Grid item>
-                <img src={sitter.img} className={classes.img}/>
+                <img src={sitter.img} className={classes.img} alt="sitter profile"/>
               </Grid>
               <Grid item>
                 <Typography variant="h6" className={classes.sitter}>{sitter.name}</Typography>
