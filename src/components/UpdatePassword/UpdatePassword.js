@@ -186,7 +186,6 @@ function UpdatePassword() {
             color="primary"
             className={classes.submit}
             data-test="button"
-            size="small"
             type="submit"
           >
             Submit

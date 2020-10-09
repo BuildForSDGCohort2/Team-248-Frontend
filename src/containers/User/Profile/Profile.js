@@ -9,6 +9,7 @@ import Copyright from "../../../components/CopyRight";
 import Container from "@material-ui/core/Container";
 import DeactivateAccount from "../../../components/DeactivateAccount/DeactivateAccount";
 import { TabPanel } from "../../../components/TabPanal/TabPanel";
+import { MyOffers } from "../../../components/Myoffers/MyOffers";
 
 function additionalProps(index) {
   return {
@@ -28,7 +29,7 @@ const user = {
 };
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -44,16 +45,20 @@ export default function VerticalTabs() {
         className="tabs"
       >
         <Tab label="Contact Info" {...additionalProps(0)} />
-        <Tab label="Change Password" {...additionalProps(1)} />
-        <Tab label="Deactivate Account" {...additionalProps(2)} />
+        <Tab label="My offers" {...additionalProps(1)} />
+        <Tab label="Change Password" {...additionalProps(2)} />
+        <Tab label="Deactivate Account" {...additionalProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <ContactInfo user={user}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <UpdatePassword />
+        <MyOffers />
       </TabPanel>
       <TabPanel value={value} index={2}>
+        <UpdatePassword />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
         <DeactivateAccount />
       </TabPanel>
     </div>
@@ -61,6 +66,5 @@ export default function VerticalTabs() {
 			<Copyright /> 
 		</Box>
 		</Container>
-      
   );
 }
