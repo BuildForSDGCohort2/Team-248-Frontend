@@ -132,7 +132,7 @@ const ThirdSection = () => {
           ))}
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item>
-          <Button variant="contained" className={classes.seeMore}>See More</Button>
+          <Button color="primary" variant="contained" className={classes.seeMore}>See More</Button>
           </Grid>
         </Grid>
       </Grid>

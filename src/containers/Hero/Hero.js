@@ -23,8 +23,10 @@ const useStyles = makeStyles((theme) => ({
   actionBtn: {
     borderRadius: "15px",
     color: "#ffffff",
-    padding: "5px 15px",
+    padding: "6px 15px",
+    marginTop: "15px",
     backgroundColor: "#560a4e",
+    textTransform: "capitalize",
   },
   mutedText: {
     color: "#7b7f7e",

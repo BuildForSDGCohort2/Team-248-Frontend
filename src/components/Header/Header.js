@@ -102,7 +102,7 @@ const Header = function () {
               href="#"
               className={classes.link}
             >
-              Career
+              Apply
             </Link>
           </nav>
           <Button

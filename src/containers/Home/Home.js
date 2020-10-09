@@ -3,7 +3,7 @@ import Hero from "../Hero/Hero";
 import SecondSection from "../SecondSection/SecondSection";
 import ThirdSection from "../ThirdSection/ThirdSection";
 import ServicesSection from "../ServicesSection/ServicesSection";
-import FeedbackSection from "../FeedbackSection/FeedbackSection";
+import AcceptanceQualifictions from "../AcceptanceQualifictions/AcceptanceQualifictions";
 import Footer from "../Footer/Footer";
 import Header from "../../components/Header/Header.js";
 import Container from "@material-ui/core/Container";
@@ -26,7 +26,7 @@ const Home = function() {
           <SecondSection />
           <ThirdSection />
           <ServicesSection />
-          <FeedbackSection />
+          <AcceptanceQualifictions />
         </Container>
         <Footer />
       </div>
