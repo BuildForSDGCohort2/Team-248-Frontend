@@ -4,6 +4,7 @@ import ThirdSection from "../ThirdSection/ThirdSection";
 import IndexHeader from "../Headers/IndexHeader";
 import IndexNavbar from "../Navbars/IndexNavbar";
 import DemoFooters from "../Footers/DemoFooter";
+import ContactUs from "../ContactUs/ContactUs";
 
 class Home extends Component {
   render() {
@@ -13,6 +14,7 @@ class Home extends Component {
         <IndexHeader />
         <SecondSection />
         <ThirdSection />
+        <ContactUs />
         <DemoFooters />
       </div>
     );
