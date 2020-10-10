@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Messages from "../../assets/Local/messages";
+import { axiosInstance } from "../../network/apis/index";
 
 const useStyles = makeStyles((theme) => ({
   resetPassword: {
@@ -45,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   success: {
     color: "green",
   },
+  data: {
+    display: "none",
+  },
 }));
 
 function UpdatePassword() {
@@ -53,18 +57,19 @@ function UpdatePassword() {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState(null);
   const [newPasswordError, setNewPasswordError] = useState("");
+  const [resData, setResData] = useState(null);
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const validPassword = (value) => {
     const min = value.length >= 6;
     const max = value.length <= 12;
-    return (min && max);
+    return min && max;
   };
 
   const validatePassword = (value, errorSetter) => {
-    !validPassword(value) ? 
-      errorSetter(Messages.en.PasswordLength) : 
-      errorSetter("");
+    !validPassword(value)
+      ? errorSetter(Messages.en.PasswordLength)
+      : errorSetter("");
   };
 
   const updateOldPassword = (e) => {
@@ -102,7 +107,15 @@ function UpdatePassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     validate(e.target);
-    return null;
+    axiosInstance
+      .put("/api/profile/updatePassword", { newPassword })
+      .then((res) => {
+        setResData(res);
+      })
+      .catch((err) => {
+        setNewPasswordError(err);
+        setConfirmPasswordError(err);
+      });
   };
 
   const classes = useStyles();
@@ -145,7 +158,7 @@ function UpdatePassword() {
             data-test="newPassword"
             size="small"
           ></TextField>
-            <small className={classes.error}>{newPasswordError}</small>
+          <small className={classes.error}>{newPasswordError}</small>
           <TextField
             fullWidth
             margin="normal"
@@ -161,6 +174,7 @@ function UpdatePassword() {
             size="small"
           ></TextField>
           <small className={classes.error}>{confirmPasswordError}</small>
+          <small className={classes.data}>{resData}</small>
           <Box>
             {error === "New Password Has Set" ? (
               <Typography
