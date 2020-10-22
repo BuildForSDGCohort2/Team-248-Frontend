@@ -1,12 +1,53 @@
-// The header with navs and router go here (First section)
 import React from "react";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import "./Footer.scss";
 
-const Footer = () => {
+// reactstrap components
+import { Row, Container } from "reactstrap";
+
+function Footer() {
   return (
-    <div>
-      <h5>Footer goes here</h5>
-    </div>
+    <footer className="footer footer-black footer-white">
+      <Container>
+        <Row>
+          <nav className="footer-nav">
+            <ul>
+              <li>
+                <a
+                  href="/"
+                  target="_blank"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/"
+                  target="_blank"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/"
+                  target="_blank"
+                >
+                  Licenses
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div className="credits ml-auto">
+            <span className="copyright">
+              © {new Date().getFullYear()}, made with{" "}
+              <FavoriteIcon style={{ fill: "#e44463" }}/> by Bebejo
+            </span>
+          </div>
+        </Row>
+      </Container>
+    </footer>
   );
-};
+}
 
 export default Footer;

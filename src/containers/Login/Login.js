@@ -12,6 +12,7 @@ import "./Login.scss";
 import { axiosInstance } from "../../network/apis";
 import History from "../../routes/History";
 import Alert from '@material-ui/lab/Alert';
+import Footer from "../Footer/Footer";
 
 function Login() {
   // const [isError, setisError] = useState(false);
@@ -58,11 +59,12 @@ function Login() {
   }
 
   return (
-    <>
+    <div>
       <Grid container direction="column" alignItems="center" justify="center">
         <Grid item md={6} sm={12} xs={12}>
           <Paper className="paper" elevation={0}>
-            <Typography gutterBottom align="center" variant="h4" component="h4">
+            <Typography gutterBottom align="center" variant="h4" 
+            component="h4" style={{color: "#66615b"}}>
               Login
             </Typography>
             { validationErrors.length > 0 && <div>
@@ -114,18 +116,18 @@ function Login() {
                 id="js-submit"
                 variant="contained"
                 color="primary"
-                className="login-form__submit"
+                className="login-form-submit"
               >
                 Login
               </Button>
               <Grid container className="mt-2">
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="/forget-password" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -133,8 +135,9 @@ function Login() {
             </form>
           </Paper>
         </Grid>
+        <Footer/>
       </Grid>
-    </>
+    </div>
   );
 }
 

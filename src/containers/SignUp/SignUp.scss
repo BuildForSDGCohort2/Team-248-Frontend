@@ -1,9 +1,14 @@
-@import "../../scss/variables";
+@import "../../assets/css/bootstrap.min.css";
+@import "../../assets/scss/paper-kit";
 
 .register-container {
   .login-container {
     margin: 200px auto 0 auto;
     width: 50%;
+  }
+
+  h1{
+    margin-bottom: 25px;
   }
 
   .paper {
@@ -19,5 +24,21 @@
 
   .submit-btn {
     margin-top: 30px;
+    margin-bottom: 10px;
   }
+
+  .MuiFormLabel-root{
+    margin-bottom: 6px;
+  }
+}
+
+.credits.ml-auto{
+  display: inline-block;
+}
+.footer-nav{
+  display: inline-block;
+}
+
+.footer .container .row{
+    text-align: center;
 }

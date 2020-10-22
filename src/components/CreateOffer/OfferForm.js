@@ -2,8 +2,8 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { number, object, string, date } from "yup";
 import { Button, Box, TextField, FormGroup } from "@material-ui/core";
-import DatePicker from "./DatePicker";
-import InputError from "./InputError";
+import DatePicker from "../DatePicker/DatePicker";
+import InputError from "../InputError/InputError";
 import { axiosInstance } from "../../network/apis/index";
 
 const min = new Date();
@@ -13,9 +13,9 @@ const max = new Date();
 const initialValues = {
   startDate: null,
   endDate: null,
-  pricePerHour: null,
-  address: null,
-  qualifications: null
+  pricePerHour: "",
+  address: "",
+  qualifications: ""
 };
 const validationSchema = object({
   startDate: date()
@@ -35,6 +35,7 @@ const validationSchema = object({
   qualifications: string()
 });
 const handleSubmit = (values, setSnackbar) => {
+  console.log("here");
   axiosInstance.post("/api/create-offer", values).then((res) => {
     setSnackbar(res.data.message, true);
   }).catch((error) => {
@@ -51,28 +52,33 @@ const OfferForm = ({ setSnackbar }) => {
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">
-          <FormGroup>
-            <Field
-              id="create-offer-startDate"
-              as={DatePicker}
-              name="startDate"
-              label="Start date"
-              value={values.startDate}
-              onChange={(value) => setFieldValue("startDate", value)}
-            />
-            <InputError name="startDate" message="Invalid start date" />
-          </FormGroup>
-          <FormGroup>
-            <Field
-              id="create-offer-endDate"
-              as={DatePicker}
-              name="endDate"
-              label="End date"
-              value={values.endDate}
-              onChange={(value) => setFieldValue("endDate", value)}
-            />
-            <InputError name="endDate" message="Invalid end date" />
-          </FormGroup>
+          <Box width="100%">
+            <FormGroup width="100%">
+              <Field
+                id="create-offer-startDate"
+                as={DatePicker}
+                className="date-input"
+                name="startDate"
+                label="Start date"
+                value={values.startDate}
+                onChange={(value) => setFieldValue("startDate", value)}
+              />
+              <InputError name="startDate" message="Invalid start date" />
+            </FormGroup>
+          </Box>
+          <Box width="100%">
+            <FormGroup className="date-input">
+              <Field
+                id="create-offer-endDate"
+                as={DatePicker}
+                name="endDate"
+                label="End date"
+                value={values.endDate}
+                onChange={(value) => setFieldValue("endDate", value)}
+              />
+              <InputError name="endDate" message="Invalid end date" />
+            </FormGroup>
+          </Box>
           <Box width="100%" mb={2}>
             <FormGroup>
               <Field
@@ -86,7 +92,7 @@ const OfferForm = ({ setSnackbar }) => {
               <InputError name="pricePerHour" message="Invalid price" />
             </FormGroup>
           </Box>
-          <Box width="100%" mb={2} mt={2}>
+          <Box width="100%" mb={2}>
             <FormGroup>
               <Field
                 id="create-offer-address"
@@ -99,7 +105,7 @@ const OfferForm = ({ setSnackbar }) => {
               <InputError name="address" message="Invalid address" />
             </FormGroup>
           </Box>
-          <Box width="100%" mb={2} mt={2}>
+          <Box width="100%" mb={2}>
             <FormGroup>
               <Field
                 id="create-offer-qualifications"
@@ -107,13 +113,13 @@ const OfferForm = ({ setSnackbar }) => {
                 name="qualifications"
                 type="text"
                 as={TextField}
-                label="prefered qualifications"
+                label="Prefered Qualifications"
               />
               <InputError name="qualifications" message="Invalid text" />
             </FormGroup>
           </Box>
           <Box width="100%" my={2}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit" variant="contained" color="primary" fullWidth size="large">
               Submit
             </Button>
           </Box>

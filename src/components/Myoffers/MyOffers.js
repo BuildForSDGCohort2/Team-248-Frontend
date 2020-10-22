@@ -140,7 +140,7 @@ export const MyOffers = () => {
     <Container maxWidth="sm">
 				<Card>
 					<Typography className={classes.cardHeader} 
-							gutterBottom variant="h5" component="h2" align="center">
+								gutterBottom variant="h5" component="h2" align="center">
 						My Offers 
 					</Typography>
 					<CardContent>

@@ -1,0 +1,27 @@
+@import "../../assets/css/bootstrap.min.css";
+@import "../../assets/scss/paper-kit";
+
+.navbar.navbar-transparent {
+    padding-top: 0;
+    background-color: white !important;
+    box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+}
+
+.footer{
+	width:100%
+}
+
+.margin-offer{
+    margin-left: 399px;
+}
+
+.offer-text, .offer-icon{
+	font-size: 20px;
+	font-weight: 300;
+}
+
+.offer-icon{
+    margin-left: 20px;
+    margin-right: 5px;
+    margin: 0 5px 20px 20px;
+}
