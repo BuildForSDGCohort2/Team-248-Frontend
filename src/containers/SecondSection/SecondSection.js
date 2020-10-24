@@ -37,8 +37,8 @@ function SecondSection() {
                   <Card.Title>Connect</Card.Title>
                   <Card.Text>
                     Screen, interview and make your choice. Parents don't pay us
-                    until they contact a babysitter. Babysitters contact for
-                    free.
+                    until they contact a babysitter. You can contact Babysitters for
+                    free anytime.
                   </Card.Text>
                 </Card.Body>
               </Card>

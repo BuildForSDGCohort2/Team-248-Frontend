@@ -104,6 +104,7 @@ function Login() {
                 variant="outlined"
                 margin="normal"
                 fullWidth
+                value={email}
                 handleChange={handleEmailChange}
                 id="js-email"
                 label="Email Address"
@@ -119,6 +120,7 @@ function Login() {
                 handleChange={handlePasswordChange}
                 type="password"
                 id="js-password"
+                value={password}
                 label="Password"
                 name="password"
                 autoComplete="current-password"
