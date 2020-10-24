@@ -15,3 +15,10 @@ button[type="submit"]:hover{
   background-color: #e44463;
   color: white;
 }
+
+.MuiButtonBase-root{
+  &:focus{
+    border:none;
+    outline: none;
+  }
+}

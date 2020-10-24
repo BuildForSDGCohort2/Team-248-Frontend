@@ -37,7 +37,7 @@ export function ContactInfo({user}) {
 					<Typography  color="textSecondary">
 					Profile Picture:
 					</Typography>
-					<Avatar alt="Profile Picture" src={user.profileImg} className={classes.large} />
+					<Avatar alt="Profile Picture" src={user.profile_img} className={classes.large} />
 					<Typography  color="textSecondary">
 					Name:
 					</Typography>
@@ -54,7 +54,7 @@ export function ContactInfo({user}) {
 					Phone:
 					</Typography>
 					<Typography className={classes.pos} variant="body2" component="p">
-					{user.phone}
+					{user.phone_number}
 					</Typography>
 					<Typography  color="textSecondary">
 					Address:

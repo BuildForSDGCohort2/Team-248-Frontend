@@ -8,6 +8,8 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Messages from "../../assets/Local/messages";
+import { axiosInstance } from "../../network/apis";
+
 
 const useStyles = makeStyles((theme) => ({
   resetPassword: {
@@ -102,6 +104,16 @@ function UpdatePassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
     validate(e.target);
+    const data = {
+      current_password: e.target.oldPassword.value, 
+      password: e.target.newPassword.value,
+      password_confirmation: e.target.confirmPassword.value,
+    }
+    axiosInstance.put('/profile/updatePassword', data, { 
+      headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }})
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
     return null;
   };
 

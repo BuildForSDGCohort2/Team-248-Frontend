@@ -12,15 +12,27 @@ import {
   Nav,
   Container,
 } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import History from '../../routes/History'
 
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
+  const dispatcher = useDispatch();
+
+  const is_authorized = useSelector(state => state.Auth.is_authorized);
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
     document.documentElement.classList.toggle("nav-open");
   };
+
+  const logout = () =>{
+    localStorage.removeItem('token')
+    localStorage.removeItem('is_auth')
+    dispatcher({type: "SET_AUTHERIZATION", payload: false})
+    return History.push('/')
+  }
 
   React.useEffect(() => {
     const updateNavbarColor = () => {
@@ -43,6 +55,7 @@ function IndexNavbar() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
+  
   return (
     <Navbar className={classnames("fixed-top", navbarColor)} expand="lg">
       <Container>
@@ -86,25 +99,40 @@ function IndexNavbar() {
                 My profile
               </NavLink>
             </NavItem>
-            <NavItem>
-              <Button
-                className="btn-round"
-                color="danger"
-                href="/register"
-              >
-                Sign Up
-              </Button>
-            </NavItem>
-            <NavItem>
-              <Button
-                className="btn-round"
-                color="danger"
-                href="/login"
-                target=""
-              >
-                Login
-              </Button>
-            </NavItem>
+              { !is_authorized &&
+                <>
+                  <NavItem>
+                    <Button
+                      className="btn-round"
+                      color="danger"
+                      href="/register"
+                    >
+                      Sign Up
+                    </Button>
+                  </NavItem>
+                  <NavItem>
+                    <Button
+                      className="btn-round"
+                      color="danger"
+                      href="/login"
+                    >
+                      Login
+                    </Button>
+                  </NavItem>
+                </> }
+              { is_authorized &&
+                <>
+                  <NavItem>
+                    <Button
+                      className="btn-round"
+                      color="danger"
+                      // href="/"
+                      onClick={() => logout()}
+                    >
+                      Logout
+                    </Button>
+                  </NavItem>
+                </> }
           </Nav>
         </Collapse>
       </Container>

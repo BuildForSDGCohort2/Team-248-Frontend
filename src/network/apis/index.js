@@ -2,7 +2,7 @@ import axios from "axios";
 import { requestHandler, successHandler, errorHandler } from "../interceptors";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:8000"
+  baseURL: "https://team-248-backend.herokuapp.com/api"
 });
 
 // Handle request process
