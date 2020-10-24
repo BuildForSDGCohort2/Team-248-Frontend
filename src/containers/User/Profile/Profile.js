@@ -19,16 +19,6 @@ function additionalProps(index) {
   };
 }
 
-const user = {
-	name: "Abdullah",
-	email: "abdullah@email.com",
-	phone: "0123456789",
-	address: "Aleandria, Egypt",
-	gender: "male",
-	profileImg: "/profiles/profile4.jpg",
-	dob: "1994-7-10"
-};
-
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
   const [user, setUser] = React.useState(null);
@@ -41,12 +31,11 @@ export default function VerticalTabs() {
   useEffect(() => {
     axiosInstance.get("/user", { headers: { Authorization: `Bearer ${token}` } })
     .then((res) => {
-      console.log(res.data.data.user)
       setUser(res.data.data.user);
     }).catch(err => {
       console.log(err);
     });
-  }, [])
+  }, [token])
 
   return (
     <div>
