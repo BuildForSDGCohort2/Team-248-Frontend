@@ -13,9 +13,11 @@ import { axiosInstance } from "../../network/apis";
 import History from "../../routes/History";
 import Alert from '@material-ui/lab/Alert';
 import Footer from "../Footer/Footer";
+import { useDispatch } from "react-redux";
 
 function Login() {
   // const [isError, setisError] = useState(false);
+  const dispatcher = useDispatch();
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
@@ -48,13 +50,16 @@ function Login() {
       email: e.target.email.value,
       password: e.target.password.value,
     }
-    axiosInstance.post("/api/login", body)
+    axiosInstance.post("/login", body)
     .then(res => {
       localStorage.setItem("token", res.data.data.token);
+      dispatcher({type: "SET_AUTHERIZATION", payload: true})
+      localStorage.setItem("is_auth", true)
       return History.push("/");
     }).catch(err => {
       setValidationErrors(err.response.data.message)
-      console.log(err.response.data.message);
+      if(err.response.data.message instanceof String)
+        console.log(err.response.data.message);
     });
   }
 
@@ -67,15 +72,27 @@ function Login() {
             component="h4" style={{color: "#66615b"}}>
               Login
             </Typography>
-            { validationErrors.length > 0 && <div>
-              <Alert severity="error">
-                <ul>
-                { validationErrors.map((item, index) => {
-                  return <li>{item}</li>
-                }) }
-                </ul>
-              </Alert>
-            </div> }
+            { 
+              typeof validationErrors === "string"  && 
+              <div>
+                <Alert severity="error">
+                  {validationErrors}
+                </Alert>
+              </div>
+            }
+            { 
+              validationErrors instanceof Array && 
+              validationErrors.length > 0 && 
+              <div>
+                <Alert severity="error">
+                  <ul>
+                  { validationErrors.map((item, index) => {
+                    return <li>{item}</li>
+                  }) }
+                  </ul>
+                </Alert>
+              </div> 
+            }
             <form
               autoComplete="off"
               className="login-form"

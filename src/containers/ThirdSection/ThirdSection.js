@@ -16,9 +16,6 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
     margin: "0 auto"
   },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
-  },
   title: {
     margin: theme.spacing(4, 0, 2),
   },
@@ -68,7 +65,7 @@ function ThirdSection(){
             <img src={require("../../assets/img/qualification.jpg")} alt="babysitter"/>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className={classes.demo}>
+            <div>
                 <List>
                   { Qualifictions.map((item, index) => {
                     return <ListItem key={index} className={classes.listItem}>

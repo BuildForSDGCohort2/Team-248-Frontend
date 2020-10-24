@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { ContactInfo } from "../../../components/ContactInfo/ContactInfo";
@@ -31,20 +31,22 @@ const user = {
 
 export default function VerticalTabs() {
   const [value, setValue] = React.useState(0);
-  // const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(null);
   const token = localStorage.getItem('token');
-  console.log(token)
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // axiosInstance.get("/api/user", { haeders: { Authorization: `Bearer ${token}` } })
-  // .then((res) => {
-  //   console.log(res)
-  //   setUser(user);
-  // }).catch(err => {
-  //   console.log(err);
-  // });
+  useEffect(() => {
+    axiosInstance.get("/user", { headers: { Authorization: `Bearer ${token}` } })
+    .then((res) => {
+      console.log(res.data.data.user)
+      setUser(res.data.data.user);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, [])
 
   return (
     <div>
@@ -63,7 +65,7 @@ export default function VerticalTabs() {
             <Tab label="Deactivate Account" {...additionalProps(3)} />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <ContactInfo user={user}/>
+            { user && <ContactInfo user={user}/>}
           </TabPanel>
           <TabPanel value={value} index={1}>
             <MyOffers />
