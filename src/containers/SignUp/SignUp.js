@@ -154,7 +154,6 @@ export default class SignUp extends React.Component {
       name: formBody.address.name
     } });
   }
-
   handleSubmission = (event) => {
     event.preventDefault();
     this.validate(event.target);
@@ -178,6 +177,7 @@ export default class SignUp extends React.Component {
     })
     .then((res) => {
       localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("is_auth", true)
       History.push("/");
     })
     .catch(async (err) => {
