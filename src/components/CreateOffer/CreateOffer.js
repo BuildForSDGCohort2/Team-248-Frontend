@@ -5,8 +5,6 @@ import OfferForm from "./OfferForm";
 import Footer from "../../containers/Footer/Footer";
 import "./CreateOffer.scss"
 import IndexNavbar from "../../containers/Navbars/IndexNavbar";
-// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-// const required = value => (value ? undefined : "Required");
 
 class CreateOffer extends Component {
   state = {
@@ -36,12 +34,13 @@ class CreateOffer extends Component {
       }
     });
   };
+
   setSnackbar = (submitMessage, validOffer) => {
     this.setState({
       submitMessage,
       validOffer
     }, () => this.handleOpenSnackbar());
-  }
+  };
 
   render() {
     return (

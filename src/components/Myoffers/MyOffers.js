@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -19,35 +19,7 @@ import AlertDialog from "../AlertDialog/AlertDialog";
 import FormDialog from "../FormDialog/FormDialog";
 import { UpdateOffer } from "../UpdateOffer/UpdateOffer";
 import { CustomSnackbar } from "../CustomSnackbar";
-
-export const offers = [
-	{
-    id: 1,
-		title: "Baby sitter for 3 days",
-		description: "I want a Baby sitter for 3 days",
-		startDate: "Sep, 4 2020",
-		endDate: "Sep, 7 2020",
-		acceptedSitterName: "Monica",
-    status: "Pendding",
-    hours: 3,
-    pricePerHour: 10,
-    preferedQualification: "I want someone who has the abilities to take care of adult boy.",
-    address: "Alexandria"
-  },
-	{
-    id: 2,
-		title: "Baby sitter for one day",
-		description: "I want a Baby sitter for one day",
-		startDate: "Oct, 10 2020",
-		endDate: "Oct, 10 2020",
-		acceptedSitterName: "Eman",
-		status: "Confirmed",
-    hours: 2,
-    pricePerHour: 5.5,
-    preferedQualification: "I want someone who can take care of a child during a trip",
-    address: "Alexandria"
-	}
-];
+import { axiosInstance } from "../../network/apis";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,6 +61,9 @@ export const MyOffers = () => {
   const [UpdateOfferDialogOpen, setUpdateOfferDialogOpen] = React.useState(false);
   const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackBarMessage, setSnackbarMessage] = React.useState("");
+  const [offers, setOffers] = React.useState([]);
+  const token = localStorage.getItem('token');
+  const FEXED_WORK_HOURS_PER_DAY = 4; // this is temperory
 
   const handleCardClick = (offerId) => {
     return History.push(`/offers/${offerId}`);
@@ -136,6 +111,15 @@ export const MyOffers = () => {
     setSnackbarOpen(false);
   };
 
+  useEffect(() => {
+    axiosInstance.get(`/profile/offers`, { headers: { Authorization: `Bearer ${token}` } })
+    .then((res) => {
+      setOffers(res.data.data);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, [token])
+
 	return (
     <Container maxWidth="sm">
 				<Card>
@@ -159,18 +143,20 @@ export const MyOffers = () => {
 														{offer.description}
 													</Typography>
 													<Typography variant="body2" color="textSecondary">
-													Duration: From {offer.startDate} to {offer.endDate}
+													Duration: From {offer.start_at} to {offer.end_at}
 													</Typography>
 												</Grid>
 												<Grid item>
 												</Grid>
 											</Grid>
 											<Grid item>
-												<Typography variant="subtitle1">${offer.pricePerHour * offer.hours}</Typography> 
-												{offer.status === "Confirmed" && <div> <CheckCircleOutlineIcon className={classes.green}/>
-                          <p className={classes.status}>{offer.status}</p></div>}
-												{offer.status === "Pendding" && <div> <AccessAlarmIcon color="primary"/> 
-                          <p className={classes.status}>{offer.status}</p></div>}
+												<Typography variant="subtitle1">
+                          ${offer.price_per_hour * FEXED_WORK_HOURS_PER_DAY}
+                        </Typography> 
+												{offer.status.code === "accepted" && <div> <CheckCircleOutlineIcon className={classes.green}/>
+                          <p className={classes.status}>{offer.status.name}</p></div>}
+												{offer.status.code === "new" && <div> <AccessAlarmIcon color="primary"/> 
+                          <p className={classes.status}>{offer.status.name}</p></div>}
 											</Grid>
 											<Grid item>
                         <IconButton

@@ -5,6 +5,7 @@ import { Button, Box, TextField, FormGroup } from "@material-ui/core";
 import DatePicker from "../DatePicker/DatePicker";
 import InputError from "../InputError/InputError";
 import { axiosInstance } from "../../network/apis/index";
+import History from "../../routes/History";
 
 const min = new Date();
 const minDate = `${min.getMonth() + 1}/${min.getDate()}/${min.getFullYear()}`;
@@ -13,13 +14,14 @@ const max = new Date();
 const initialValues = {
   title: "",
   description: "",
-  startDate: null,
-  endDate: null,
-  pricePerHour: "",
+  category_id: "",
+  start_at: null,
+  end_at: null,
+  price_per_hour: "",
   address: "",
   exp_from: "",
   exp_to: "",
-  qualifications: ""
+  preferred_qualifications: ""
 };
 
 const validationSchema = object({
@@ -27,15 +29,17 @@ const validationSchema = object({
     .required("Title is required"),
   description: string()
     .required("Description is required"),
-  startDate: date()
+  category_id: number()
+    .required("Category is required"),
+  start_at: date()
     .default(new Date(min))
     .min(min, `Start date should be equal or later than ${minDate}`)
     .required("Start date is required"),
-  endDate: date()
+  end_at: date()
     .default(new Date(max))
     .min(min, `End date should be equal or later than ${minDate}`)
     .required("End date is required"),
-  pricePerHour: number()
+  price_per_hour: number()
     .required("Price per hour is required")
     .min(1, "You can not choose a price less than 1$ per hour"),
   exp_from: number()
@@ -45,15 +49,23 @@ const validationSchema = object({
   address: string()
     .min(5)
     .required("Your address is required"),
-  qualifications: string()
+  preferred_qualifications: string()
 });
 
 const handleSubmit = (values, setSnackbar) => {
-  axiosInstance.post("/create-offer", values).then((res) => {
+  values.start_at = `${values.start_at.getMonth() + 1}/${values.start_at.getDate()}/${values.start_at.getFullYear()}`
+  values.end_at = `${values.end_at.getMonth() + 1}/${values.end_at.getDate()}/${values.end_at.getFullYear()}`
+  
+  const token = localStorage.getItem('token');
+
+  axiosInstance.post("/offers", values, { headers: { Authorization: `Bearer ${token}` } } )
+  .then((res) => {
     setSnackbar(res.data.message, true);
   }).catch((error) => {
     setSnackbar(error?.data?.message, false);
   });
+
+  setTimeout(() => History.push('/offers'), 2000)
 };
 
 const OfferForm = ({ setSnackbar }) => {
@@ -61,7 +73,7 @@ const OfferForm = ({ setSnackbar }) => {
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
-      onSubmit={({ values }) => handleSubmit(values, setSnackbar)}
+      onSubmit={(values) => handleSubmit(values, setSnackbar)}
     >
       {({ values, setFieldValue }) => (
         <Form id="create-offer-form">
@@ -91,18 +103,28 @@ const OfferForm = ({ setSnackbar }) => {
               <InputError name="description" message="Invalid description" />
             </FormGroup>
           </Box>
+          <Box width="100%" mb={2}>
+            <FormGroup>
+              <Field as="select" name="category_id" className="category-input">
+                <option value="">Select Category *</option>
+                <option value="1">BabySitter</option>
+                <option value="2">Elerly care</option>
+              </Field>
+              <InputError name="category" message="Invalid category" />
+            </FormGroup>
+          </Box>
           <Box width="100%">
             <FormGroup width="100%">
               <Field
                 id="create-offer-startDate"
                 as={DatePicker}
                 className="date-input"
-                name="startDate"
+                name="start_at"
                 label="Start date *"
-                value={values.startDate}
-                onChange={(value) => setFieldValue("startDate", value)}
+                value={values.start_at}
+                onChange={(value) => setFieldValue("start_at", value)}
               />
-              <InputError name="startDate" message="Invalid start date" />
+              <InputError name="start_at" message="Invalid start date" />
             </FormGroup>
           </Box>
           <Box width="100%">
@@ -110,12 +132,12 @@ const OfferForm = ({ setSnackbar }) => {
               <Field
                 id="create-offer-endDate"
                 as={DatePicker}
-                name="endDate"
+                name="end_at"
                 label="End date *"
-                value={values.endDate}
-                onChange={(value) => setFieldValue("endDate", value)}
+                value={values.end_at}
+                onChange={(value) => setFieldValue("end_at", value)}
               />
-              <InputError name="endDate" message="Invalid end date" />
+              <InputError name="end_at" message="Invalid end date" />
             </FormGroup>
           </Box>
           <Box width="100%" mb={2}>
@@ -123,13 +145,13 @@ const OfferForm = ({ setSnackbar }) => {
               <Field
                 id="create-offer-pricePerHour"
                 variant="outlined"
-                name="pricePerHour"
+                name="price_per_hour"
                 type="number"
                 as={TextField}
                 min="1"
                 label="Price per hour *"
               />
-              <InputError name="pricePerHour" message="Invalid price" />
+              <InputError name="price_per_hour" message="Invalid price" />
             </FormGroup>
           </Box>
           <Box width="100%" mb={2}>
@@ -150,7 +172,7 @@ const OfferForm = ({ setSnackbar }) => {
               <Field
                 id="create-offer-qualifications"
                 variant="outlined"
-                name="qualifications"
+                name="preferred_qualifications"
                 type="text"
                 as={TextField}
                 label="Prefered Qualifications"
@@ -158,12 +180,12 @@ const OfferForm = ({ setSnackbar }) => {
                 rows={4}
                 rowsMax={4}
               />
-              <InputError name="qualifications" message="Invalid text" />
+              <InputError name="preferred_qualifications" message="Invalid text" />
             </FormGroup>
           </Box>
           <Box width="100%" mb={2}>
             <FormGroup>
-              <p>Years of Experience</p>
+              <p>Requested Years of Experience</p>
               <div style={{display: "flex"}}>
                 <Field
                   id="create-offer-experience-from"
@@ -173,6 +195,7 @@ const OfferForm = ({ setSnackbar }) => {
                   as={TextField}
                   label="From"
                 />
+                <InputError name="exp_from" message="Invalid experience" />
                 <Field
                   id="create-offer-experience-to"
                   variant="outlined"
@@ -181,8 +204,8 @@ const OfferForm = ({ setSnackbar }) => {
                   as={TextField}
                   label="To"
                 />
+                <InputError name="exp_to" message="Invalid experience" />
               </div>
-              <InputError name="experience" message="Invalid experience" />
             </FormGroup>
           </Box>
           <Box width="100%" my={2}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -9,84 +9,7 @@ import { OffersList } from "../../components/OffersList/OffersList";
 import IndexNavbar from "../Navbars/IndexNavbar";
 import Footer from "../Footer/Footer";
 import "./Offers.scss"
-
-export const offers = [
-	{
-    id: 1,
-		title: "Baby sitter for 3 days",
-		description: "I want a Baby sitter for 3 days",
-		startDate: "Sep, 4 2020",
-		endDate: "Sep, 7 2020",
-		acceptedSitterName: "Monica",
-    status: "Pendding",
-    experience: 1,
-    category: 1,
-		hours: 3,
-		pricePerHour: 10,
-		preferedQualification: "I want someone who has the abilities to take care of adult boy.",
-		address: "Alexandria"
-  },
-	{
-    id: 2,
-		title: "Baby sitter for one day",
-		description: "I want a Baby sitter for one day",
-		startDate: "Oct, 10 2020",
-		endDate: "Oct, 10 2020",
-		acceptedSitterName: "Eman",
-    status: "Confirmed",
-    experience: 2,
-    hours: 2,
-    category: 1,
-		pricePerHour: 5.5,
-		preferedQualification: "I want someone who can take care of a child during a trip",
-		address: "Alexandria"
-	},
-	{
-    id: 3,
-		title: "Baby sitter for one day",
-		description: "I want a Baby sitter for one day",
-		startDate: "Oct, 10 2020",
-		endDate: "Oct, 10 2020",
-		acceptedSitterName: "Eman",
-    status: "Confirmed",
-    experience: 8,
-    hours: 2,
-    category: 1,
-		pricePerHour: 8,
-		preferedQualification: "I want someone who can take care of a child during a trip",
-		address: "Alexandria"
-	},
-	{
-    id: 4,
-		title: "Baby sitter for one day",
-		description: "I want a Baby sitter for one day",
-		startDate: "Oct, 10 2020",
-		endDate: "Oct, 10 2020",
-		acceptedSitterName: "Eman",
-		status: "Confirmed",
-    hours: 2,
-    category: 2,
-    experience: 2,
-		pricePerHour: 6.5,
-		preferedQualification: "I want someone who can take care of a child during a trip",
-		address: "Alexandria"
-	},
-	{
-    id: 5,
-		title: "Baby sitter for one day",
-		description: "I want a Baby sitter for one day",
-		startDate: "Oct, 10 2020",
-		endDate: "Oct, 10 2020",
-		acceptedSitterName: "Eman",
-		status: "Confirmed",
-    hours: 2,
-    category: 2,
-    experience: 4,
-		pricePerHour: 20,
-		preferedQualification: "I want someone who can take care of a child during a trip",
-		address: "Alexandria"
-	}
-];
+import { axiosInstance } from "../../network/apis";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,25 +42,39 @@ function valuetext(value) {
 const Offers = () => {
   const [PriceRangeValue, setPriceRangeValue] = React.useState([0, 10]);
   const [ExpRangeValue, setExpRangeValue] = React.useState([0, 5]);
-  const [offersList, setOffersList] = React.useState(offers)
+  const [offersList, setOffersList] = React.useState([])
+  const [offers, setOffers] = React.useState([])
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    axiosInstance.get("/offers", { headers: { Authorization: `Bearer ${token}` } })
+    .then((res) => {
+      setOffersList(res.data.data);
+      setOffers(res.data.data);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, [token])
 
   const handlePriceRangeChange = (event, newValue) => {
-    const filteredList = offers.filter(item => item.pricePerHour >= newValue[0] && item.pricePerHour <= newValue[1])
+    const filteredList = offers.filter(item => item.price_per_hour >= newValue[0] 
+      && item.price_per_hour <= newValue[1])
     setOffersList(filteredList)
     setPriceRangeValue(newValue);
   };
   const handleExpRangeChange = (event, newValue) => {
-    const filteredList = offers.filter(item => item.experience >= newValue[0] && item.experience <= newValue[1])
+    const filteredList = offers.filter(item => item.exp_from >= newValue[0] 
+      && item.exp_to<= newValue[1])
     setOffersList(filteredList)
     setExpRangeValue(newValue);
   };
   const handleCategoryChange = (event) => {
-    const filteredList = offers.filter(item => item.category === parseInt(event.target.value));
-    console.log(filteredList)
+    const filteredList = offers.filter(item => item.category.id === parseInt(event.target.value));
     setOffersList(filteredList)
   };
 
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <IndexNavbar />
