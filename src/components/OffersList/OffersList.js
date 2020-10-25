@@ -64,18 +64,18 @@ export const OffersList = ({offers}) => {
 												{offer.description}
 											</Typography>
 											<Typography variant="body2" color="textSecondary">
-											Duration: From {offer.startDate} to {offer.endDate}
+											Duration: From {offer.start_at} to {offer.end_at}
 											</Typography>
 										</Grid>
 									</Grid>
                   <Grid item>
                     <Typography variant="body1">
-                      {"$"+ offer.pricePerHour + "/hr"}
+                      {"$"+ offer.price_per_hour + "/hr"}
                     </Typography>
                   </Grid>
-						</Grid>
-					</Grid>
-					{offers.length - 1 !== index && <Divider className={classes.dividerMargin}/>} 
+								</Grid>
+							</Grid>
+							{offers.length - 1 !== index && <Divider className={classes.dividerMargin}/>} 
 						</div>
 					);
 				})}

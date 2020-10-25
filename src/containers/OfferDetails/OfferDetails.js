@@ -1,7 +1,7 @@
 import { Button, Card, CardContent, 
   Divider, Grid, makeStyles, TextField, Typography } from "@material-ui/core";
-import React from "react"
-import { offers } from "../../containers/Offers/Offers";
+import React, { useEffect, useState } from "react"
+import { axiosInstance } from "../../network/apis";
 import Footer from "../Footer/Footer";
 import IndexNavbar from "../Navbars/IndexNavbar";
 
@@ -40,11 +40,33 @@ const useStyles = makeStyles((theme) => ({
 
 const OfferDetials = (props) => {
   const classes = useStyles();
+  const [offer, setOffer] = useState([])
+  const [relatedOffersList, setRelatedOffers] = useState([])
 
   let id = parseInt(props.computedMatch.params.id);
-  const offer = offers.filter(offer => offer.id === id)[0]
+  const token = localStorage.getItem('token');
 
-  const relatedOffers = offers.splice(0, 3)
+  useEffect(() => {
+    axiosInstance.get(`/offers/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+    .then((res) => {
+      console.log(res.data.data)
+      setOffer(res.data.data);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, [token, id])
+
+  useEffect(() => {
+    axiosInstance.get(`/offers`, { headers: { Authorization: `Bearer ${token}` } })
+    .then((res) => {
+      console.log(res.data.data)
+      setRelatedOffers(res.data.data);
+    }).catch(err => {
+      console.log(err);
+    });
+  }, [token, id])
+
+  const relatedOffers = relatedOffersList.splice(0, 3)
   
   const handleCardClick = (id) => {
     History.push(`/offers/${id}`)
@@ -70,13 +92,13 @@ const OfferDetials = (props) => {
                       {offer.description}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
-                    Duration: From {offer.startDate} to {offer.endDate}
+                    Duration: From {offer.start_at} to {offer.end_at}
                     </Typography>
                   </Grid>
                 </Grid>
                 <Grid item>
                   <Typography variant="body1">
-                    {"$"+ offer.pricePerHour + "/hr"}
+                    {"$"+ offer.price_per_hour + "/hr"}
                   </Typography>
                 </Grid>
               </Grid>
@@ -106,8 +128,8 @@ const OfferDetials = (props) => {
       <Grid container spacing={2} className={classes.relatedContainer}>
         {relatedOffers.map((offer, index) => {
           return (
-            <div >
-              <Grid item xs={3} key={index} className={classes.gridWidth}>
+            <div key={index}>
+              <Grid item xs={3} className={classes.gridWidth}>
                 <Card>
                   <Typography className={classes.cardHeader} 
                       gutterBottom variant="h5" component="h2" align="center">
@@ -123,12 +145,12 @@ const OfferDetials = (props) => {
                         {offer.description}
                       </Typography>
                       <Typography variant="body2" color="textSecondary">
-                      Duration: From {offer.startDate} to {offer.endDate}
+                      Duration: From {offer.start_at} to {offer.end_at}
                       </Typography>
                     </Grid>
                     <Grid item>
                       <Typography variant="body1">
-                        {"$"+ offer.pricePerHour + "/hr"}
+                        {"$"+ offer.price_per_hour + "/hr"}
                       </Typography>
                     </Grid>
                   </Grid>
