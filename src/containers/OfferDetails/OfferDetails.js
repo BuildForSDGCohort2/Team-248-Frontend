@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import { axiosInstance } from "../../network/apis";
 import Footer from "../Footer/Footer";
 import IndexNavbar from "../Navbars/IndexNavbar";
+import History from "../../routes/History";
 
 const useStyles = makeStyles((theme) => ({
 	cardHeader:{
