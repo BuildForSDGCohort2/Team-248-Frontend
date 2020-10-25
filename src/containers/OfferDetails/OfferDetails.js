@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react"
 import { axiosInstance } from "../../network/apis";
 import Footer from "../Footer/Footer";
 import IndexNavbar from "../Navbars/IndexNavbar";
+import History from "../../routes/History";
+import { CustomSnackbar } from "../../components/CustomSnackbar";
 
 const useStyles = makeStyles((theme) => ({
 	cardHeader:{
@@ -38,10 +40,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const SnackbarAnchorOrigin = {
+  vertical: "top",
+  horizontal: "center"
+};
+
 const OfferDetials = (props) => {
   const classes = useStyles();
-  const [offer, setOffer] = useState([])
-  const [relatedOffersList, setRelatedOffers] = useState([])
+  const [offer, setOffer] = useState([]);
+  const [relatedOffersList, setRelatedOffers] = useState([]);
+  const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackBarMessage, setSnackbarMessage] = React.useState("");
 
   let id = parseInt(props.computedMatch.params.id);
   const token = localStorage.getItem('token');
@@ -49,7 +58,6 @@ const OfferDetials = (props) => {
   useEffect(() => {
     axiosInstance.get(`/offers/${id}`, { headers: { Authorization: `Bearer ${token}` } })
     .then((res) => {
-      console.log(res.data.data)
       setOffer(res.data.data);
     }).catch(err => {
       console.log(err);
@@ -59,7 +67,6 @@ const OfferDetials = (props) => {
   useEffect(() => {
     axiosInstance.get(`/offers`, { headers: { Authorization: `Bearer ${token}` } })
     .then((res) => {
-      console.log(res.data.data)
       setRelatedOffers(res.data.data);
     }).catch(err => {
       console.log(err);
@@ -70,6 +77,29 @@ const OfferDetials = (props) => {
   
   const handleCardClick = (id) => {
     History.push(`/offers/${id}`)
+  }
+
+  const handleOpenSnackbar = (message) => {
+    setSnackbarMessage(message);
+    setSnackbarOpen(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleSubmitProposal = (e) => {
+    e.preventDefault()
+    const body = {
+      proposal: e.target.proposal.value
+    }
+    axiosInstance.post(`/offers/${id}/apply`, body, { headers: { Authorization: `Bearer ${token}` } })
+    .then((res) => {
+      handleOpenSnackbar(res.data.message);
+    }).catch(err => {
+      console.log(err);
+    });
+    setTimeout(() => History.push('/offers'), 1500)
   }
 
   return (
@@ -104,20 +134,23 @@ const OfferDetials = (props) => {
               </Grid>
               <Divider />
               <Grid item xs={12}>
-                <TextField
-                  placeholder="Submit Your Proposal"
-                  multiline
-                  fullWidth
-                  variant="outlined"
-                  rows={4}
-                  rowsMax={4}
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submitBtn}
-                > Submit</Button>
+                <form onSubmit={handleSubmitProposal}>
+                  <TextField
+                    placeholder="Submit Your Proposal"
+                    name="proposal"
+                    multiline
+                    fullWidth
+                    variant="outlined"
+                    rows={4}
+                    rowsMax={4}
+                  />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submitBtn}
+                  > Submit</Button>
+                </form>
               </Grid>
             </Grid>
         </CardContent>
@@ -161,6 +194,12 @@ const OfferDetials = (props) => {
           )
         })}
       </Grid>
+      <CustomSnackbar
+          anchorOrigin={SnackbarAnchorOrigin}
+          open={SnackbarOpen}
+          handleClose={handleCloseSnackbar}
+          message={snackBarMessage}
+        />
       <Footer/>
     </div>
   )
