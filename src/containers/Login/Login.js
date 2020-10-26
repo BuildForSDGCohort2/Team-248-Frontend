@@ -57,9 +57,7 @@ function Login() {
       localStorage.setItem("is_auth", true)
       return History.push("/");
     }).catch(err => {
-      setValidationErrors(err.response.data.message)
-      if(err.response.data.message instanceof String)
-        console.log(err.response.data.message);
+      setValidationErrors(err.response.data.data.message)
     });
   }
 
